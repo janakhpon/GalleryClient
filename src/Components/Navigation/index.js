@@ -1,4 +1,5 @@
 import React from 'react';
+import Emoji from '../Emojis';
 
 class Navigation extends React.Component {
     render() {
@@ -56,7 +57,7 @@ class Navigation extends React.Component {
                                         <div className="nform__group--upload">
 
                                             <input className="nform__upload" type="file" name="image" required />
-                                            <span>👆🏻 👆🏻 👆🏻 👆🏻 👆🏻</span>
+                                            <Emoji symbol="👆🏻 👆🏻 👆🏻 👆🏻 👆🏻" label="fingers"/>
                                         </div>
                                     </div>
                                 </div>
