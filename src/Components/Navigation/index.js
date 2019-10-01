@@ -2,6 +2,26 @@ import React from 'react';
 import Emoji from '../Emojis';
 
 class Navigation extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            type : '',
+            keyword: '',
+            image : ''
+
+        }
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
+    onChange = (e) =>{
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
     render() {
         return (
             <React.Fragment>
