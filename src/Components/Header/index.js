@@ -23,7 +23,7 @@ class Header extends Component {
                                             <a href="/">Gallery</a>
                                            
                                             <ul className="dropdown">
-                                                <li><Link to="/">Gallery</Link></li>
+                                                <li><Link to="/Gallery">Gallery</Link></li>
                                                 <li><a href="/">Portrait</a></li>
                                                 <li><a href="/">People</a></li>
                                                 <li><a href="/">Architecture</a></li>

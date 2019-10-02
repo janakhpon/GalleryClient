@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './Components/Menu';
 import Header from './Components/Header';
 import Container from './Components/Container';
+import Gallery from './Components/Gallery';
 import {
   HashRouter as Router,
   Route
@@ -25,6 +26,7 @@ class App extends Component {
 
           {/* Container Section Here */}
           <Route exact path="/" component={Container} />
+          <Route path="/Gallery" component={Gallery} />
         </Router>
 
       </div>
