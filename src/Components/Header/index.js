@@ -40,9 +40,9 @@ class Header extends Component {
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><Link to="/Services">Services</Link></li>
+                                        <li><Link to="/About">About</Link></li>
+                                        <li><Link to="/Contact">Contact</Link></li>
                                     </ul>
                                 </nav>
                             </div>
