@@ -3,6 +3,7 @@ import Menu from './Components/Menu';
 import Header from './Components/Header';
 import Container from './Components/Container';
 import Gallery from './Components/Gallery';
+import Gallerytwo from './Components/Gallerytwo';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/About" component={About} />
           <Route path="/Contact" component={Contact} />
           <Route path="/Services" component={Services} />
+          <Route path="/Gallerytwo" component={Gallerytwo} />
         </Router>
 
       </div>

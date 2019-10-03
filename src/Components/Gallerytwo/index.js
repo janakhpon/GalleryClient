@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import $ from 'jquery'
+import 'lightgallery';
 
-class Gallery extends Component {
+class Gallerytwo extends Component {
+
+  onLightGallery = node => {
+    this.lightGallery = node;
+    $(node).lightGallery();
+}
+
+componentWillUnmount() {
+    $(this.lightGallery).data('lightGallery').destroy(true);
+}
 
   render() {
     return (
@@ -22,15 +33,15 @@ class Gallery extends Component {
             </div>
 
           </div>
-          <div className="row" id="lightgallery">
+          <div className="row" id="lightgallery" ref={this.onLightGallery}>
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_1.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor doloremque hic excepturi fugit, sunt impedit fuga tempora, ad amet aliquid?</p>">
-              <a href="/"><img src="images/nature_small_1.jpg" alt="IMage" className="img-fluid" /></a>
+              <a href="#"><img src="images/nature_small_1.jpg" alt="IMage" className="img-fluid" /></a>
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_2.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam omnis quaerat molestiae, praesentium. Ipsam, reiciendis. Aut molestiae animi earum laudantium.</p>">
-              <a href="/"><img src="images/nature_small_2.jpg" alt="IMage" className="img-fluid" /></a>
+              <a href="#"><img src="images/nature_small_2.jpg" alt="IMage" className="img-fluid" /></a>
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_3.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis, dolorum illo temporibus culpa eaque dolore rerum quod voluptate doloribus.</p>">
-              <a href="/"><img src="images/nature_small_3.jpg" alt="IMage" className="img-fluid" /></a>
+              <a href="#"><img src="images/nature_small_3.jpg" alt="IMage" className="img-fluid" /></a>
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_4.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim perferendis quae iusto omnis praesentium labore tempore eligendi quo corporis sapiente.</p>">
               <a href="/"><img src="images/nature_small_4.jpg" alt="IMage" className="img-fluid" /></a>
@@ -147,4 +158,4 @@ class Gallery extends Component {
   }
 }
 
-export default Gallery;
+export default Gallerytwo;

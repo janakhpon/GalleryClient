@@ -12,7 +12,7 @@ class Container extends Component {
                                 <div className="image-wrap">
                                     <div className="image-info">
                                         <h2 className="mb-3">Nature</h2>
-                                        <a href="single.html" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
                                     </div>
                                     <img src="images/img_1.jpg" alt="one" />
                                 </div>
@@ -21,7 +21,7 @@ class Container extends Component {
                                 <div className="image-wrap">
                                     <div className="image-info">
                                         <h2 className="mb-3">Portrait</h2>
-                                        <a href="single.html" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
                                     </div>
                                     <img src="images/img_2.jpg" alt="two" />
                                 </div>
@@ -30,7 +30,7 @@ class Container extends Component {
                                 <div className="image-wrap">
                                     <div className="image-info">
                                         <h2 className="mb-3">People</h2>
-                                        <a href="single.html" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
                                     </div>
                                     <img src="images/img_3.jpg" alt="three" />
                                 </div>
@@ -39,7 +39,7 @@ class Container extends Component {
                                 <div className="image-wrap">
                                     <div className="image-info">
                                         <h2 className="mb-3">Architecture</h2>
-                                        <a href="single.html" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
                                     </div>
                                     <img src="images/img_4.jpg" alt="four" />
                                 </div>
@@ -48,7 +48,7 @@ class Container extends Component {
                                 <div className="image-wrap">
                                     <div className="image-info">
                                         <h2 className="mb-3">Animals</h2>
-                                        <a href="single.html" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
                                     </div>
                                     <img src="images/img_5.jpg" alt="five" />
                                 </div>
@@ -57,7 +57,7 @@ class Container extends Component {
                                 <div className="image-wrap">
                                     <div className="image-info">
                                         <h2 className="mb-3">Sports</h2>
-                                        <a href="single.html" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
                                     </div>
                                     <img src="images/img_6.jpg" alt="six" />
                                 </div>
@@ -66,7 +66,7 @@ class Container extends Component {
                                 <div className="image-wrap">
                                     <div className="image-info">
                                         <h2 className="mb-3">Travel</h2>
-                                        <a href="single.html" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
                                     </div>
                                     <img src="images/img_7.jpg" alt="seven" />
                                 </div>
