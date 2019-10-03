@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery'
 import 'lightgallery';
+import "animate.css/animate.min.css";
 
 class Gallerytwo extends Component {
 
