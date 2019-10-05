@@ -7,10 +7,12 @@
     "axos": "^0.0.1",
     "jquery": "^3.4.1",
     "lightgallery": "^1.6.12",
+    "moment": "^2.24.0",
     "react": "^16.10.1",
     "react-animate-on-scroll": "^2.1.5",
     "react-dom": "^16.10.1",
     "react-lightgallery": "^0.5.1",
+    "react-moment": "^0.9.5",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2"
