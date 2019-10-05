@@ -1,6 +1,51 @@
 import React, { Component } from 'react';
+import { getDataList } from '../../Fetch';
+import Datarow from '../Datarow';
+import $ from 'jquery'
+import 'lightgallery';
+import "animate.css/animate.min.css";
+import "lightgallery.js/dist/css/lightgallery.css";
 
 class Gallery extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      galaries: [],
+      galarie: {}
+    }
+  }
+
+
+  async getData() {
+    let data = await getDataList();
+    this.setState({
+      galaries: data
+    })
+
+    console.log("DATA" + data);
+
+
+  }
+
+  componentDidMount() {
+
+    this.getData();
+    console.log(this.state.galaries);
+
+  }
+
+
+  onLightGallery = node => {
+    this.lightGallery = node;
+    $(node).lightGallery();
+  }
+
+  componentWillUnmount() {
+    $(this.lightGallery).data('lightGallery').destroy(true);
+  }
+
+
 
   render() {
     return (
@@ -13,24 +58,34 @@ class Gallery extends Component {
               <div className="row mb-5">
                 <div className="col-12 ">
                   <div className="site-section-heading text-center">
-                          <div className="input-group col-md-12">
-                            <input type="text" className="form-control input-lg" placeholder="keywords ... " />
-                          </div>
+                    <div className="input-group col-md-12">
+                      <input type="text" className="form-control input-lg" placeholder="keywords ... " />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
           </div>
-          <div className="row" id="lightgallery">
+          <div className="row" id="lightgallery" ref={this.onLightGallery}>
+
+            {this.state.galaries.map((galarie, key) => {
+              return (
+                <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_1.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor doloremque hic excepturi fugit, sunt impedit fuga tempora, ad amet aliquid?</p>">
+                  <a href="images/nature_small_1.jpg"><img src="images/nature_small_1.jpg" alt="IMage" className="img-fluid" /></a>
+                </div>
+              );
+            })}
+
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_1.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor doloremque hic excepturi fugit, sunt impedit fuga tempora, ad amet aliquid?</p>">
-              <a href="/"><img src="images/nature_small_1.jpg" alt="IMage" className="img-fluid" /></a>
+              <a href="#"><img src="images/nature_small_1.jpg" alt="IMage" className="img-fluid" /></a>
             </div>
+
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_2.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam omnis quaerat molestiae, praesentium. Ipsam, reiciendis. Aut molestiae animi earum laudantium.</p>">
-              <a href="/"><img src="images/nature_small_2.jpg" alt="IMage" className="img-fluid" /></a>
+              <a href="#"><img src="images/nature_small_2.jpg" alt="IMage" className="img-fluid" /></a>
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_3.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem reiciendis, dolorum illo temporibus culpa eaque dolore rerum quod voluptate doloribus.</p>">
-              <a href="/"><img src="images/nature_small_3.jpg" alt="IMage" className="img-fluid" /></a>
+              <a href="#"><img src="images/nature_small_3.jpg" alt="IMage" className="img-fluid" /></a>
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_4.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim perferendis quae iusto omnis praesentium labore tempore eligendi quo corporis sapiente.</p>">
               <a href="/"><img src="images/nature_small_4.jpg" alt="IMage" className="img-fluid" /></a>

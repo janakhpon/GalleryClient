@@ -11,9 +11,40 @@ import {
   HashRouter as Router,
   Route
 } from 'react-router-dom';
+import { getDataList } from './Fetch';
 import './App.css';
 
 class App extends Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      galaries: [],
+      galarie: {}
+    }
+  }
+
+
+  async getData() {
+    let data = await getDataList();
+    this.setState({
+      galaries: data
+    })
+
+    console.log("DATA" + data);
+
+
+  }
+
+  componentDidMount() {
+
+    this.getData();
+    console.log(this.state.galaries);
+
+  }
+
+
 
   render() {
     return (
@@ -31,10 +62,12 @@ class App extends Component {
           {/* Container Section Here */}
           <Route exact path="/" component={Container} />
           <Route path="/Gallery" component={Gallery} />
+          <Route path="/Gallerytwo" component={Gallerytwo} />
           <Route path="/About" component={About} />
           <Route path="/Contact" component={Contact} />
           <Route path="/Services" component={Services} />
-          <Route path="/Gallerytwo" component={Gallerytwo} />
+
+
         </Router>
 
       </div>
