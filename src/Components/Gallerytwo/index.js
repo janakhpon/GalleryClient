@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { getDataList } from '../../Fetch';
+import { getDataList, getByType } from '../../Fetch';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+import Select from '../Select';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
@@ -11,11 +12,20 @@ class Gallerytwo extends Component {
     super(props);
     this.state = {
       galaries: [],
-      galarie: {}
+      galarie: {},
+      type: '',
+      value: 1,
     }
+    this.options = [];
+    for (let i = 1; i <= 10; i++)
+      this.options.push(i);
+    this.setValue = this.setValue.bind(this);
   }
 
 
+  setValue(value) {
+    this.setState({ value });
+  }
   async getData() {
     let data = await getDataList();
     this.setState({
@@ -27,10 +37,25 @@ class Gallerytwo extends Component {
 
   }
 
+  onSelect(e) {
+    e.preventDefault();
+
+  }
+
+  handleChange = (e) => {
+    console.log(`INIT:${this.state.type}`);
+    let { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+    console.log(`AFTER:${this.state.type}`);
+  }
+
   componentDidMount() {
 
     this.getData();
     console.log(this.state.galaries);
+
 
   }
 
@@ -54,10 +79,18 @@ class Gallerytwo extends Component {
 
             <div className="col-md-7">
               <div className="row mb-5">
-                <div className="col-12 ">
+                <div className="col-6 ">
                   <div className="site-section-heading text-center">
                     <div className="input-group col-md-12">
                       <input type="text" className="form-control input-lg" placeholder="keywords ... " />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6 ">
+                  <div className="text-center">
+                    <div className="col-md-12">
+                      <Select className="form-control" name="type" options={this.options} setValue={this.setValue} /> <br />
+                      You select "{this.state.value}"
                     </div>
                   </div>
                 </div>
