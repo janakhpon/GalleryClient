@@ -34,7 +34,7 @@ class Header extends Component {
                                                     <a href="/">Sub Menu</a>
                                                     <ul className="dropdown">
                                                         <li><Link to="/Gallerytwo"> Gallerytwo </Link></li>
-                                                        <li><a href="/">Menu Two</a></li>
+                                                        <li><Link to="/Uploadform"> Uploadform </Link></li>
                                                         <li><a href="/">Menu Three</a></li>
                                                     </ul>
                                                 </li>

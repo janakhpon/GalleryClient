@@ -7,6 +7,8 @@ import Gallerytwo from './Components/Gallerytwo';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
+import Uploadform from './Components/Uploadform';
+
 import {
   HashRouter as Router,
   Route
@@ -66,6 +68,7 @@ class App extends Component {
           <Route path="/About" component={About} />
           <Route path="/Contact" component={Contact} />
           <Route path="/Services" component={Services} />
+          <Route path="/Uploadform" component={Uploadform} />
 
 
         </Router>
