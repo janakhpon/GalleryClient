@@ -1,7 +1,46 @@
 import React, { Fragment, Component } from 'react';
+import Select from 'react-select';
+
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+]
+
+const colourOptions = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+    { value: 'red', label:'red'},
+    { value: 'blue', label:'blue'}
+]
+
 
 class Uploadform extends Component {
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedOption: null,
+            selectedColoroptions: []
+        }
+    }
+
+    handleChange = selectedOption => {
+        this.setState({ selectedOption });
+        console.log(`Option selected:`, selectedOption);
+    };
+
+    handleColorChange = selectedColoroptions => {
+        this.setState({selectedColoroptions});
+        console.log(`Color selected:`, selectedColoroptions);
+    }
+
+
     render() {
+        const { selectedOption, selectedColorOptions } = this.state;
+        
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -23,24 +62,9 @@ class Uploadform extends Component {
 
                                                 <div className="col-md-12">
                                                     <label className="text-black" for="typeform">Categories</label>
-                                                    <select className="form-control" id="typeform">
-                                                        <option selected disabled>Choose Categories</option>
-                                                        <option value="NATURAL">NATURAL</option>
-                                                        <option value="RAIN">RAIN</option>
-                                                        <option value="FOREST">FOREST</option>
-                                                        <option value="FLOWER">FLOWER</option>
-                                                        <option value="MOUNTAIN">MOUNTAIN</option>
-                                                        <option value="OCEAN">OCEAN</option>
-                                                        <option value="ORCHARD">ORCHARD</option>
-                                                        <option value="CITY">CITY</option>
-                                                        <option value="CARS">CARS</option>
-                                                        <option value="PAINTING">PAINTING</option>
-                                                        <option value="WAVE">WAVE</option>
-                                                        <option value="PANORAMA">PANORAMA</option>
-                                                        <option value="WILDLIFE">WILDLIFE</option>
-                                                        <option value="WATERFALL">WATERFALL</option>
-                                                        <option value="DARK">DARK</option>
-                                                    </select>
+                                                    <Select className="form-group" value={selectedOption}
+                                                        onChange={this.handleChange}
+                                                        options={options} />
                                                 </div>
                                             </div>
 
@@ -57,7 +81,16 @@ class Uploadform extends Component {
 
                                                 <div className="col-md-12">
                                                     <label className="text-black" for="tags">tags</label>
-                                                    <input type="text" id="tags" className="form-control" />
+                                                    <Select
+                                                        defaultValue={[colourOptions[2], colourOptions[3]]}
+                                                        isMulti
+                                                        name="colors"
+                                                        value={selectedColorOptions}
+                                                        onChange={this.handleColorChange}
+                                                        options={colourOptions}
+                                                        className="basic-multi-select"
+                                                        classNamePrefix="select"
+                                                    />
                                                 </div>
                                             </div>
 
