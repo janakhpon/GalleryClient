@@ -11,24 +11,29 @@ export const getDataList = async () => {
   
 
   
- export const getByType = (galarie) => {
+ export const getByType = (type) => {
   fetch(url+'/type', {
       method : 'POST',
       headers:{
         Accept: 'application/json',
         'Content-Type':'application/json'
       },
-      body: JSON.stringify(galarie)
+      body: JSON.stringify(type)
     })
     .then(res => res.json())
     .catch(data => {
-      
+      return data
     });
-  return galarie; 
  }
 
 
- export const getByTypeValue = () => {
+ export const getByTypeValue = (type) => {
+   
+  return fetch(url+`/type/${type}`, {})
+  .then(res => res.json())
+  .then(data => {
+    return data
+  });
 
  }
 

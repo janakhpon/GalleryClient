@@ -8,6 +8,8 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Uploadform from './Components/Uploadform';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import {
   HashRouter as Router,
@@ -50,30 +52,34 @@ class App extends Component {
 
   render() {
     return (
-      <div className="site-wrap">
+      <Provider store={store}>
+
+        <div className="site-wrap">
 
 
 
-        <Router>
-          {/* Menu Section Here */}
-          <Menu />
+          <Router>
+            {/* Menu Section Here */}
+            <Menu />
 
-          {/* Header Section Here */}
-          <Header />
+            {/* Header Section Here */}
+            <Header />
 
-          {/* Container Section Here */}
-          <Route exact path="/" component={Container} />
-          <Route path="/Gallery" component={Gallery} />
-          <Route path="/Gallerytwo" component={Gallerytwo} />
-          <Route path="/About" component={About} />
-          <Route path="/Contact" component={Contact} />
-          <Route path="/Services" component={Services} />
-          <Route path="/Uploadform" component={Uploadform} />
+            {/* Container Section Here */}
+            <Route exact path="/" component={Container} />
+            <Route path="/Gallery" component={Gallery} />
+            <Route path="/Gallerytwo" component={Gallerytwo} />
+            <Route path="/About" component={About} />
+            <Route path="/Contact" component={Contact} />
+            <Route path="/Services" component={Services} />
+            <Route path="/Uploadform" component={Uploadform} />
 
 
-        </Router>
+          </Router>
 
-      </div>
+        </div>
+      </Provider>
+
     );
   }
 }

@@ -1,31 +1,60 @@
 import React, { Component } from 'react';
-import { getDataList, getByType } from '../../Fetch';
+import { getDataList, getByTypeValue } from '../../Fetch';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
-import Select from '../Select';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
+import Select from 'react-select';
+import axios from 'axios';
+import isEqual from "lodash/isEqual";
+
+
+const API_URL = 'http://localhost:5000/api';
+const options = [
+  { value: 'NATURAL', label: 'NATURAL' },
+  { value: 'RAIN', label: 'RAIN' },
+  { value: 'FOREST', label: 'FOREST' }
+]
 
 class Gallerytwo extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      selectedOption: null,
       galaries: [],
       galarie: {},
       type: '',
       value: 1,
     }
-    this.options = [];
-    for (let i = 1; i <= 10; i++)
-      this.options.push(i);
-    this.setValue = this.setValue.bind(this);
   }
+
+
+  handleChange = selectedOption => {
+    this.setState({ selectedOption, type: selectedOption.value });
+    this.setState({
+      galaires: []
+    })
+    const url = `${API_URL}/type/${selectedOption.value}`;
+    axios.get(url).then(response => response.data)
+    .then((data) => {
+      this.setState({galaires: data })
+      //window.location.reload(false)
+      console.log(this.state.galaires);
+     })
+
+  };
 
 
   setValue(value) {
     this.setState({ value });
   }
+
+  async getUpdateData(){
+    let data = await getByTypeValue(this.state.type);
+    
+  }
+
   async getData() {
     let data = await getDataList();
     this.setState({
@@ -42,22 +71,18 @@ class Gallerytwo extends Component {
 
   }
 
-  handleChange = (e) => {
-    console.log(`INIT:${this.state.type}`);
-    let { name, value } = e.target;
-    this.setState({
-      [name]: value
-    });
-    console.log(`AFTER:${this.state.type}`);
-  }
+
+
 
   componentDidMount() {
 
     this.getData();
     console.log(this.state.galaries);
+    
 
 
   }
+
 
 
 
@@ -71,6 +96,7 @@ class Gallerytwo extends Component {
 
 
   render() {
+    const { selectedOption } = this.state;
     return (
       <div className="site-section" data-aos="fade">
         <div className="container-fluid">
@@ -89,8 +115,8 @@ class Gallerytwo extends Component {
                 <div className="col-6 ">
                   <div className="text-center">
                     <div className="col-md-12">
-                      <Select className="form-control" name="type" options={this.options} setValue={this.setValue} /> <br />
-                      You select "{this.state.value}"
+                      <Select className="form-group" value={selectedOption} onChange={this.handleChange} options={options} />
+                      <p>{this.state.galaries.length}</p>
                     </div>
                   </div>
                 </div>
