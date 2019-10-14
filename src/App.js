@@ -5,6 +5,7 @@ import Container from './Components/Container';
 import Gallery from './Components/Gallery';
 import Gallerytwo from './Components/Gallerytwo';
 import About from './Components/About';
+import Admin from './Components/Admin';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Uploadform from './Components/Uploadform';
@@ -69,6 +70,7 @@ class App extends Component {
             <Route path="/Gallery" component={Gallery} />
             <Route path="/Gallerytwo" component={Gallerytwo} />
             <Route path="/About" component={About} />
+            <Route path="/Admin" component={Admin} />
             <Route path="/Contact" component={Contact} />
             <Route path="/Services" component={Services} />
             <Route path="/Uploadform" component={Uploadform} />

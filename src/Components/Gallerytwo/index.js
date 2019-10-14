@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import { getDataList, getByTypeValue } from '../../Fetch';
+import { Link } from 'react-router-dom';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import 'lightgallery';
 import "animate.css/animate.min.css";
@@ -34,9 +35,9 @@ class Gallerytwo extends Component {
     this.setState({ selectedOption, type: selectedOption.value });
     const url = `${API_URL}/type/${selectedOption.value}`;
     axios.get(url).then(response => response.data)
-    .then((data) => {
-      this.setState({galaires: data })
-     })
+      .then((data) => {
+        this.setState({ galaires: data })
+      })
 
   };
 
@@ -66,7 +67,7 @@ class Gallerytwo extends Component {
   componentDidMount() {
 
     this.getData();
-  
+
   }
 
 
@@ -112,7 +113,7 @@ class Gallerytwo extends Component {
                 return (
 
                   <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade">
-                    <LightgalleryItem group="any" src={`http://localhost:5000/${galarie.image}`}>
+                    <LightgalleryItem group="any" src={`http://localhost:5000/${galarie.image}`} subHtml="<h4>lol</h4><p>lol</p>">
                       <img src={`http://localhost:5000/${galarie.image}`} alt={galarie.date} className="img-fluid" />
                     </LightgalleryItem>
                   </div>

@@ -24,7 +24,7 @@ class Header extends Component {
                                            
                                             <ul className="dropdown">
                                                 <li><Link to="/Gallery">Gallery</Link></li>
-                                                <li><a href="/">Portrait</a></li>
+                                                <li><Link to="/Admin">Admin</Link></li>
                                                 <li><a href="/">People</a></li>
                                                 <li><a href="/">Architecture</a></li>
                                                 <li><a href="/">Animals</a></li>
