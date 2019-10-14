@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import Select from 'react-select';
-
+import axios from 'axios';
+const API_URL = 'http://localhost:5000/api';
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -15,6 +16,13 @@ const colourOptions = [
     { value: 'blue', label:'blue'}
 ]
 
+const host = [];
+const formData = new FormData();
+
+
+const headers = {
+    'Content-Type': 'multipart/form-data'
+  }
 
 class Uploadform extends Component {
 
@@ -23,20 +31,67 @@ class Uploadform extends Component {
         super(props);
         this.state = {
             selectedOption: null,
-            selectedColoroptions: []
+            selectedColoroptions: [],
+            type:{},
+            keyword:[],
+            image:null
         }
+
+        this.image = React.createRef();
     }
 
+
+    
     handleChange = selectedOption => {
-        this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
+        this.setState({ selectedOption, type:selectedOption.value });
+        formData.set('type',selectedOption.value);
+        console.log(`Option selected:`, selectedOption.value);
     };
 
     handleColorChange = selectedColoroptions => {
         this.setState({selectedColoroptions});
-        console.log(`Color selected:`, selectedColoroptions);
+        selectedColoroptions.map(val => {
+            return host.push(val.value);
+        })
+        formData.set('keyword', host);
+        console.log(`Options selected:`, host);
     }
 
+    handleImage = (e) => {
+        this.setState({
+            image:e.target.files
+        });
+
+        formData.append('image', e.target.files[0])
+        console.log(e.target.files[0]);
+    }
+
+    handleSubmit = (e) =>{
+        e.preventDefault();
+
+
+        const url = `http://localhost:5000/api/upload`;
+
+
+        axios({
+            method: 'post',
+            url: url,
+            data: formData,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+            })
+            .then(function (response) {
+                //handle success
+                console.log(response);
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            })
+
+   
+
+
+    }
 
     render() {
         const { selectedOption, selectedColorOptions } = this.state;
@@ -51,6 +106,7 @@ class Uploadform extends Component {
                                 <div className="row mb-5">
                                     <div className="col-12 ">
                                         <h2 className="site-section-heading text-center">Participate in Gallery</h2>
+                                        
                                     </div>
                                 </div>
 
@@ -104,14 +160,14 @@ class Uploadform extends Component {
                                             <div className="row form-group">
                                                 <div className="col-md-12">
                                                     <label for="image">Your Art</label>
-                                                    <input type="file" className="form-control-file" id="image" />
+                                                    <input type="file" className="form-control-file" id="image" name="image" ref={this.image} onChange={this.handleImage} />
                                                 </div>
                                             </div>
 
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <input type="submit" value="upload to Gallery" className="btn btn-primary py-2 px-4 text-white" />
+                                                    <input type="submit" value="upload to Gallery" className="btn btn-primary py-2 px-4 text-white" onClick={this.handleSubmit} />
                                                 </div>
                                             </div>
 

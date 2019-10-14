@@ -8,8 +8,7 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Uploadform from './Components/Uploadform';
-import { Provider } from 'react-redux';
-import store from './store';
+
 
 import {
   HashRouter as Router,
@@ -52,7 +51,7 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
+
 
         <div className="site-wrap">
 
@@ -78,7 +77,6 @@ class App extends Component {
           </Router>
 
         </div>
-      </Provider>
 
     );
   }

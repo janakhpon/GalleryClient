@@ -6,9 +6,6 @@ import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 import Select from 'react-select';
 import axios from 'axios';
-import isEqual from "lodash/isEqual";
-
-
 const API_URL = 'http://localhost:5000/api';
 const options = [
   { value: 'NATURAL', label: 'NATURAL' },
@@ -31,16 +28,14 @@ class Gallerytwo extends Component {
 
 
   handleChange = selectedOption => {
-    this.setState({ selectedOption, type: selectedOption.value });
     this.setState({
       galaires: []
     })
+    this.setState({ selectedOption, type: selectedOption.value });
     const url = `${API_URL}/type/${selectedOption.value}`;
     axios.get(url).then(response => response.data)
     .then((data) => {
       this.setState({galaires: data })
-      //window.location.reload(false)
-      console.log(this.state.galaires);
      })
 
   };
@@ -50,19 +45,13 @@ class Gallerytwo extends Component {
     this.setState({ value });
   }
 
-  async getUpdateData(){
-    let data = await getByTypeValue(this.state.type);
-    
-  }
+
 
   async getData() {
     let data = await getDataList();
     this.setState({
       galaries: data
     })
-
-    console.log("DATA" + data);
-
 
   }
 
@@ -77,18 +66,7 @@ class Gallerytwo extends Component {
   componentDidMount() {
 
     this.getData();
-    console.log(this.state.galaries);
-    
-
-
-  }
-
-
-
-
-
-  componentWillUnmount() {
-
+  
   }
 
 
@@ -96,7 +74,6 @@ class Gallerytwo extends Component {
 
 
   render() {
-    const { selectedOption } = this.state;
     return (
       <div className="site-section" data-aos="fade">
         <div className="container-fluid">
@@ -115,7 +92,7 @@ class Gallerytwo extends Component {
                 <div className="col-6 ">
                   <div className="text-center">
                     <div className="col-md-12">
-                      <Select className="form-group" value={selectedOption} onChange={this.handleChange} options={options} />
+                      <Select className="form-group" value={this.state.selectedOption} onChange={this.handleChange} options={options} />
                       <p>{this.state.galaries.length}</p>
                     </div>
                   </div>
