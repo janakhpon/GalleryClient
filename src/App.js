@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './Components/Menu';
 import Header from './Components/Header';
 import Container from './Components/Container';
+import Detail from './Components/Detail';
 import Gallery from './Components/Gallery';
 import Gallerytwo from './Components/Gallerytwo';
 import About from './Components/About';
@@ -71,6 +72,7 @@ class App extends Component {
             <Route path="/Gallerytwo" component={Gallerytwo} />
             <Route path="/About" component={About} />
             <Route path="/Admin" component={Admin} />
+            <Route path="/Detail" component={Detail} />
             <Route path="/Contact" component={Contact} />
             <Route path="/Services" component={Services} />
             <Route path="/Uploadform" component={Uploadform} />
