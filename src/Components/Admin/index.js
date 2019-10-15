@@ -1,93 +1,140 @@
 import React, { Fragment, Component } from 'react';
+import { getDataList, getByTypeValue } from '../../Fetch';
+import { Link } from 'react-router-dom';
+import 'lightgallery';
+import "animate.css/animate.min.css";
+import "lightgallery.js/dist/css/lightgallery.css";
+import Select from 'react-select';
+import axios from 'axios';
+const API_URL = 'http://localhost:5000/api';
+const options = [
+  { value: 'NATURAL', label: 'NATURAL' },
+  { value: 'RAIN', label: 'RAIN' },
+  { value: 'FOREST', label: 'FOREST' }
+]
 
 class Admin extends Component {
 
-    render() {
-        return (
-            <Fragment>
-                <div className="container-fluid" data-aos="fade" data-aos-delay="500">
-                    <div className="swiper-container images-carousel">
-                        <div className="swiper-wrapper">
-
-
-                            
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Nature</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_1.jpg" alt="one" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Portrait</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_2.jpg" alt="two" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">People</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_3.jpg" alt="three" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Architecture</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_4.jpg" alt="four" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Animals</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_5.jpg" alt="five" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Sports</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_6.jpg" alt="six" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Travel</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_7.jpg" alt="seven" />
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        <div className="swiper-pagination"></div>
-                        <div className="swiper-button-prev"></div>
-                        <div className="swiper-button-next"></div>
-                        <div className="swiper-scrollbar"></div>
-                    </div>
-                </div>
-            </Fragment>
-        );
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: null,
+      galaries: [],
+      galarie: {},
+      image:'',
+      type: '',
+      value: 1,
     }
+  }
 
+
+  handleChange = selectedOption => {
+    this.setState({
+      galaires: []
+    })
+    this.setState({ selectedOption, type: selectedOption.value });
+    const url = `${API_URL}/type/${selectedOption.value}`;
+    axios.get(url).then(response => response.data)
+      .then((data) => {
+        this.setState({ galaires: data })
+      })
+
+  };
+
+
+  setValue(value) {
+    this.setState({ value });
+  }
+
+
+
+  async getData() {
+    let data = await getDataList();
+    this.setState({
+      galaries: data
+    })
+
+  }
+
+  onSelect(e) {
+    e.preventDefault();
+
+  }
+
+
+
+
+  componentDidMount() {
+
+    this.getData();
+
+  }
+
+
+
+
+
+  render() {
+    return (
+      <div className="site-section" data-aos="fade">
+        <div className="container-fluid">
+
+          <div className="row justify-content-center">
+
+            <div className="col-md-7">
+              <div className="row mb-5">
+                <div className="col-6 ">
+                  <div className="site-section-heading text-center">
+                    <div className="input-group col-md-12">
+                      <input type="text" className="form-control input-lg" placeholder="keywords ... " />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6 ">
+                  <div className="text-center">
+                    <div className="col-md-12">
+                      <Select className="form-group" value={this.state.selectedOption} onChange={this.handleChange} options={options} />
+                      <p>{this.state.galaries.length}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div className="row">
+
+
+              {this.state.galaries.map((gal, key) => {
+                return (
+
+                  
+                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade">
+                  <Link to={{
+                    pathname: `/Detail/${gal._id}`,
+                    state: {
+                      image:gal.image,
+                      keyword:gal.keyword,
+                      type:gal.type,
+                      date:gal.date,
+                      mimetype:gal.mimetype
+                    }
+                  }}>
+
+                      <img src={`http://localhost:5000/${gal.image}`} alt={gal.date} className="img-fluid" />
+                      </Link>
+                  </div>
+
+                );
+              })}
+
+
+
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Admin;
