@@ -117,7 +117,8 @@ class Admin extends Component {
                       keyword:gal.keyword,
                       type:gal.type,
                       date:gal.date,
-                      mimetype:gal.mimetype
+                      mimetype:gal.mimetype,
+                      id:gal._id
                     }
                   }}>
 

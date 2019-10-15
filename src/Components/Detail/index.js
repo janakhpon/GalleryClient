@@ -1,6 +1,10 @@
 import React, { Fragment, Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import history from '../History';
 import Moment from 'react-moment';
+import axios from 'axios';
 import './index.css';
+const API_URL = 'http://localhost:5000/api';
 
 class Detail extends Component {
     constructor(props) {
@@ -10,13 +14,27 @@ class Detail extends Component {
             keyword: [],
             type: '',
             date: '',
-            mimetype: ''
+            mimetype: '',
+            id: ''
         }
     }
 
 
+
+
+    onDelete = (e) => {
+        e.preventDefault();
+        const url = `${API_URL}/delete/${this.state.id}`;
+        axios.delete(url).then(response => response.data)
+            .then((data) => {
+                this.props.history.push('/Admin');
+            });
+
+           
+    }
+
     componentDidMount() {
-        const { image, keyword, type, date, mimetype } = this.props.location.state
+        const { image, keyword, type, date, mimetype, id } = this.props.location.state
 
         this.setState(
             {
@@ -24,7 +42,8 @@ class Detail extends Component {
                 keyword: keyword,
                 type: type,
                 date: date,
-                mimetype: mimetype
+                mimetype: mimetype,
+                id: id
             }
         )
 
@@ -55,7 +74,7 @@ class Detail extends Component {
 
                                             <p className="mb-0 font-weight-bold">Desclaimer/Notes</p>
                                             <p className="mb-1">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida efficitur ex et varius. Quisque sit amet fermentum sapien, nec scelerisque leo. Nunc dolor metus, auctor a mollis aliquam, tristique eu felis. Aenean iaculis ex vehicula, feugiat tortor id, posuere ipsum. Pellentesque erat quam, tempor ac faucibus sed, gravida aliquet nunc
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida efficitur ex et varius. Quisque sit amet fermentum sapien, nec scelerisque leo. Nunc dolor metus, auctor a mollis aliquam, tristique eu felis. Aenean iaculis ex vehicula, feugiat tortor id, posuere ipsum. Pellentesque erat quam, tempor ac faucibus sed, gravida aliquet nunc
                                             </p>
                                             <p className="mb-4">
                                                 <Moment fromNow>
@@ -89,7 +108,7 @@ class Detail extends Component {
 
                                             <p className="mb-0 font-weight-bold"><b>OPTIONS</b></p>
                                             <div className="mb-4">
-                                                <span className="btn btn-sm btn-danger">DELETE</span>
+                                                <span className="btn btn-sm btn-danger" onClick={this.onDelete}>DELETE</span>
                                                 <span className="btn btn-sm btn-dark">UPDATE</span>
                                             </div>
 

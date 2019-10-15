@@ -10,6 +10,7 @@ import Admin from './Components/Admin';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Uploadform from './Components/Uploadform';
+import history from './Components/History';
 
 
 import {
@@ -59,7 +60,7 @@ class App extends Component {
 
 
 
-          <Router>
+          <Router history={history}>
             {/* Menu Section Here */}
             <Menu />
 
