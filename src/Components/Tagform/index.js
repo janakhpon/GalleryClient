@@ -1,25 +1,9 @@
 import React, { Fragment, Component } from 'react';
-import Select from 'react-select';
 import axios from 'axios';
 const API_URL = 'http://localhost:5000/galarieapi';
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-]
-
-const colourOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-    { value: 'red', label:'red'},
-    { value: 'blue', label:'blue'}
-]
-
-const host = [];
 const formData = new FormData();
 
-class Uploadform extends Component {
+class Tagform extends Component {
 
 
     constructor(props) {
@@ -27,41 +11,26 @@ class Uploadform extends Component {
         this.state = {
             selectedOption: null,
             selectedColoroptions: [],
-            type:{},
-            keyword:[],
-            image:null
+            type: {},
+            keyword: [],
+            image: null
         }
-
-        this.image = React.createRef();
     }
 
 
-    
-    handleChange = selectedOption => {
-        this.setState({ selectedOption, type:selectedOption.value });
-        formData.set('type',selectedOption.value);
-        console.log(`Option selected:`, selectedOption.value);
-    };
 
-    handleColorChange = selectedColoroptions => {
-        this.setState({selectedColoroptions});
-        selectedColoroptions.map(val => {
-            return host.push(val.value);
-        })
-        formData.set('keyword', host);
-        console.log(`Options selected:`, host);
-    }
+
 
     handleImage = (e) => {
         this.setState({
-            image:e.target.files
+            image: e.target.files
         });
 
         formData.append('image', e.target.files[0])
         console.log(e.target.files[0]);
     }
 
-    handleSubmit = (e) =>{
+    handleSubmit = (e) => {
         e.preventDefault();
 
 
@@ -72,8 +41,8 @@ class Uploadform extends Component {
             method: 'post',
             url: url,
             data: formData,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
-            })
+            config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        })
             .then(function (response) {
                 //handle success
                 console.log(response);
@@ -83,14 +52,14 @@ class Uploadform extends Component {
                 console.log(response);
             })
 
-   
+
 
 
     }
 
     render() {
-        const { selectedOption, selectedColorOptions } = this.state;
-        
+
+
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -101,23 +70,13 @@ class Uploadform extends Component {
                                 <div className="row mb-5">
                                     <div className="col-12 ">
                                         <h2 className="site-section-heading text-center">Participate in Gallery</h2>
-                                        
+
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-lg-8 mb-5">
                                         <form action="/">
-
-                                            <div className="row form-group">
-
-                                                <div className="col-md-12">
-                                                    <label className="text-black" for="typeform">Categories</label>
-                                                    <Select className="form-group" value={selectedOption}
-                                                        onChange={this.handleChange}
-                                                        options={options} />
-                                                </div>
-                                            </div>
 
 
                                             <div className="row form-group">
@@ -128,22 +87,6 @@ class Uploadform extends Component {
                                                 </div>
                                             </div>
 
-                                            <div className="row form-group">
-
-                                                <div className="col-md-12">
-                                                    <label className="text-black" for="tags">tags</label>
-                                                    <Select
-                                                        defaultValue={[colourOptions[2], colourOptions[3]]}
-                                                        isMulti
-                                                        name="colors"
-                                                        value={selectedColorOptions}
-                                                        onChange={this.handleColorChange}
-                                                        options={colourOptions}
-                                                        className="basic-multi-select"
-                                                        classNamePrefix="select"
-                                                    />
-                                                </div>
-                                            </div>
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
@@ -216,4 +159,4 @@ class Uploadform extends Component {
     }
 }
 
-export default Uploadform;
+export default Tagform;

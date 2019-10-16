@@ -10,6 +10,8 @@ import Admin from './Components/Admin';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Uploadform from './Components/Uploadform';
+import Typeform from './Components/Typeform';
+import Tagform from './Components/Tagform';
 import history from './Components/History';
 
 
@@ -56,32 +58,34 @@ class App extends Component {
     return (
 
 
-        <div className="site-wrap">
+      <div className="site-wrap">
 
 
 
-          <Router history={history}>
-            {/* Menu Section Here */}
-            <Menu />
+        <Router history={history}>
+          {/* Menu Section Here */}
+          <Menu />
 
-            {/* Header Section Here */}
-            <Header />
+          {/* Header Section Here */}
+          <Header />
 
-            {/* Container Section Here */}
-            <Route exact path="/" component={Container} />
-            <Route path="/Gallery" component={Gallery} />
-            <Route path="/Gallerytwo" component={Gallerytwo} />
-            <Route path="/About" component={About} />
-            <Route path="/Admin" component={Admin} />
-            <Route path="/Detail" component={Detail} />
-            <Route path="/Contact" component={Contact} />
-            <Route path="/Services" component={Services} />
-            <Route path="/Uploadform" component={Uploadform} />
+          {/* Container Section Here */}
+          <Route exact path="/" component={Container} />
+          <Route path="/Gallery" component={Gallery} />
+          <Route path="/Gallerytwo" component={Gallerytwo} />
+          <Route path="/About" component={About} />
+          <Route path="/Admin" component={Admin} />
+          <Route path="/Detail" component={Detail} />
+          <Route path="/Contact" component={Contact} />
+          <Route path="/Services" component={Services} />
+          <Route path="/Typeform" component={Typeform} />
+          <Route path="/Tagform" component={Tagform} />
+          <Route path="/Uploadform" component={Uploadform} />
 
 
-          </Router>
+        </Router>
 
-        </div>
+      </div>
 
     );
   }

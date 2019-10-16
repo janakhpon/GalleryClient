@@ -7,7 +7,7 @@ import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 import Select from 'react-select';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5000/galarieapi';
 const options = [
   { value: 'NATURAL', label: 'NATURAL' },
   { value: 'RAIN', label: 'RAIN' },
