@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
@@ -21,12 +21,12 @@ class Header extends Component {
                                         <li className="active"><a href="/">Home</a></li>
                                         <li className="has-children">
                                             <a href="/">Gallery</a>
-                                           
+
                                             <ul className="dropdown">
                                                 <li><Link to="/Gallery">Gallery</Link></li>
                                                 <li><Link to="/Admin">Admin</Link></li>
-                                                <li><a href="/">People</a></li>
-                                                <li><a href="/">Architecture</a></li>
+                                                <li><Link to="/Typeform">Typeform</Link></li>
+                                                <li><Link to="/Tagform">Tagform</Link></li>
                                                 <li><a href="/">Animals</a></li>
                                                 <li><a href="/">Sports</a></li>
                                                 <li><a href="/">Travel</a></li>
