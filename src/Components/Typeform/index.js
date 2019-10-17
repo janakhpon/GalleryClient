@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/galarieapi';
+const API_URL = 'http://localhost:5000/typeapi';
 const formData = new FormData();
 
 class Typeform extends Component {
@@ -9,40 +9,53 @@ class Typeform extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOption: null,
-            selectedColoroptions: [],
-            type:{},
-            keyword:[],
-            image:null
+            name: '',
+            description: '',
+            image: null,
+            types:[]
         }
     }
 
 
-    
+    handleName = (e) => {
+        e.preventDefault();
+        this.setState({
+            name: e.target.value
+        })
+        formData.set('name', e.target.value);
+    }
+
+    handleDescription = (e) => {
+        e.preventDefault();
+        this.setState({
+            description: e.target.value
+        })
+        formData.set('description', e.target.value);
+    }
 
 
     handleImage = (e) => {
         this.setState({
-            image:e.target.files
+            image: e.target.files
         });
 
-        formData.append('image', e.target.files[0])
+        formData.append('image', e.target.files[0]);
         console.log(e.target.files[0]);
     }
 
-    handleSubmit = (e) =>{
+    handleSubmit = (e) => {
         e.preventDefault();
 
 
-        const url = `${API_URL}/upload`;
+        const url = `${API_URL}/add`;
 
 
         axios({
             method: 'post',
             url: url,
             data: formData,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
-            })
+            config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        })
             .then(function (response) {
                 //handle success
                 console.log(response);
@@ -51,15 +64,20 @@ class Typeform extends Component {
                 //handle error
                 console.log(response);
             })
-
-   
-
-
     }
 
-    render() {
+    componentDidMount(){
+        const url = `${API_URL}/list`;
+        axios.get(url).then(response => response.data)
+        .then((data) => {
+          this.setState({types: data });
+         })  
+    }
 
-        
+
+    render() {
+        const colorclass = ["badge badge-primary", "badge badge-secondary", "badge badge-success", "badge badge-danger", "badge badge-warning", "badge badge-info", "badge badge-light", "badge badge-dark"];
+
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -67,13 +85,6 @@ class Typeform extends Component {
 
                         <div className="row justify-content-center">
                             <div className="col-md-7">
-                                <div className="row mb-5">
-                                    <div className="col-12 ">
-                                        <h2 className="site-section-heading text-center">Participate in Gallery</h2>
-                                        
-                                    </div>
-                                </div>
-
                                 <div className="row">
                                     <div className="col-lg-8 mb-5">
                                         <form action="/">
@@ -82,22 +93,23 @@ class Typeform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" for="title">title</label>
-                                                    <input type="text" id="title" className="form-control" />
+                                                    <label className="text-black" htmlFor="name">name</label>
+                                                    <input type="text" id="name" name="name" className="form-control" onChange={this.handleName} />
                                                 </div>
                                             </div>
 
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label className="text-black" for="description">description</label>
-                                                    <textarea name="description" id="description" cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."></textarea>
+                                                    <label className="text-black" htmlFor="description">description</label>
+                                                    <textarea name="description" id="description" cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."
+                                                        onChange={this.handleDescription}></textarea>
                                                 </div>
                                             </div>
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label for="image">Your Art</label>
+                                                    <label htmlFor="image">Your Art</label>
                                                     <input type="file" className="form-control-file" id="image" name="image" ref={this.image} onChange={this.handleImage} />
                                                 </div>
                                             </div>
@@ -119,29 +131,18 @@ class Typeform extends Component {
 
                                             <p className="mb-0 font-weight-bold"><b>Types</b></p>
                                             <div className="mb-4">
-                                                <span className="badge badge-primary">Primary</span>
-                                                <span className="badge badge-secondary">Secondary</span>
-                                                <span className="badge badge-success">Success</span>
-                                                <span className="badge badge-danger">Danger</span>
-                                                <span className="badge badge-warning">Warning</span>
-                                                <span className="badge badge-info">Info</span>
-                                                <span className="badge badge-light">Light</span>
-                                                <span className="badge badge-dark">Dark</span>
-                                            </div>
+                                                {
+                                                    this.state.types.map((type, key)=>{
 
+                                                        let gid = Math.floor((Math.random() * 7) + 1);
+ 
 
-                                            <p className="mb-0 font-weight-bold"><b>Tags</b></p>
-                                            <div className="mb-0">
-
-
-                                                <span className="badge badge-pill badge-primary">Primary</span>
-                                                <span className="badge badge-pill badge-secondary">Secondary</span>
-                                                <span className="badge badge-pill badge-success">Success</span>
-                                                <span className="badge badge-pill badge-danger">Danger</span>
-                                                <span className="badge badge-pill badge-warning">Warning</span>
-                                                <span className="badge badge-pill badge-info">Info</span>
-                                                <span className="badge badge-pill badge-light">Light</span>
-                                                <span className="badge badge-pill badge-dark">Dark</span>
+                                                        return(
+                                                            <span className={`${colorclass[gid]}`}>{type.name}</span>
+                                                        );
+                                                    })
+                                                }
+                                               
                                             </div>
 
                                         </div>

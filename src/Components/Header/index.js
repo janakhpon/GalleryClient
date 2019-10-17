@@ -49,7 +49,7 @@ class Header extends Component {
 
                             <div className="col-6 col-xl-2 text-right" data-aos="fade-down">
                                 <div className="d-none d-xl-inline-block">
-                                    <ul className="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-className="social">
+                                    <ul className="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
                                         <li>
                                             <a href="/" className="pl-0 pr-3"><span className="icon-facebook"></span></a>
                                         </li>
