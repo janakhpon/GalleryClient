@@ -1,6 +1,33 @@
 import React, { Fragment, Component } from 'react';
+import axios from 'axios';
+import $ from 'jquery'
+import 'lightgallery';
+import "animate.css/animate.min.css";
+
+const API_URL = 'http://localhost:5000/typeapi';
 
 class Container extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            types: []
+        }
+    }
+
+    getType = () => {
+        const url = `${API_URL}/list`;
+        axios.get(url).then(response => response.data).then(data => {
+            this.setState({
+                types: data
+            })
+        })
+    }
+    componentDidMount() {
+
+        this.getType();
+
+    }
 
     render() {
         return (
@@ -8,69 +35,23 @@ class Container extends Component {
                 <div className="container-fluid" data-aos="fade" data-aos-delay="500">
                     <div className="swiper-container images-carousel">
                         <div className="swiper-wrapper">
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Nature</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_1.jpg" alt="one" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Portrait</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_2.jpg" alt="two" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">People</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_3.jpg" alt="three" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Architecture</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_4.jpg" alt="four" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Animals</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_5.jpg" alt="five" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Sports</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_6.jpg" alt="six" />
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="image-wrap">
-                                    <div className="image-info">
-                                        <h2 className="mb-3">Travel</h2>
-                                        <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
-                                    </div>
-                                    <img src="images/img_7.jpg" alt="seven" />
-                                </div>
-                            </div>
+
+                            {
+                                this.state.types.map((type, key) => {
+                                    return (
+                                        <div className="swiper-slide" key={key}>
+                                            <div className="image-wrap">
+                                                <div className="image-info">
+                                                    <h2 className="mb-3">{type.name}</h2>
+                                                    <a href="/" className="btn btn-outline-white py-2 px-4">More Photos</a>
+                                                </div>
+                                                <img src={`http://localhost:5000/${type.image}`} alt={type._id} />
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
+
                         </div>
 
                         <div className="swiper-pagination"></div>

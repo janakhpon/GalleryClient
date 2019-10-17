@@ -2,6 +2,9 @@ import React, { Fragment, Component } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 const API_URL = 'http://localhost:5000/galarieapi';
+const TYPE_API_URL = 'http://localhost:5000/typeapi';
+const TAG_API_URL = 'http://localhost:5000/tagapi';
+const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -12,11 +15,12 @@ const colourOptions = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' },
-    { value: 'red', label:'red'},
-    { value: 'blue', label:'blue'}
+    { value: 'red', label: 'red' },
+    { value: 'blue', label: 'blue' }
 ]
 
 const host = [];
+const tagOptions = [];
 const formData = new FormData();
 
 class Uploadform extends Component {
@@ -26,42 +30,86 @@ class Uploadform extends Component {
         super(props);
         this.state = {
             selectedOption: null,
-            selectedColoroptions: [],
-            type:{},
-            keyword:[],
-            image:null
+            selectedTags: [],
+            type: {},
+            keywords: [],
+            tags: [],
+            image: null
         }
 
         this.image = React.createRef();
     }
 
 
-    
+    getGalarie = () => {
+        let url = `${GALARIE_API_URL}/list`;
+        axios.get(url).then(response => response.data).then((data) => {
+            this.setState({
+                wallpapers: data
+            });
+            console.log(this.state.wallpapers);
+        })
+    }
+
+
+    getTag = () => {
+        let url = `${TAG_API_URL}/list`;
+        axios.get(url).then(response => response.data).then(data => {
+            this.setState({
+                tags: data
+            });
+            this.state.tags.map((tag, key) => {
+                let temp = { value: tag.name, label: tag.name }
+                return tagOptions.push(temp);
+            });
+
+            console.log(tagOptions);
+        })
+    }
+
+
+    getType = () => {
+        let url = `${TYPE_API_URL}/list`;
+        axios.get(url).then(response => response.data).then(data => {
+            this.setState({
+                types: data
+            })
+
+            console.log(data);
+        })
+    }
+
+
+
     handleChange = selectedOption => {
-        this.setState({ selectedOption, type:selectedOption.value });
-        formData.set('type',selectedOption.value);
+        this.setState({ selectedOption, type: selectedOption.value });
+        formData.set('type', selectedOption.value);
         console.log(`Option selected:`, selectedOption.value);
     };
 
-    handleColorChange = selectedColoroptions => {
-        this.setState({selectedColoroptions});
-        selectedColoroptions.map(val => {
-            return host.push(val.value);
-        })
-        formData.set('keyword', host);
-        console.log(`Options selected:`, host);
+    handleTagChange = selectedTags => {
+        this.setState({ selectedTags });
+        try {
+            //use not to repeat arrary value
+            let tagHost = [...new Set(selectedTags.map(a => a.value))];
+            formData.set('keyword', tagHost);
+            console.log('TagHOst', tagHost);
+        } catch (err) {
+            console.log("null is not accepatble");
+        }
+
     }
 
     handleImage = (e) => {
         this.setState({
-            image:e.target.files
+            image: e.target.files
         });
 
         formData.append('image', e.target.files[0])
         console.log(e.target.files[0]);
     }
 
-    handleSubmit = (e) =>{
+    handleSubmit = (e) => {
         e.preventDefault();
 
 
@@ -72,8 +120,8 @@ class Uploadform extends Component {
             method: 'post',
             url: url,
             data: formData,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
-            })
+            config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        })
             .then(function (response) {
                 //handle success
                 console.log(response);
@@ -83,14 +131,22 @@ class Uploadform extends Component {
                 console.log(response);
             })
 
-   
+
+
+
+    }
+
+
+
+    componentDidMount() {
+        this.getTag();
 
 
     }
 
     render() {
-        const { selectedOption, selectedColorOptions } = this.state;
-        
+        const { selectedOption, selectedTags } = this.state;
+
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -101,7 +157,7 @@ class Uploadform extends Component {
                                 <div className="row mb-5">
                                     <div className="col-12 ">
                                         <h2 className="site-section-heading text-center">Participate in Gallery</h2>
-                                        
+
                                     </div>
                                 </div>
 
@@ -112,7 +168,7 @@ class Uploadform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" for="typeform">Categories</label>
+                                                    <label className="text-black" htmlFor="typeform">Categories</label>
                                                     <Select className="form-group" value={selectedOption}
                                                         onChange={this.handleChange}
                                                         options={options} />
@@ -123,7 +179,7 @@ class Uploadform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" for="title">title</label>
+                                                    <label className="text-black" htmlFor="title">title</label>
                                                     <input type="text" id="title" className="form-control" />
                                                 </div>
                                             </div>
@@ -131,14 +187,13 @@ class Uploadform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" for="tags">tags</label>
+                                                    <label className="text-black" htmlFor="tags">tags</label>
                                                     <Select
-                                                        defaultValue={[colourOptions[2], colourOptions[3]]}
                                                         isMulti
                                                         name="colors"
-                                                        value={selectedColorOptions}
-                                                        onChange={this.handleColorChange}
-                                                        options={colourOptions}
+                                                        value={selectedTags}
+                                                        onChange={this.handleTagChange}
+                                                        options={tagOptions}
                                                         className="basic-multi-select"
                                                         classNamePrefix="select"
                                                     />
@@ -147,14 +202,14 @@ class Uploadform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label className="text-black" for="description">description</label>
+                                                    <label className="text-black" htmlFor="description">description</label>
                                                     <textarea name="description" id="description" cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."></textarea>
                                                 </div>
                                             </div>
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label for="image">Your Art</label>
+                                                    <label htmlFor="image">Your Art</label>
                                                     <input type="file" className="form-control-file" id="image" name="image" ref={this.image} onChange={this.handleImage} />
                                                 </div>
                                             </div>
