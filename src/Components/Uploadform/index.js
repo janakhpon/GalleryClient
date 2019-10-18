@@ -5,22 +5,10 @@ const API_URL = 'http://localhost:5000/galarieapi';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-]
 
-const colourOptions = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-    { value: 'red', label: 'red' },
-    { value: 'blue', label: 'blue' }
-]
-
-const host = [];
+const descriptionOptions = [];
 const tagOptions = [];
+const typeOptions = [];
 const formData = new FormData();
 
 class Uploadform extends Component {
@@ -29,16 +17,18 @@ class Uploadform extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOption: null,
+            selectedTypes: null,
             selectedTags: [],
-            type: {},
-            keywords: [],
+            wallpapers: [],
+            desOptions:[],
             tags: [],
+            types: [],
             image: null
         }
 
         this.image = React.createRef();
     }
+
 
 
     getGalarie = () => {
@@ -47,8 +37,15 @@ class Uploadform extends Component {
             this.setState({
                 wallpapers: data
             });
-            console.log(this.state.wallpapers);
-        })
+
+            this.state.wallpapers.map((wallpaper, key) => {
+                let temp = { value:wallpaper.description, label:wallpaper.description};
+                return descriptionOptions.push(temp);
+            });
+
+            console.log(descriptionOptions);
+        });
+
     }
 
 
@@ -62,8 +59,6 @@ class Uploadform extends Component {
                 let temp = { value: tag.name, label: tag.name }
                 return tagOptions.push(temp);
             });
-
-            console.log(tagOptions);
         })
     }
 
@@ -73,18 +68,23 @@ class Uploadform extends Component {
         axios.get(url).then(response => response.data).then(data => {
             this.setState({
                 types: data
+            });
+            this.state.types.map((type, key) => {
+                let temp = { value: type.name, label: type.name }
+                return typeOptions.push(temp);
             })
-
-            console.log(data);
         })
     }
 
 
+    postGalarie = () => {
+        
+    }
 
-    handleChange = selectedOption => {
-        this.setState({ selectedOption, type: selectedOption.value });
-        formData.set('type', selectedOption.value);
-        console.log(`Option selected:`, selectedOption.value);
+    handleTypeChange = selectedTypes => {
+        this.setState({ selectedTypes, type: selectedTypes.value });
+        formData.set('type', selectedTypes.value);
+        console.log(`Option selected:`, selectedTypes.value);
     };
 
     handleTagChange = selectedTags => {
@@ -140,13 +140,15 @@ class Uploadform extends Component {
 
     componentDidMount() {
         this.getTag();
-
-
+        this.getType();
+        this.getGalarie();
     }
 
     render() {
-        const { selectedOption, selectedTags } = this.state;
-
+        const { selectedTypes, selectedTags } = this.state;
+        const tagclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
+        const typeclasses = ['badge badge-primary', 'badge badge-secondary', 'badge badge-success', 'badge badge-danger', 'badge badge-warning', 'badge badge-info', 'badge badge-light', 'badge badge-dark'];
+        const descriptions = this.descriptionOptions;
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -169,9 +171,9 @@ class Uploadform extends Component {
 
                                                 <div className="col-md-12">
                                                     <label className="text-black" htmlFor="typeform">Categories</label>
-                                                    <Select className="form-group" value={selectedOption}
-                                                        onChange={this.handleChange}
-                                                        options={options} />
+                                                    <Select className="form-group" value={selectedTypes}
+                                                        onChange={this.handleTypeChange}
+                                                        options={typeOptions} />
                                                 </div>
                                             </div>
 
@@ -189,6 +191,7 @@ class Uploadform extends Component {
                                                 <div className="col-md-12">
                                                     <label className="text-black" htmlFor="tags">tags</label>
                                                     <Select
+                                                        defaultValue={[tagOptions[2], tagOptions[3]]}
                                                         isMulti
                                                         name="colors"
                                                         value={selectedTags}
@@ -227,33 +230,38 @@ class Uploadform extends Component {
                                     <div className="col-lg-3 ml-auto">
                                         <div className="mb-3 bg-white">
                                             <p className="mb-0 font-weight-bold">Desclaimer/Notes</p>
-                                            <p className="mb-4">Type can be added dynamically and you need to choose <u>type</u> for optimized search, use `coma` for <u>tag</u> values </p>
+                                            <p className="mb-4"></p>
 
                                             <p className="mb-0 font-weight-bold"><b>Types</b></p>
                                             <div className="mb-4">
-                                                <span className="badge badge-primary">Primary</span>
-                                                <span className="badge badge-secondary">Secondary</span>
-                                                <span className="badge badge-success">Success</span>
-                                                <span className="badge badge-danger">Danger</span>
-                                                <span className="badge badge-warning">Warning</span>
-                                                <span className="badge badge-info">Info</span>
-                                                <span className="badge badge-light">Light</span>
-                                                <span className="badge badge-dark">Dark</span>
+                                                {/**
+                                                starting from index 0 to 7
+                                                */}
+                                                {
+                                                    typeOptions.map((type, key)=>{
+                                                        let gid = Math.floor(Math.random()*7) +0;
+                                                        return (
+                                                                <span className={`${typeclasses[gid]}`} key={key}>{type.value}</span>
+                                                        );
+                                                    })
+                                                }
+                                                
+
                                             </div>
 
 
                                             <p className="mb-0 font-weight-bold"><b>Tags</b></p>
                                             <div className="mb-0">
 
-
-                                                <span className="badge badge-pill badge-primary">Primary</span>
-                                                <span className="badge badge-pill badge-secondary">Secondary</span>
-                                                <span className="badge badge-pill badge-success">Success</span>
-                                                <span className="badge badge-pill badge-danger">Danger</span>
-                                                <span className="badge badge-pill badge-warning">Warning</span>
-                                                <span className="badge badge-pill badge-info">Info</span>
-                                                <span className="badge badge-pill badge-light">Light</span>
-                                                <span className="badge badge-pill badge-dark">Dark</span>
+                                                {
+                                                    tagOptions.map((tag, key) => {
+                                                        let gid = Math.floor(Math.random()*7) +0;
+                                                        return(
+                                                            <span className={`${tagclasses[gid]}`} key={key}>{tag.value}</span>
+                                                        );
+                                                    })
+                                                }
+                                            
                                             </div>
 
                                         </div>
@@ -268,7 +276,7 @@ class Uploadform extends Component {
 
             </Fragment>
         );
-    }
+    };
 }
 
 export default Uploadform;
