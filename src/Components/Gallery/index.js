@@ -1,49 +1,66 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { getDataList } from '../../Fetch';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
-import { getData } from '../../Actions';
-import { connect } from 'react-redux';
-import Datarow from '../Datarow';
-import $ from 'jquery'
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 const API_URL = 'http://localhost:5000/api';
+const TYPE_API_URL = 'http://localhost:5000/typeapi';
+const TAG_API_URL = 'http://localhost:5000/tagapi';
+const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
 class Gallery extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      galaries: [],
-      galarie: {}
-    }
+      wallpapers: [],
+      tags: [],
+      types: []
+    };
   }
 
+
+
+  getGalarie = () => {
+    let url = `${GALARIE_API_URL}/list`;
+    axios.get(url).then(response => response.data).then((data) => {
+      this.setState({
+        wallpapers: data
+      });
+      console.log(this.state.wallpapers);
+    })
+  }
+
+
+  getTag = () => {
+    let url = `${TAG_API_URL}/list`;
+    axios.get(url).then(response => response.data).then(data => {
+      this.setState({
+        tags: data
+      })
+    })
+  }
+
+
+  getType = () => {
+    let url = `${TYPE_API_URL}/list`;
+    axios.get(url).then(response => response.data).then(data => {
+      this.setState({
+        types: data
+      })
+    })
+  }
 
 
 
   componentDidMount() {
-    const url = `${API_URL}/list`;
-    axios.get(url).then(response => response.data)
-    .then((data) => {
-      this.setState({galaires: data })
-      console.log(this.state.galaires);
-     })
+
+    this.getGalarie();
   }
 
 
 
 
-
-  onLightGallery = node => {
-    this.lightGallery = node;
-    $(node).lightGallery();
-  }
-
-  componentWillUnmount() {
-    $(this.lightGallery).data('lightGallery').destroy(true);
-  }
 
 
 
@@ -68,20 +85,26 @@ class Gallery extends Component {
             </div>
 
           </div>
-          <div className="row" id="lightgallery" ref={this.onLightGallery}>
+          <div className="row">
+            <LightgalleryProvider>
 
-          {this.state.galaries.map((galarie, key) => {
+              {this.state.wallpapers.map((wallpaper, key) => {
                 return (
 
-                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade">
-                    <LightgalleryItem group="any" src={`http://localhost:5000/${galarie.image}`}>
-                      <img src={`http://localhost:5000/${galarie.image}`} alt={galarie.date} className="img-fluid" />
+                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
+                    <LightgalleryItem group="any" src={`http://localhost:5000/${wallpaper.image}`}
+                     subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
+                      <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                     </LightgalleryItem>
                   </div>
 
                 );
               })}
-        
+
+
+            </LightgalleryProvider>
+
+
 
           </div>
         </div>

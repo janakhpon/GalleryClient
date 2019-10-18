@@ -12,7 +12,7 @@ class Typeform extends Component {
             name: '',
             description: '',
             image: null,
-            types:[]
+            types: []
         }
     }
 
@@ -63,15 +63,24 @@ class Typeform extends Component {
             .catch(function (response) {
                 //handle error
                 console.log(response);
+            });
+        const gurl = `${API_URL}/list`;
+        axios.get(gurl).then(response => response.data)
+            .then((data) => {
+                this.setState({ types: data });
             })
+
+
+
+
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const url = `${API_URL}/list`;
         axios.get(url).then(response => response.data)
-        .then((data) => {
-          this.setState({types: data });
-         })  
+            .then((data) => {
+                this.setState({ types: data });
+            })
     }
 
 
@@ -132,17 +141,17 @@ class Typeform extends Component {
                                             <p className="mb-0 font-weight-bold"><b>Types</b></p>
                                             <div className="mb-4">
                                                 {
-                                                    this.state.types.map((type, key)=>{
+                                                    this.state.types.map((type, key) => {
 
                                                         let gid = Math.floor((Math.random() * 7) + 1);
- 
 
-                                                        return(
+
+                                                        return (
                                                             <span className={`${colorclass[gid]}`}>{type.name}</span>
                                                         );
                                                     })
                                                 }
-                                               
+
                                             </div>
 
                                         </div>
