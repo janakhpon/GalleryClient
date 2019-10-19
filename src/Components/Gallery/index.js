@@ -4,7 +4,6 @@ import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-const API_URL = 'http://localhost:5000/api';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';

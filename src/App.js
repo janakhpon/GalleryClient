@@ -71,16 +71,16 @@ class App extends Component {
 
           {/* Container Section Here */}
           <Route exact path="/" component={Container} />
-          <Route path="/Gallery" component={Gallery} />
+          <Route path="/Wallpapers" component={Gallery} />
           <Route path="/Gallerytwo" component={Gallerytwo} />
           <Route path="/About" component={About} />
-          <Route path="/Admin" component={Admin} />
-          <Route path="/Detail" component={Detail} />
+          <Route path="/Auth-Admin" component={Admin} />
+          <Route path="/Wallpaper" component={Detail} />
           <Route path="/Contact" component={Contact} />
           <Route path="/Services" component={Services} />
-          <Route path="/Typeform" component={Typeform} />
-          <Route path="/Tagform" component={Tagform} />
-          <Route path="/Uploadform" component={Uploadform} />
+          <Route path="/New-Type" component={Typeform} />
+          <Route path="/New-Tag" component={Tagform} />
+          <Route path="/New-Wallpaper" component={Uploadform} />
 
 
         </Router>

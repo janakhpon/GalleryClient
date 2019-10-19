@@ -1,12 +1,11 @@
-import React, { Fragment, Component } from 'react';
-import { getDataList, getByTypeValue } from '../../Fetch';
+import React, {Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 import Select from 'react-select';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/api';
+const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
 const options = [
   { value: 'NATURAL', label: 'NATURAL' },
   { value: 'RAIN', label: 'RAIN' },
@@ -19,6 +18,7 @@ class Admin extends Component {
     super(props);
     this.state = {
       selectedOption: null,
+      wallpapers:[],
       galaries: [],
       galarie: {},
       image:'',
@@ -33,7 +33,7 @@ class Admin extends Component {
       galaires: []
     })
     this.setState({ selectedOption, type: selectedOption.value });
-    const url = `${API_URL}/type/${selectedOption.value}`;
+    const url = `${GALARIE_API_URL}/type/${selectedOption.value}`;
     axios.get(url).then(response => response.data)
       .then((data) => {
         this.setState({ galaires: data })
@@ -48,13 +48,7 @@ class Admin extends Component {
 
 
 
-  async getData() {
-    let data = await getDataList();
-    this.setState({
-      galaries: data
-    })
-
-  }
+ 
 
   onSelect(e) {
     e.preventDefault();
@@ -63,10 +57,19 @@ class Admin extends Component {
 
 
 
+  getGalarie = () => {
+    let url = `${GALARIE_API_URL}/list`;
+    axios.get(url).then(response => response.data).then((data) => {
+      this.setState({
+        wallpapers: data
+      });
+    })
+  }
+
 
   componentDidMount() {
 
-    this.getData();
+    this.getGalarie();
 
   }
 
@@ -105,24 +108,29 @@ class Admin extends Component {
           <div className="row">
 
 
-              {this.state.galaries.map((gal, key) => {
+              {this.state.wallpapers.map((wallpaper, key) => {
                 return (
 
                   
-                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade">
+                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
                   <Link to={{
-                    pathname: `/Detail/${gal._id}`,
+                    pathname: `/Wallpaper/${wallpaper._id}`,
                     state: {
-                      image:gal.image,
-                      keyword:gal.keyword,
-                      type:gal.type,
-                      date:gal.date,
-                      mimetype:gal.mimetype,
-                      id:gal._id
+                      title:wallpaper.title,
+                      description:wallpaper.description,
+                      choice:wallpaper.choice,
+                      rate:wallpaper.rate,
+                      image:wallpaper.image,
+                      devices: wallpaper.devices,
+                      keyword:wallpaper.keyword,
+                      type:wallpaper.type,
+                      date:wallpaper.date,
+                      mimetype:wallpaper.mimetype,
+                      id:wallpaper._id
                     }
                   }}>
 
-                      <img src={`http://localhost:5000/${gal.image}`} alt={gal.date} className="img-fluid" />
+                      <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                       </Link>
                   </div>
 

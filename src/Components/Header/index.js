@@ -12,30 +12,43 @@ class Header extends Component {
                         <div className="row align-items-center">
 
                             <div className="col-6 col-xl-2" data-aos="fade-down">
-                                <h1 className="mb-0"><a href="/" className="text-black h2 mb-0">Photon</a></h1>
+                                <h1 className="mb-0"><Link to="/" className="text-black h2 mb-0">Photon</Link></h1>
                             </div>
                             <div className="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
                                 <nav className="site-navigation position-relative text-right text-lg-center" role="navigation">
 
                                     <ul className="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                                        <li className="active"><a href="/">Home</a></li>
+                                        <li className="active"><Link to="/">Home</Link></li>
                                         <li className="has-children">
-                                            <a href="/">Gallery</a>
+                                            <a href="#">Gallery</a>
 
                                             <ul className="dropdown">
-                                                <li><Link to="/Gallery">Gallery</Link></li>
-                                                <li><Link to="/Admin">Admin</Link></li>
-                                                <li><Link to="/Typeform">Typeform</Link></li>
-                                                <li><Link to="/Tagform">Tagform</Link></li>
-                                                <li><a href="/">Animals</a></li>
-                                                <li><a href="/">Sports</a></li>
-                                                <li><a href="/">Travel</a></li>
+                                                <li><Link to="/Wallpapers">Wallpapers</Link></li>
                                                 <li className="has-children">
-                                                    <a href="/">Sub Menu</a>
+                                                    <a href="#">New</a>
                                                     <ul className="dropdown">
-                                                        <li><Link to="/Gallerytwo"> Gallerytwo </Link></li>
-                                                        <li><Link to="/Uploadform"> Uploadform </Link></li>
-                                                        <li><a href="/">Menu Three</a></li>
+                                                        <li><Link to="/New-Wallpaper"> New-Wallpaper </Link></li>
+                                                        <li><Link to="/New-Type"> New-Type </Link></li>
+                                                        <li><Link to="/New-Tag"> New-Tag </Link></li>
+                                                        <li><Link to="/New-Device"> New-Device </Link></li>
+                                                    </ul>
+                                                </li>
+                                                <li className="has-children">
+                                                    <a href="#">Sort</a>
+                                                    <ul className="dropdown">
+                                                        <li><Link to="/Sort-Type"> Sort By Type </Link></li>
+                                                        <li><Link to="/Sort-Tag"> Sort By Tag </Link></li>
+                                                        <li><Link to="/Sort-Date"> Sort By Date </Link></li>
+                                                        <li><Link to="/Sort-ID"> Sort By ID </Link></li>
+                                                    </ul>
+                                                </li>
+                                                <li className="has-children">
+                                                    <a href="#">Auth</a>
+                                                    <ul className="dropdown">
+                                                        <li><Link to="/Auth-Signup"> Auth-Signup </Link></li>
+                                                        <li><Link to="/Auth-Signin"> Auth-Signin </Link></li>
+                                                        <li><Link to="/Auth-Admin"> Auth-Admin </Link></li>
+                                                        <li><Link to="/Auth-Request"> Auth-Request </Link></li>
                                                     </ul>
                                                 </li>
                                             </ul>
