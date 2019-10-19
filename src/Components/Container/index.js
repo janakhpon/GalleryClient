@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-import $ from 'jquery'
 import 'lightgallery';
 import "animate.css/animate.min.css";
 

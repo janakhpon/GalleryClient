@@ -1,6 +1,5 @@
-import React, { Fragment, Component } from 'react';
-import { getDataList, getByTypeValue } from '../../Fetch';
-import { Link } from 'react-router-dom';
+import React, {Component } from 'react';
+import { getDataList} from '../../Fetch';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import 'lightgallery';
 import "animate.css/animate.min.css";
