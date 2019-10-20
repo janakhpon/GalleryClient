@@ -9,9 +9,17 @@ import About from './Components/About';
 import Admin from './Components/Admin';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
+import Sorttype from './Components/Sorttype';
+import Sorttag from './Components/Sorttag';
+import Sortdate from './Components/Sortdate';
+import Sortid from './Components/SortID';
 import Uploadform from './Components/Uploadform';
 import Typeform from './Components/Typeform';
 import Tagform from './Components/Tagform';
+import Deviceform from './Components/Deviceform';
+import Signup from './Components/Signup';
+import Signin from './Components/Signin';
+import Request from './Components/Request';
 import history from './Components/History';
 
 
@@ -78,9 +86,17 @@ class App extends Component {
           <Route path="/Wallpaper" component={Detail} />
           <Route path="/Contact" component={Contact} />
           <Route path="/Services" component={Services} />
+          <Route path="/Sort-Type" component={Sorttype} />
+          <Route path="/Sort-Tag" component={Sorttag} />
+          <Route path="/Sort-ID" component={Sortid} />
+          <Route path="/Sort-Date" component={Sortdate} />
           <Route path="/New-Type" component={Typeform} />
           <Route path="/New-Tag" component={Tagform} />
+          <Route path="/New-Device" component={Deviceform} />
           <Route path="/New-Wallpaper" component={Uploadform} />
+          <Route path="/Auth-Signup" component={Signup} />
+          <Route path="/Auth-Signin" component={Signin} />
+          <Route path="/Auth-Request" component={Request} />
 
 
         </Router>
