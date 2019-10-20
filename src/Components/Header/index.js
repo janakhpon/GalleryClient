@@ -12,7 +12,7 @@ class Header extends Component {
                         <div className="row align-items-center">
 
                             <div className="col-6 col-xl-2" data-aos="fade-down">
-                                <h1 className="mb-0"><Link to="/" className="text-black h2 mb-0">Photon</Link></h1>
+                                <h1 className="mb-0"><Link to="/" className="text-black h2 mb-0">'EiGallery</Link></h1>
                             </div>
                             <div className="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
                                 <nav className="site-navigation position-relative text-right text-lg-center" role="navigation">
@@ -20,12 +20,12 @@ class Header extends Component {
                                     <ul className="site-menu js-clone-nav mx-auto d-none d-lg-block">
                                         <li className="active"><Link to="/">Home</Link></li>
                                         <li className="has-children">
-                                            <a href="#">Gallery</a>
+                                            <a href="/#">Gallery</a>
 
                                             <ul className="dropdown">
                                                 <li><Link to="/Wallpapers">Wallpapers</Link></li>
                                                 <li className="has-children">
-                                                    <a href="#">New</a>
+                                                    <a href="/#">New</a>
                                                     <ul className="dropdown">
                                                         <li><Link to="/New-Wallpaper"> New-Wallpaper </Link></li>
                                                         <li><Link to="/New-Type"> New-Type </Link></li>
@@ -34,7 +34,7 @@ class Header extends Component {
                                                     </ul>
                                                 </li>
                                                 <li className="has-children">
-                                                    <a href="#">Sort</a>
+                                                    <a href="/#">Sort</a>
                                                     <ul className="dropdown">
                                                         <li><Link to="/Sort-Type"> Sort By Type </Link></li>
                                                         <li><Link to="/Sort-Tag"> Sort By Tag </Link></li>
@@ -43,7 +43,7 @@ class Header extends Component {
                                                     </ul>
                                                 </li>
                                                 <li className="has-children">
-                                                    <a href="#">Auth</a>
+                                                    <a href="/#">Auth</a>
                                                     <ul className="dropdown">
                                                         <li><Link to="/Auth-Signup"> Auth-Signup </Link></li>
                                                         <li><Link to="/Auth-Signin"> Auth-Signin </Link></li>

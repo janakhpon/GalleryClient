@@ -11,7 +11,7 @@ class Signup extends Component {
                         <div className="col-md-7">
                             <div className="row mb-5">
                                 <div className="col-12 ">
-                                    <h2 className="site-section-heading text-center">Signup Us</h2>
+                                    <h2 className="site-section-heading text-center">Sign UP</h2>
                                 </div>
                             </div>
 
