@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './index.css';
@@ -215,7 +216,12 @@ class Sorttype extends Component {
                                                 typeOptions.map((type, key) => {
                                                     let gid = Math.floor(Math.random() * 7) + 0;
                                                     return (
-                                                        <span className={`${typeclasses[gid]}`} key={key}>{type.value}</span>
+                                                        <Link to={{
+                                                            pathname: `/Dash-Type`,
+                                                            state: {
+                                                              type:type.value
+                                                            }
+                                                          }}><span className={`${typeclasses[gid]}`} key={key}>{type.value}</span></Link>
                                                     );
                                                 })
                                             }

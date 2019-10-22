@@ -30,7 +30,7 @@ class Detail extends Component {
         const url = `${GALARIE_API_URL}/delete/${this.state.id}`;
         axios.delete(url).then(response => response.data)
             .then((data) => {
-                this.props.history.push('/Admin');
+                this.props.history.push('/Auth-Admin');
             });
 
 

@@ -20,6 +20,7 @@ import Deviceform from './Components/Deviceform';
 import Signup from './Components/Signup';
 import Signin from './Components/Signin';
 import Request from './Components/Request';
+import Typedash from './Components/TypeDashboard';
 import history from './Components/History';
 
 
@@ -91,6 +92,7 @@ class App extends Component {
           <Route path="/Sort-ID" component={Sortid} />
           <Route path="/Sort-Date" component={Sortdate} />
           <Route path="/New-Type" component={Typeform} />
+          <Route path="/Dash-Type" component={Typedash} />
           <Route path="/New-Tag" component={Tagform} />
           <Route path="/New-Device" component={Deviceform} />
           <Route path="/New-Wallpaper" component={Uploadform} />
