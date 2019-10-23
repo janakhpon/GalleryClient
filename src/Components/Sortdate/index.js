@@ -2,6 +2,9 @@ import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import Moment from 'react-moment';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 import './index.css';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
@@ -10,6 +13,8 @@ const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
 const descriptionOptions = [];
 const tagOptions = [];
 const typeOptions = [];
+const tempOptions = [];
+let mmval = '';
 const formData = new FormData();
 
 class Sortdate extends Component {
@@ -184,6 +189,8 @@ class Sortdate extends Component {
         this.getTag();
         this.getType();
         this.getGalarie();
+
+        
     }
 
     render() {
@@ -191,6 +198,7 @@ class Sortdate extends Component {
         const tagclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
         const typeclasses = ['badge badge-primary', 'badge badge-secondary', 'badge badge-success', 'badge badge-danger', 'badge badge-warning', 'badge badge-info', 'badge badge-light', 'badge badge-dark'];
 
+        
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -208,14 +216,27 @@ class Sortdate extends Component {
                                     <div className="col-lg-7 mb-5">
                                     <p className="mb-2 font-weight-bold text-center"> date on list </p>
                                         <div className="mb-4">
-                                            {/**
-                                                starting from index 0 to 7
-                                                */}
                                             {
-                                                typeOptions.map((type, key) => {
+                                                this.state.wallpapers.forEach((wallval, i) => {
+                                                    mmval=  moment(wallval.date).fromNow();
+                                                    let temp = {value:moment(wallval.date).fromNow(), label:i}
+                                                    tempOptions.push(temp);
+                                                    console.log(i + ":" +mmval);
+                                                    console.log(tempOptions);
+                                                })
+                                            }
+                                            {
+                                                this.state.wallpapers.map((wall, key) => {
                                                     let gid = Math.floor(Math.random() * 7) + 0;
+                                                    
                                                     return (
-                                                        <span className={`${typeclasses[gid]}`} key={key}>{type.value}</span>
+                                                        <Link to={{
+                                                            pathname: `/Dash-Date`,
+                                                            state: {
+                                                             date:wall.date,
+                                                             tempOptions:tempOptions
+                                                            }
+                                                          }}><span className={`${tagclasses[gid]}`} key={key}><Moment fromNow>{wall.date}</Moment></span></Link>
                                                     );
                                                 })
                                             }

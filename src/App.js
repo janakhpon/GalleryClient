@@ -21,6 +21,8 @@ import Signup from './Components/Signup';
 import Signin from './Components/Signin';
 import Request from './Components/Request';
 import Typedash from './Components/TypeDashboard';
+import Tagdash from './Components/TagDashboard';
+import Datedash from './Components/DateDashboard';  
 import history from './Components/History';
 
 
@@ -94,6 +96,8 @@ class App extends Component {
           <Route path="/New-Type" component={Typeform} />
           <Route path="/Dash-Type" component={Typedash} />
           <Route path="/New-Tag" component={Tagform} />
+          <Route path="/Dash-Tag" component={Tagdash} />
+          <Route path="/Dash-Date" component={Datedash} />
           <Route path="/New-Device" component={Deviceform} />
           <Route path="/New-Wallpaper" component={Uploadform} />
           <Route path="/Auth-Signup" component={Signup} />
