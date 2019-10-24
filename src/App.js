@@ -4,10 +4,12 @@ import Header from './Components/Header';
 import Container from './Components/Container';
 import Topic from './Components/Topic';
 import Detail from './Components/Detail';
+import Detailtype from './/Components/DetailType';
 import Gallery from './Components/Gallery';
 import Gallerytwo from './Components/Gallerytwo';
 import About from './Components/About';
 import Admin from './Components/Admin';
+import Authtype from './Components/Auth-Type';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Sorttype from './Components/Sorttype';
@@ -77,12 +79,13 @@ class App extends Component {
 
         <Router history={history}>
           {/* Menu Section Here */}
+
           <Menu />
-
           {/* Header Section Here */}
-          <Header />
 
+          <Header />
           {/* Container Section Here */}
+
           <Route exact path="/" component={Container} />
           <Route path="/Topic" component={Topic} />
           <Route path="/Wallpapers" component={Gallery} />
@@ -90,6 +93,7 @@ class App extends Component {
           <Route path="/About" component={About} />
           <Route path="/Auth-Admin" component={Admin} />
           <Route path="/Wallpaper" component={Detail} />
+          <Route path="/Detail-Type" component={Detailtype} />
           <Route path="/Contact" component={Contact} />
           <Route path="/Services" component={Services} />
           <Route path="/Sort-Type" component={Sorttype} />
@@ -104,6 +108,7 @@ class App extends Component {
           <Route path="/Dash-Date" component={Datedash} />
           <Route path="/New-Device" component={Deviceform} />
           <Route path="/New-Wallpaper" component={Uploadform} />
+          <Route path="/Auth-Type" component={Authtype} />
           <Route path="/Auth-Signup" component={Signup} />
           <Route path="/Auth-Signin" component={Signin} />
           <Route path="/Auth-Request" component={Request} />

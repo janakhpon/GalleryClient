@@ -50,6 +50,7 @@ class Header extends Component {
                                                         <li><Link to="/Auth-Signup"> Auth-Signup </Link></li>
                                                         <li><Link to="/Auth-Signin"> Auth-Signin </Link></li>
                                                         <li><Link to="/Auth-Admin"> Auth-Admin </Link></li>
+                                                        <li><Link to="/Auth-Type"> Auth-Type </Link></li>
                                                         <li><Link to="/Auth-Request"> Auth-Request </Link></li>
                                                     </ul>
                                                 </li>
