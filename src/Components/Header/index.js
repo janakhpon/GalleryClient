@@ -24,6 +24,7 @@ class Header extends Component {
 
                                             <ul className="dropdown">
                                                 <li><Link to="/Wallpapers">Wallpapers</Link></li>
+                                                <li><Link to="/Topic">Topic</Link></li>
                                                 <li className="has-children">
                                                     <a href="/#">New</a>
                                                     <ul className="dropdown">
@@ -36,6 +37,7 @@ class Header extends Component {
                                                 <li className="has-children">
                                                     <a href="/#">Sort</a>
                                                     <ul className="dropdown">
+                                                        <li><Link to="/Sort-Rate"> Sort By Rating </Link></li>
                                                         <li><Link to="/Sort-Type"> Sort By Type </Link></li>
                                                         <li><Link to="/Sort-Tag"> Sort By Tag </Link></li>
                                                         <li><Link to="/Sort-Date"> Sort By Date </Link></li>

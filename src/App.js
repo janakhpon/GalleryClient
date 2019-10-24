@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './Components/Menu';
 import Header from './Components/Header';
 import Container from './Components/Container';
+import Topic from './Components/Topic';
 import Detail from './Components/Detail';
 import Gallery from './Components/Gallery';
 import Gallerytwo from './Components/Gallerytwo';
@@ -13,6 +14,7 @@ import Sorttype from './Components/Sorttype';
 import Sorttag from './Components/Sorttag';
 import Sortdate from './Components/Sortdate';
 import Sortid from './Components/SortID';
+import Sortrate from './Components/Sortrate';
 import Uploadform from './Components/Uploadform';
 import Typeform from './Components/Typeform';
 import Tagform from './Components/Tagform';
@@ -82,6 +84,7 @@ class App extends Component {
 
           {/* Container Section Here */}
           <Route exact path="/" component={Container} />
+          <Route path="/Topic" component={Topic} />
           <Route path="/Wallpapers" component={Gallery} />
           <Route path="/Gallerytwo" component={Gallerytwo} />
           <Route path="/About" component={About} />
@@ -93,6 +96,7 @@ class App extends Component {
           <Route path="/Sort-Tag" component={Sorttag} />
           <Route path="/Sort-ID" component={Sortid} />
           <Route path="/Sort-Date" component={Sortdate} />
+          <Route path="/Sort-Rate" component={Sortrate} />
           <Route path="/New-Type" component={Typeform} />
           <Route path="/Dash-Type" component={Typedash} />
           <Route path="/New-Tag" component={Tagform} />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import 'lightgallery';
@@ -7,7 +8,16 @@ import "lightgallery.js/dist/css/lightgallery.css";
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
-class Container extends Component {
+
+
+const Mydiv = styled.div`
+  &:hover{
+    cursor: pointer;
+  }
+`;
+
+
+class Sortrate extends Component {
 
   constructor(props) {
     super(props);
@@ -74,12 +84,12 @@ class Container extends Component {
               {this.state.wallpapers.map((wallpaper, key) => {
                 return (
 
-                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
+                  <Mydiv id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
                     <LightgalleryItem group="any" src={`http://localhost:5000/${wallpaper.image}`}
                      subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
                       <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                     </LightgalleryItem>
-                  </div>
+                  </Mydiv>
 
                 );
               })}
@@ -97,4 +107,4 @@ class Container extends Component {
 }
 
 
-export default Container;
+export default Sortrate;
