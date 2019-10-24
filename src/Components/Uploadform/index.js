@@ -1,6 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
@@ -176,6 +178,30 @@ class Uploadform extends Component {
             .then(function (response) {
                 //handle success
                 console.log(response);
+                toast.success('🦄 Wow so easy!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className:'form-group'
+                });
+
+                this.setState({
+                    selectedTypes: null,
+                    selectedTags: [],
+                    selectedDevices: [],
+                    wallpapers: [],
+                    desOptions: [],
+                    tags: [],
+                    types: [],
+                    title: '',
+                    choice: 0,
+                    rate: 0,
+                    description: '',
+                    image: null
+                })
             })
             .catch(function (response) {
                 //handle error
@@ -203,6 +229,17 @@ class Uploadform extends Component {
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnVisibilityChange
+                        draggable
+                        pauseOnHover
+                    />
                     <div className="container-fluid">
 
                         <div className="row justify-content-center">
