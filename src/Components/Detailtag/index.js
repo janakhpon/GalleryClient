@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5000/tagapi';
 const formData = new FormData();
 
-class Tagform extends Component {
+class Detailtag extends Component {
     _isMounted = false;
 
 
@@ -44,7 +44,7 @@ class Tagform extends Component {
         })
             .catch(function (response) {
                 this.setState({
-                    name:''
+                    name: ''
                 })
             })
 
@@ -64,6 +64,7 @@ class Tagform extends Component {
 
     }
 
+
     onDelete = (e) => {
         e.preventDefault();
         const url = `${API_URL}/delete/${this.state.id}`;
@@ -75,18 +76,20 @@ class Tagform extends Component {
 
     }
 
+
     componentDidMount() {
-        this._isMounted = true;
-        const url = `${API_URL}/list`;
-        axios.get(url).then(response => response.data).then((data) => {
+        if (this.props.location.state) {
+            localStorage.setItem('tagid', this.props.location.state.id);
+            localStorage.setItem('tagname', this.props.location.state.name);
 
-            if (this._isMounted) {
-                this.setState({
-                    tags: data
-                });
+        }
+        this.setState(
+            {
+                id: localStorage.getItem('tagid'),
+                name: localStorage.getItem('tagname')
             }
+        );
 
-        });
 
     }
 
@@ -113,50 +116,28 @@ class Tagform extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-lg-8 mb-5">
+                                    <div className="col-lg-12 mb-5">
                                         <form action="/">
 
 
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="name">Add new tags</label>
-                                                    <input type="text" id="name" name="name" className="form-control" onChange={this.handleName} />
+                                                    <label className="text-black" htmlFor="name">{this.state.id}</label>
+                                                    <input type="text" id="name" name="name" className="form-control" onChange={this.handleName} value={this.state.name} />
                                                 </div>
                                             </div>
 
 
                                             <div className="row form-group">
-                                                <div className="col-md-12">
-                                                    <input type="submit" value="Submit" className="" onClick={this.handleSubmit} />
-                                                </div>
+                                                <input type="submit" value="Submit" className="btn btn-md btn-success" onClick={this.handleSubmit} />
+                                                <input type="submit" value="Delete" className="btn btn-md btn-danger" onClick={this.onDelete} />
                                             </div>
 
 
                                         </form>
                                     </div>
-                                    <div className="col-lg-3 ml-auto">
-                                        <div className="mb-3 bg-white">
-                                            <p className="mb-0 font-weight-bold">Desclaimer/Notes</p>
-                                            <p className="mb-4">Type can be added dynamically and you need to choose <u>type</u> for optimized search, use `coma` for <u>tag</u> values </p>
 
-                                            <p className="mb-0 font-weight-bold"><b>Tags</b></p>
-                                            <div className="mb-0">
-
-                                                {
-                                                    this.state.tags.map((tag, key) => {
-                                                        let gid = Math.floor((Math.random() * 7) + 1);
-                                                        return (
-                                                            <span className={`${badgeclasses[gid]}`} key={key}>{tag.name}</span>
-                                                        );
-                                                    })
-                                                }
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
 
@@ -169,4 +150,4 @@ class Tagform extends Component {
     }
 }
 
-export default Tagform;
+export default Detailtag;

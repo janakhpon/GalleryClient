@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import './index.css';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
@@ -63,7 +62,7 @@ class Authtag extends Component {
                 tags: data
             });
             this.state.tags.map((tag, key) => {
-                let temp = { value: tag.name, label: tag.name }
+                let temp = { value: tag.name, label: tag.name, id:tag._id }
                 return tagOptions.push(temp);
             });
         })
@@ -206,7 +205,7 @@ class Authtag extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-lg-7 mb-5">
+                                    <div className="col-lg-11 mb-5">
                                         <p className="mb-2 font-weight-bold text-center"> available types </p>
                                         <div className="mb-4">
                                             {/**
@@ -217,11 +216,12 @@ class Authtag extends Component {
                                                     let gid = Math.floor(Math.random() * 7) + 0;
                                                     return (
                                                         <Link to={{
-                                                            pathname: `/Dash-Tag`,
+                                                            pathname: `/Detail-Tag`,
                                                             state: {
-                                                              tag:tag.value
+                                                                name: tag.value,
+                                                                id : tag.id
                                                             }
-                                                          }}><span className={`${tagclasses[gid]}`} key={key}>{tag.value}</span></Link>
+                                                        }}><span className={`${tagclasses[gid]}`} key={key}>{tag.value}</span></Link>
                                                     );
                                                 })
                                             }
@@ -229,18 +229,7 @@ class Authtag extends Component {
 
                                         </div>
                                     </div>
-                                    <div className="col-lg-4 ml-auto">
-                                        
-                                            <div className="input-group mb-4 border-0 rounded-pill p-1">
-                                                <div className="input-group-prepend border-0">
-                                                    <button id="button-addon4" type="button" className="btn btn-link text-info"><FontAwesomeIcon icon={faSearch} /></button>
-                                                </div>
-                                                <input type="search" placeholder="What're you searching for ? ... ." aria-describedby="button-addon4" className="form-control bg-none border-0" />
-                                            </div>
 
-                                        
-
-                                    </div>
                                 </div>
                             </div>
 
