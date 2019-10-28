@@ -6,9 +6,7 @@ import moment from 'moment';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
-const date_API_URL = 'http://localhost:5000/dateapi';
-const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+import {GALARIE_API_URL} from '../Const';
 const indexnum = [];
 class Datedash extends Component {
 
@@ -18,8 +16,8 @@ class Datedash extends Component {
             wallpapers: [],
             dates: [],
             types: [],
-            tempOptions:[],
-            indexNum:[],
+            tempOptions: [],
+            indexNum: [],
             date: '',
             value: ''
         };
@@ -30,8 +28,8 @@ class Datedash extends Component {
     getGalarie = (val) => {
         let url = `${GALARIE_API_URL}/list`;
         axios.get(url).then(response => response.data).then(data => {
-            data.forEach((da, i) =>{
-                if(moment(da.date).fromNow() === moment(val).fromNow()){
+            data.forEach((da, i) => {
+                if (moment(da.date).fromNow() === moment(val).fromNow()) {
                     indexnum.push(i);
                 }
             })
@@ -39,22 +37,9 @@ class Datedash extends Component {
                 wallpapers: data
             })
         });
-    }
+    };
 
 
-    getdate = () => {
-        
-    }
-
-
-    getType = () => {
-        let url = `${TYPE_API_URL}/list`;
-        axios.get(url).then(response => response.data).then(data => {
-            this.setState({
-                types: data
-            })
-        })
-    }
 
 
 
@@ -69,7 +54,7 @@ class Datedash extends Component {
         } else {
             this.setState({
                 date: localStorage.getItem('date'),
-                tempOptions:localStorage.getItem('tempOptions')
+                tempOptions: localStorage.getItem('tempOptions')
             })
         }
 
@@ -89,22 +74,6 @@ class Datedash extends Component {
         return (
             <div className="site-section" data-aos="fade">
                 <div className="container-fluid">
-
-                    <div className="row justify-content-center">
-
-                        <div className="col-md-7">
-                            <div className="row mb-5">
-                                <div className="col-12 ">
-                                    <div className="site-section-heading text-center">
-                                        <div className="input-group col-md-12">
-                                            <input type="text" className="form-control input-lg" placeholder="keywords ... " />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                     <div className="row">
                         <LightgalleryProvider>
                             {indexnum.map((key) => {
@@ -122,7 +91,7 @@ class Datedash extends Component {
                                                     rate: this.state.wallpapers[key].rate,
                                                     image: this.state.wallpapers[key].image,
                                                     devices: this.state.wallpapers[key].devices,
-                                                    keyword:this.state.wallpapers[key].keyword,
+                                                    keyword: this.state.wallpapers[key].keyword,
                                                     type: this.state.wallpapers[key].type,
                                                     date: this.state.wallpapers[key].date,
                                                     mimetype: this.state.wallpapers[key].mimetype,

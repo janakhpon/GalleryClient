@@ -138,7 +138,7 @@ class Typeform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="name">name</label>
+                                                    <label className="text-black" htmlFor="name">New type name</label>
                                                     <input type="text" id="name" name="name" className="form-control" onChange={this.handleName} />
                                                 </div>
                                             </div>
@@ -146,7 +146,7 @@ class Typeform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="description">description</label>
+                                                    <label className="text-black" htmlFor="description">Suitable type description</label>
                                                     <textarea name="description" id="description" cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."
                                                         onChange={this.handleDescription}></textarea>
                                                 </div>
@@ -154,7 +154,7 @@ class Typeform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label htmlFor="image">Your Art</label>
+                                                    <label htmlFor="image">Type Image/Art</label>
                                                     <input type="file" className="form-control-file" id="image" name="image" ref={this.image} onChange={this.handleImage} />
                                                 </div>
                                             </div>
@@ -162,7 +162,7 @@ class Typeform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <input type="submit" value="upload to Gallery" className="btn btn-primary py-2 px-4 text-white" onClick={this.handleSubmit} />
+                                                    <input type="submit" value="SAVE" className="btn btn-primary py-2 px-4 text-white" onClick={this.handleSubmit} />
                                                 </div>
                                             </div>
 

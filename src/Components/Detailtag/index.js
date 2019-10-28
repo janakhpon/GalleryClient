@@ -97,10 +97,8 @@ class Detailtag extends Component {
     componentWillUnmount() {
         this._isMounted = false;
     }
-
+    
     render() {
-
-        const badgeclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
