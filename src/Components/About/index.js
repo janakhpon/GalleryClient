@@ -28,7 +28,7 @@ class About extends Component{
                  
                   <div className="row site-section">
                     <div className="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
-                      <img src="images/person_1.jpg" alt="Image" className="img-fluid w-50 rounded-circle mb-4" />
+                      <img src="images/person_1.jpg" alt="one" className="img-fluid w-50 rounded-circle mb-4" />
                       <h2 className="text-black font-weight-light mb-4">Jean Smith</h2>
                       <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur ab quas facilis obcaecati non ea, est odit repellat distinctio incidunt, quia aliquam eveniet quod deleniti impedit sapiente atque tenetur porro?</p>
                       <p>
@@ -38,7 +38,7 @@ class About extends Component{
                       </p>
                     </div>
                     <div className="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
-                      <img src="images/person_2.jpg" alt="Image" className="img-fluid w-50 rounded-circle mb-4" />
+                      <img src="images/person_2.jpg" alt="two" className="img-fluid w-50 rounded-circle mb-4" />
                       <h2 className="text-black font-weight-light mb-4">Claire Smith</h2>
                       <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur ab quas facilis obcaecati non ea, est odit repellat distinctio incidunt, quia aliquam eveniet quod deleniti impedit sapiente atque tenetur porro?</p>
                       <p>
@@ -48,7 +48,7 @@ class About extends Component{
                       </p>
                     </div>
                     <div className="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
-                      <img src="images/person_4.jpg" alt="Image" className="img-fluid w-50 rounded-circle mb-4" />
+                      <img src="images/person_4.jpg" alt="three" className="img-fluid w-50 rounded-circle mb-4" />
                       <h2 className="text-black font-weight-light mb-4">John Smith</h2>
                       <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur ab quas facilis obcaecati non ea, est odit repellat distinctio incidunt, quia aliquam eveniet quod deleniti impedit sapiente atque tenetur porro?</p>
                       <p>

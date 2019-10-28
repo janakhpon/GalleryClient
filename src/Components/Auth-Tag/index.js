@@ -1,8 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { tagclasses, getID } from '../Const';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
@@ -187,10 +186,6 @@ class Authtag extends Component {
     }
 
     render() {
-        const { selectedTypes, selectedTags, selectedDevices } = this.state;
-        const tagclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
-        const typeclasses = ['badge badge-primary', 'badge badge-secondary', 'badge badge-success', 'badge badge-danger', 'badge badge-warning', 'badge badge-info', 'badge badge-light', 'badge badge-dark'];
-
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -200,20 +195,19 @@ class Authtag extends Component {
                             <div className="col-md-7">
                                 <div className="row mb-5">
                                     <div className="col-12 ">
-                                        <h2 className="site-section-heading text-center">Sort By Type</h2>
+                                        <h2 className="site-section-heading text-center">Sort By Tag</h2>
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-lg-11 mb-5">
-                                        <p className="mb-2 font-weight-bold text-center"> available types </p>
+                                        <p className="mb-2 font-weight-bold text-center"> available tags </p>
                                         <div className="mb-4">
                                             {/**
                                                 starting from index 0 to 7
                                                 */}
                                             {
                                                 tagOptions.map((tag, key) => {
-                                                    let gid = Math.floor(Math.random() * 7) + 0;
                                                     return (
                                                         <Link to={{
                                                             pathname: `/Detail-Tag`,
@@ -221,7 +215,7 @@ class Authtag extends Component {
                                                                 name: tag.value,
                                                                 id: tag.id
                                                             }
-                                                        }} className={`${tagclasses[gid]}`} key={key}>{tag.value}</Link>
+                                                        }} className={`${tagclasses[getID()]}`} key={key}>{tag.value}</Link>
                                                     );
                                                 })
                                             }

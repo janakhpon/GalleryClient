@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import { DEVICE_API_URL } from '../Const';
+import { DEVICE_API_URL, getID } from '../Const';
 const formData = new FormData();
 
 class Deviceform extends Component {
@@ -22,15 +22,15 @@ class Deviceform extends Component {
         e.preventDefault();
         this.setState({
             name: e.target.value
-        })
+        });
         formData.set('name', e.target.value);
     }
 
-    handleScreensize = (e) => {
+    handleScreen = (e) => {
         e.preventDefault();
         this.setState({
             screensize: e.target.value
-        })
+        });
         formData.set('screensize', e.target.value);
     }
 
@@ -41,12 +41,10 @@ class Deviceform extends Component {
         });
 
         formData.append('image', e.target.files[0]);
-        console.log(e.target.files[0]);
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-
 
         const url = `${DEVICE_API_URL}/add`;
 
@@ -60,9 +58,8 @@ class Deviceform extends Component {
 
             this.setState({
                 name: '',
-                description: '',
-                image: null,
-                types: []
+                screensize: '',
+                image: null
             });
 
             toast.success('🤩 added new type', {
@@ -137,7 +134,7 @@ class Deviceform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="name">name</label>
+                                                    <label className="text-black" htmlFor="name">Device name</label>
                                                     <input type="text" id="name" name="name" className="form-control" onChange={this.handleName} />
                                                 </div>
                                             </div>
@@ -145,8 +142,8 @@ class Deviceform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="screensize">screensize</label>
-                                                    <input type="text" id="screensize" name="screensize" className="form-control" onChange={this.handleScreenSize} />
+                                                    <label className="text-black" htmlFor="screensize">Device screensize</label>
+                                                    <input type="text" id="screensize" name="screensize" className="form-control" onChange={this.handleScreen} />
                                                 </div>
                                             </div>
 
@@ -177,12 +174,8 @@ class Deviceform extends Component {
                                             <div className="mb-4">
                                                 {
                                                     this.state.types.map((type, key) => {
-
-                                                        let gid = Math.floor((Math.random() * 7) + 1);
-
-
                                                         return (
-                                                            <span className={`${colorclass[gid]}`}>{type.name}</span>
+                                                            <span className={`${colorclass[getID()]}`} key={key}>{type.name}</span>
                                                         );
                                                     })
                                                 }

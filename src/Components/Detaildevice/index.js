@@ -1,9 +1,10 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
+import Moment from 'react-moment';
+import { DEVICE_API_URL } from '../Const';
 
 
-class Detailtype extends Component {
+class Detaildevice extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +12,8 @@ class Detailtype extends Component {
             image: null,
             mimetype: '',
             name: '',
-            description: ''
+            screensize: '',
+            date: ''
         }
     }
 
@@ -20,10 +22,10 @@ class Detailtype extends Component {
 
     onDelete = (e) => {
         e.preventDefault();
-        const url = `${TYPE_API_URL}/delete/${this.state.id}`;
+        const url = `${DEVICE_API_URL}/delete/${this.state.id}`;
         axios.delete(url).then(response => response.data)
             .then((data) => {
-                this.props.history.push('/Auth-Type');
+                this.props.history.push('/Auth-Device');
             });
 
 
@@ -32,20 +34,22 @@ class Detailtype extends Component {
     componentDidMount() {
 
         if (this.props.location.state) {
-            const { name, description, image, mimetype, id } = this.props.location.state
-            localStorage.setItem('id', id);
-            localStorage.setItem('name', name);
-            localStorage.setItem('description', description);
-            localStorage.setItem('image', image);
-            localStorage.setItem('mimetype', mimetype);
+            const { name, screensize, image, mimetype, id, date } = this.props.location.state
+            localStorage.setItem('deviceid', id);
+            localStorage.setItem('devicename', name);
+            localStorage.setItem('devicescreensize', screensize);
+            localStorage.setItem('deviceimage', image);
+            localStorage.setItem('devicemimetype', mimetype);
+            localStorage.setItem('devicedate', date);
         }
         this.setState(
             {
-                id: localStorage.getItem('id'),
-                name: localStorage.getItem('name'),
-                description: localStorage.getItem('description'),
-                image: localStorage.getItem('image'),
-                mimetype: localStorage.getItem('mimetype')
+                id: localStorage.getItem('deviceid'),
+                name: localStorage.getItem('devicename'),
+                screensize: localStorage.getItem('devicescreensize'),
+                image: localStorage.getItem('deviceimage'),
+                mimetype: localStorage.getItem('devicemimetype'),
+                date: localStorage.getItem('devicedate')
             }
         );
 
@@ -77,7 +81,7 @@ class Detailtype extends Component {
                                             <p className="mb-0 font-weight-bold">{this.state.name}</p>
                                             {
                                                 <p className="mb-1">
-                                                    {this.state.description}
+                                                    {this.state.screensize}
                                                 </p>
                                             }
 
@@ -92,6 +96,9 @@ class Detailtype extends Component {
                                                 }
                                                 {
                                                     <span className="badge badge-info">{this.state.mimetype}</span>
+                                                }
+                                                {
+                                                    <span className="badge badge-info"><Moment add={{ days: 1, hours: 12 }}>{this.state.date}</Moment></span>
                                                 }
 
                                             </div>
@@ -123,4 +130,4 @@ class Detailtype extends Component {
     }
 }
 
-export default Detailtype;
+export default Detaildevice;
