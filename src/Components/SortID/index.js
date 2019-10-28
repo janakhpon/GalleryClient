@@ -2,12 +2,13 @@ import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { DEVICE_API_URL, getID, tagclasses } from '../Const';
 import './index.css';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
 
-const descriptionOptions = [];
+const wallOptions = [];
 const tagOptions = [];
 const typeOptions = [];
 const formData = new FormData();
@@ -29,7 +30,7 @@ class Sortid extends Component {
             choice: 0,
             rate: 0,
             description: '',
-            image: null
+            image: null,
         }
 
         this.image = React.createRef();
@@ -46,8 +47,8 @@ class Sortid extends Component {
 
 
             this.state.wallpapers.map((wallpaper, key) => {
-                let temp = { value: wallpaper.description, label: wallpaper.description };
-                return descriptionOptions.push(temp);
+                let temp = { value: wallpaper._id, label: wallpaper._id, key: key };
+                return wallOptions.push(temp);
             });
 
         });
@@ -71,6 +72,20 @@ class Sortid extends Component {
 
     getType = () => {
         let url = `${TYPE_API_URL}/list`;
+        axios.get(url).then(response => response.data).then(data => {
+            this.setState({
+                types: data
+            });
+            this.state.types.map((type, key) => {
+                let temp = { value: type.name, label: type.name }
+                return typeOptions.push(temp);
+            })
+        })
+    }
+
+
+    getIds = () => {
+        let url = `${DEVICE_API_URL}/list`;
         axios.get(url).then(response => response.data).then(data => {
             this.setState({
                 types: data
@@ -187,9 +202,6 @@ class Sortid extends Component {
     }
 
     render() {
-        const { selectedTypes, selectedTags, selectedDevices } = this.state;
-        const tagclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
-        const typeclasses = ['badge badge-primary', 'badge badge-secondary', 'badge badge-success', 'badge badge-danger', 'badge badge-warning', 'badge badge-info', 'badge badge-light', 'badge badge-dark'];
 
         return (
             <Fragment>
@@ -206,16 +218,15 @@ class Sortid extends Component {
 
                                 <div className="row">
                                     <div className="col-lg-7 mb-5">
-                                    <p className="mb-2 font-weight-bold text-center"> available IDs </p>
+                                        <p className="mb-2 font-weight-bold text-center"> available IDs </p>
                                         <div className="mb-4">
                                             {/**
                                                 starting from index 0 to 7
                                                 */}
                                             {
-                                                typeOptions.map((type, key) => {
-                                                    let gid = Math.floor(Math.random() * 7) + 0;
+                                                wallOptions.map((wall, key) => {
                                                     return (
-                                                        <span className={`${typeclasses[gid]}`} key={key}>{type.value}</span>
+                                                        <span className={`${tagclasses[getID()]}`} key={key}>{wall.value}</span>
                                                     );
                                                 })
                                             }
@@ -224,15 +235,15 @@ class Sortid extends Component {
                                         </div>
                                     </div>
                                     <div className="col-lg-4 ml-auto">
-                                        
-                                            <div className="input-group mb-4 border-0 rounded-pill p-1">
-                                                <div className="input-group-prepend border-0">
-                                                    <button id="button-addon4" type="button" className="btn btn-link text-info"><FontAwesomeIcon icon={faSearch} /></button>
-                                                </div>
-                                                <input type="search" placeholder="What're you searching for ? ... ." aria-describedby="button-addon4" className="form-control bg-none border-0" />
-                                            </div>
 
-                                        
+                                        <div className="input-group mb-4 border-0 rounded-pill p-1">
+                                            <div className="input-group-prepend border-0">
+                                                <button id="button-addon4" type="button" className="btn btn-link text-info"><FontAwesomeIcon icon={faSearch} /></button>
+                                            </div>
+                                            <input type="search" placeholder="What're you searching for ? ... ." aria-describedby="button-addon4" className="form-control bg-none border-0" />
+                                        </div>
+
+
 
                                     </div>
                                 </div>
