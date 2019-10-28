@@ -3,9 +3,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
-const TAG_API_URL = 'http://localhost:5000/tagapi';
-const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+import { GALARIE_API_URL, TAG_API_URL, TYPE_API_URL, DEVICE_API_URL, tagclasses, typeclasses } from '../Const';
 
 const descriptionOptions = [];
 const tagOptions = [];
@@ -185,7 +183,7 @@ class Uploadform extends Component {
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
-                    className:'form-group'
+                    className: 'form-group'
                 });
 
                 this.setState({
@@ -223,8 +221,6 @@ class Uploadform extends Component {
 
     render() {
         const { selectedTypes, selectedTags, selectedDevices } = this.state;
-        const tagclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
-        const typeclasses = ['badge badge-primary', 'badge badge-secondary', 'badge badge-success', 'badge badge-danger', 'badge badge-warning', 'badge badge-info', 'badge badge-light', 'badge badge-dark'];
 
         return (
             <Fragment>

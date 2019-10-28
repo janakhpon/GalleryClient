@@ -219,9 +219,9 @@ class Sorttag extends Component {
                                                         <Link to={{
                                                             pathname: `/Dash-Tag`,
                                                             state: {
-                                                              tag:tag.value
+                                                                tag: tag.value
                                                             }
-                                                          }}><span className={`${tagclasses[gid]}`} key={key}>{tag.value}</span></Link>
+                                                        }} className={`${tagclasses[gid]}`} key={key}>{tag.value}</Link>
                                                     );
                                                 })
                                             }
@@ -230,15 +230,15 @@ class Sorttag extends Component {
                                         </div>
                                     </div>
                                     <div className="col-lg-4 ml-auto">
-                                        
-                                            <div className="input-group mb-4 border-0 rounded-pill p-1">
-                                                <div className="input-group-prepend border-0">
-                                                    <button id="button-addon4" type="button" className="btn btn-link text-info"><FontAwesomeIcon icon={faSearch} /></button>
-                                                </div>
-                                                <input type="search" placeholder="What're you searching for ? ... ." aria-describedby="button-addon4" className="form-control bg-none border-0" />
-                                            </div>
 
-                                        
+                                        <div className="input-group mb-4 border-0 rounded-pill p-1">
+                                            <div className="input-group-prepend border-0">
+                                                <button id="button-addon4" type="button" className="btn btn-link text-info"><FontAwesomeIcon icon={faSearch} /></button>
+                                            </div>
+                                            <input type="search" placeholder="What're you searching for ? ... ." aria-describedby="button-addon4" className="form-control bg-none border-0" />
+                                        </div>
+
+
 
                                     </div>
                                 </div>
