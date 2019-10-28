@@ -62,7 +62,7 @@ class Authtag extends Component {
                 tags: data
             });
             this.state.tags.map((tag, key) => {
-                let temp = { value: tag.name, label: tag.name, id:tag._id }
+                let temp = { value: tag.name, label: tag.name, id: tag._id }
                 return tagOptions.push(temp);
             });
         })
@@ -219,9 +219,9 @@ class Authtag extends Component {
                                                             pathname: `/Detail-Tag`,
                                                             state: {
                                                                 name: tag.value,
-                                                                id : tag.id
+                                                                id: tag.id
                                                             }
-                                                        }}><span className={`${tagclasses[gid]}`} key={key}>{tag.value}</span></Link>
+                                                        }} className={`${tagclasses[gid]}`} key={key}>{tag.value}</Link>
                                                     );
                                                 })
                                             }
