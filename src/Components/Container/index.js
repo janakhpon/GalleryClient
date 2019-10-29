@@ -36,7 +36,6 @@ class Container extends Component {
       this.setState({
         wallpapers: data
       });
-      console.log(this.state.wallpapers);
     })
   }
 
@@ -82,8 +81,7 @@ class Container extends Component {
             <LightgalleryProvider>
 
               {
-                _.sortBy(this.state.wallpapers, 'choice').map((wallpaper, key) => {
-                  console.log(`${wallpaper.choice}and${key}`);
+                _.sortBy(this.state.wallpapers.slice(0,49), 'choice').map((wallpaper, key) => {
                   return (
 
                     <Mydiv id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>

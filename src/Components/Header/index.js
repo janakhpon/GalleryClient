@@ -12,7 +12,7 @@ class Header extends Component {
                         <div className="row align-items-center">
 
                             <div className="col-6 col-xl-2" data-aos="fade-down">
-                                <h1 className="mb-0"><Link to="/" className="text-black h2 mb-0">'EiGallery</Link></h1>
+                                <h1 className="mb-0"><Link to="/" className="text-black h2 mb-0">GALLERY</Link></h1>
                             </div>
                             <div className="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
                                 <nav className="site-navigation position-relative text-right text-lg-center" role="navigation">
@@ -53,6 +53,13 @@ class Header extends Component {
                                                         <li><Link to="/Auth-Type"> Auth-Type </Link></li>
                                                         <li><Link to="/Auth-Tag"> Auth-Tag </Link></li>
                                                         <li><Link to="/Auth-Device"> Auth-Device </Link></li>
+                                                    </ul>
+                                                </li>
+                                                <li className="has-children">
+                                                    <a href="/#">Languages</a>
+                                                    <ul className="dropdown">
+                                                        <li><Link to="/Lang-MM"> Use Burmese </Link></li>
+                                                        <li><Link to="/Lang-EN"> Use English </Link></li>
                                                     </ul>
                                                 </li>
                                             </ul>
