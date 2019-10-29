@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+import * as _ from "lodash";
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
-const TAG_API_URL = 'http://localhost:5000/tagapi';
-const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+import { GALARIE_API_URL, TYPE_API_URL, TAG_API_URL } from '../Const';
 
 
 const Mydiv = styled.div`
@@ -16,6 +15,7 @@ const Mydiv = styled.div`
   }
 `;
 
+let choiceOptions = [];
 
 class Sortrate extends Component {
 
@@ -36,8 +36,12 @@ class Sortrate extends Component {
       this.setState({
         wallpapers: data
       });
-      console.log(this.state.wallpapers);
-    })
+
+    });
+
+
+
+
   }
 
 
@@ -81,18 +85,26 @@ class Sortrate extends Component {
           <div className="row">
             <LightgalleryProvider>
 
-              {this.state.wallpapers.map((wallpaper, key) => {
+            {
+              _.sortBy(this.state.wallpapers, 'rate').map((wallpaper, key) =>{
+                console.log(`${wallpaper.rate}and${key}`);
                 return (
 
                   <Mydiv id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
                     <LightgalleryItem group="any" src={`http://localhost:5000/${wallpaper.image}`}
-                     subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
+                      subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
                       <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                     </LightgalleryItem>
                   </Mydiv>
 
                 );
-              })}
+              })
+              
+
+             
+            }
+             
+
 
 
             </LightgalleryProvider>
