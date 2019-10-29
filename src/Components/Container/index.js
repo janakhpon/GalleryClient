@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+import styled from 'styled-components';
+import * as _ from "lodash";
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
 const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+
+
+const Mydiv = styled.div`
+  &:hover{
+    cursor: pointer;
+  }
+`;
+
 class Container extends Component {
 
   constructor(props) {
@@ -71,18 +81,24 @@ class Container extends Component {
           <div className="row">
             <LightgalleryProvider>
 
-              {this.state.wallpapers.map((wallpaper, key) => {
-                return (
+              {
+                _.sortBy(this.state.wallpapers, 'choice').map((wallpaper, key) => {
+                  console.log(`${wallpaper.choice}and${key}`);
+                  return (
 
-                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
-                    <LightgalleryItem group="any" src={`http://localhost:5000/${wallpaper.image}`}
-                     subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
-                      <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
-                    </LightgalleryItem>
-                  </div>
+                    <Mydiv id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
+                      <LightgalleryItem group="any" src={`http://localhost:5000/${wallpaper.image}`}
+                        subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
+                        <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
+                      </LightgalleryItem>
+                    </Mydiv>
 
-                );
-              })}
+                  );
+                })
+
+
+
+              }
 
 
             </LightgalleryProvider>
