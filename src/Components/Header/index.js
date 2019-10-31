@@ -62,8 +62,8 @@ class Header extends Component {
                                         <li className="has-children">
                                             <a href="/#">Languages</a>
                                             <ul className="dropdown">
-                                                <li><Link to="/Lang-MM"> Use Burmese </Link></li>
-                                                <li><Link to="/Lang-EN"> Use English </Link></li>
+                                                <li><a href='/#'> Use Burmese </a></li>
+                                                <li><a href='/#'>Use English </a></li>
                                             </ul>
                                         </li>
                                         <li><Link to="/About">About</Link></li>

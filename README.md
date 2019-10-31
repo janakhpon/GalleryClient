@@ -1,17 +1,36 @@
-# Ei'Gallery-React
-  Ei'sGallery is a simple wallpaper website for nature lover.You can upload wallpaper with related TYPE and TAG WORDS and as a consequence of this you can easily select TYPE options or SEARCH TAG WORDS from search box. CRUD operation can only be done with admin route. Please Check the `RELEASE_STATUS` before you clone. Here is a deployed link [herokudeploy](https://ei-sgallery.herokuapp.com/)
+# Gallery-React
+  Ei'sGallery is a wallpaper website built on MERN stack. You can upload wallpaper with specific descption including tags, types, device, rating and choice and all of these features can also be added dynamically. On displaying the wallpapaers you can sort by type, tags, date, rating and choice. Notice that CRUD options are available to admin only. Please Check the `RELEASE_STATUS` before you clone. Here is a deployed link [herokudeploy](https://ei-sgallery.herokuapp.com/)
 
 
 
 # Usage
+clone the server repository first
+    git clone https://github.com/janakhpon/GalleryOld.git
 
-clone the repository
+clone the client repository
+    git clone https://github.com/janakhpon/Gallery-React.git
 
-    git clone https://github.com/janakhpon/Ei-sGallery-React.git
+Get into server directory root folder
+    cd GalleryOld
 
-Get into root folder
+Install Dependencies using [npm](https://www.npmjs.com/)
 
-    cd Ei-sGallery-React
+    npm install
+    npm i -d
+    npm run start
+    npm run dev
+
+Install Dependencies using [yarn](https://yarnpkg.com/en/)
+
+    yarn install
+    yarn add
+    yarn start
+    yarn dev
+
+then for client,
+
+Get into client directory root folder
+    cd Gallery-React
 
 Install Dependencies using [npm](https://www.npmjs.com/)
 
@@ -28,6 +47,7 @@ Install Dependencies using [yarn](https://yarnpkg.com/en/)
     yarn dev
 
 
+
 # FULL RESOURCES
  [BACKEND/SERVER](https://ei-sgallery.herokuapp.com/)
  [FRONTEND/CLIENT](https://ei-sgallery.herokuapp.com/)
@@ -36,21 +56,22 @@ Install Dependencies using [yarn](https://yarnpkg.com/en/)
 
 
 ## Included Features
- 1.add(wallpaper/type/tags)
- 2.get(wallpaper/type/tags)
- 3.update(wallpaper/type/tags)
- 4.delete(wallpaper)
+ 1.add(wallpaper/type/tags/device)
+ 2.get(wallpaper/type/tags/device)
+ 3.update(wallpaper/type/tags/device)
+ 4.delete(wallpaper/type/tags/device)
+ 5.sort(type/date/tag/rate/choice)
 
 
 ## Features that is not included yet
  1. Progress options(based on fs)
- 2. React-Toast for status
- 3. Get res.status from `SERVER`
- 4. Update/Delete left options
+ 2. Graphql for contact page
+ 3. Websocket for multi languages
+ 4. Sort by Devices
 
 
 ## RELEASE_STATUS:IN PROGRESS
-## RELEASE_CODE: GDEV026
+## RELEASE_CODE: GDEV039
  Sorry this project is not completely done yet and only a few features are available. If you are considering about cloning this project please wait till it's completed.
 
 ## Description
