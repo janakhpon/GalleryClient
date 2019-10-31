@@ -66,13 +66,13 @@ class Contact extends Component {
                                 <div className="col-lg-3 ml-auto">
                                     <div className="mb-3 bg-white">
                                         <p className="mb-0 font-weight-bold">Address</p>
-                                        <p className="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+                                        <p className="mb-4">No.82 Khayay St. Ngantae ward, Mawlamyine, Mon State, Myanmar</p>
 
                                         <p className="mb-0 font-weight-bold">Phone</p>
-                                        <p className="mb-4"><a href="/">+1 232 3235 324</a></p>
+                                        <p className="mb-4"><a href="/">+959 255839074</a></p>
 
                                         <p className="mb-0 font-weight-bold">Email Address</p>
-                                        <p className="mb-0"><a href="/">youremail@domain.com</a></p>
+                                        <p className="mb-0"><a href="/">GTGMyanmar@gtg.tech</a></p>
 
                                     </div>
 

@@ -6,10 +6,7 @@ import * as _ from "lodash";
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
-const TAG_API_URL = 'http://localhost:5000/tagapi';
-const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
-
+import { GALARIE_API_URL } from '../Const';
 
 const Mydiv = styled.div`
   &:hover{
@@ -18,6 +15,7 @@ const Mydiv = styled.div`
 `;
 
 class Container extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -28,60 +26,36 @@ class Container extends Component {
     };
   }
 
-
-
   getGalarie = () => {
     let url = `${GALARIE_API_URL}/list`;
     axios.get(url).then(response => response.data).then((data) => {
-      this.setState({
-        wallpapers: data
-      });
-    })
-  }
+      if (this._isMounted) {
+        this.setState({
+          wallpapers: data
+        });
+      }
 
-
-  getTag = () => {
-    let url = `${TAG_API_URL}/list`;
-    axios.get(url).then(response => response.data).then(data => {
-      this.setState({
-        tags: data
-      })
-    })
-  }
-
-
-  getType = () => {
-    let url = `${TYPE_API_URL}/list`;
-    axios.get(url).then(response => response.data).then(data => {
-      this.setState({
-        types: data
-      })
-    })
-  }
-
-
+    });
+  };
 
   componentDidMount() {
+    this._isMounted = true;
 
     this.getGalarie();
   }
 
-
-
-
-
-
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   render() {
-
     return (
       <div className="site-section" data-aos="fade">
         <div className="container-fluid">
           <div className="row">
             <LightgalleryProvider>
-
               {
-                _.sortBy(this.state.wallpapers.slice(0,49), 'choice').map((wallpaper, key) => {
+                _.sortBy(this.state.wallpapers.slice(0, 49), 'choice').map((wallpaper, key) => {
                   return (
 
                     <Mydiv id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
@@ -93,22 +67,13 @@ class Container extends Component {
 
                   );
                 })
-
-
-
               }
-
-
             </LightgalleryProvider>
-
-
-
           </div>
         </div>
       </div>
     );
   }
 }
-
 
 export default Container;
