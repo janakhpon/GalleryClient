@@ -28,7 +28,7 @@ class Gallery extends Component {
       this.setState({
         wallpapers: data
       });
-      console.log(this.state.wallpapers);
+      console.table(this.state.wallpapers);
     })
   }
 

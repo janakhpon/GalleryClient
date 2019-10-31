@@ -15,7 +15,6 @@ const Mydiv = styled.div`
   }
 `;
 
-let choiceOptions = [];
 
 class Sortrate extends Component {
 
@@ -86,7 +85,7 @@ class Sortrate extends Component {
             <LightgalleryProvider>
 
             {
-              _.sortBy(this.state.wallpapers, 'rate').map((wallpaper, key) =>{
+              _.sortBy(this.state.wallpapers, 'rate').reverse().map((wallpaper, key) =>{
                 console.log(`${wallpaper.rate}and${key}`);
                 return (
 
