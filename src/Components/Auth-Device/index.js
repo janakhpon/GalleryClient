@@ -13,13 +13,7 @@ class AuthDevice extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOption: null,
-            wallpapers: [],
-            galaries: [],
-            galarie: {},
-            image: '',
-            type: '',
-            value: 1,
+            wallpapers: []
         }
     }
 
@@ -39,8 +33,6 @@ class AuthDevice extends Component {
         this.getDevice();
 
     }
-
-
 
 
 

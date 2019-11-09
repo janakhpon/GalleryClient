@@ -13,18 +13,17 @@ import { GALARIE_API_URL } from '../Const';
 const Gallery = () => {
   const [wallpapers, setWallpapers] = useState([]);
   useEffect(() => {
-    let didCancel = false;
+    let isSubscribed = true
     let url = `${GALARIE_API_URL}/list`;
 
     axios.get(url).then(response => response.data).then((data) => {
-      if (!didCancel) {
+      if (isSubscribed) {
         setWallpapers(data)
       }
     });
 
-    return () => {
-      didCancel = true;
-    };
+    //clean up hook
+    return () => isSubscribed = false
   }, []);
 
 
