@@ -50,13 +50,6 @@ class Header extends Component {
                                                         <li><Link to="/Auth-Device"> Auth-Device </Link></li>
                                                     </ul>
                                                 </li>
-                                                <li className="has-children">
-                                                    <a href="/#">Languages</a>
-                                                    <ul className="dropdown">
-                                                        <li><Link to="/Lang-MM"> Use Burmese </Link></li>
-                                                        <li><Link to="/Lang-EN"> Use English </Link></li>
-                                                    </ul>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li className="has-children">
