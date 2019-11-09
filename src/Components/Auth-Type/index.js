@@ -87,13 +87,6 @@ class Authtype extends Component {
             <div className="col-md-7">
               <div className="row mb-5">
                 <div className="col-6 ">
-                  <div className="site-section-heading text-center">
-                    <div className="input-group col-md-12">
-                      <input type="text" className="form-control input-lg" placeholder="keywords ... " />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-6 ">
                   <div className="text-center">
                     <div className="col-md-12">
                       <Select className="form-group" value={this.state.selectedOption} onChange={this.handleChange} options={options} />
