@@ -44,26 +44,6 @@ class Sortrate extends Component {
   }
 
 
-  getTag = () => {
-    let url = `${TAG_API_URL}/list`;
-    axios.get(url).then(response => response.data).then(data => {
-      this.setState({
-        tags: data
-      })
-    })
-  }
-
-
-  getType = () => {
-    let url = `${TYPE_API_URL}/list`;
-    axios.get(url).then(response => response.data).then(data => {
-      this.setState({
-        types: data
-      })
-    })
-  }
-
-
 
   componentDidMount() {
 
