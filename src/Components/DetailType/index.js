@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
+import {TYPE_API_URL, URL} from '../Const';
+
 
 
 class Detailtype extends Component {
@@ -68,7 +69,7 @@ class Detailtype extends Component {
                                     {
 
                                         <div className="col-lg-8 mb-5">
-                                            <img src={`http://localhost:5000/${this.state.image}`} alt={this.state.id} className="img-fluid" style={{ width: '100%', height: '100%' }} />
+                                            <img src={`${URL}/${this.state.image}`} alt={this.state.id} className="img-fluid" style={{ width: '100%', height: '100%' }} />
                                         </div>
 
                                     }

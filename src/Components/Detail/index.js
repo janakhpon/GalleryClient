@@ -1,8 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import Moment from 'react-moment';
 import axios from 'axios';
-import './index.css';
-const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+import { GALARIE_API_URL, URL } from '../Const';
 
 class Detail extends Component {
     constructor(props) {
@@ -86,11 +85,11 @@ class Detail extends Component {
                                     {
                                         this.props.location.state ? (
                                             <div className="col-lg-8 mb-5">
-                                                <img src={`http://localhost:5000/${this.state.image}`} alt={this.state.date} className="img-fluid" style={{ width: '100%', height: '100%' }} />
+                                                <img src={`${URL}/${this.state.image}`} alt={this.state.date} className="img-fluid" style={{ width: '100%', height: '100%' }} />
                                             </div>
                                         ) : (
                                                 <div className="col-lg-8 mb-5">
-                                                    <img src={`http://localhost:5000/${localStorage.getItem('image')}`} alt={localStorage.getItem('date')} className="img-fluid" style={{ width: '100%', height: '100%' }} />
+                                                    <img src={`${URL}/${localStorage.getItem('image')}`} alt={localStorage.getItem('date')} className="img-fluid" style={{ width: '100%', height: '100%' }} />
                                                 </div>
                                             )
                                     }

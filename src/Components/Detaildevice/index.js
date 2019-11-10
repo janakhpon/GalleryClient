@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
-import { DEVICE_API_URL } from '../Const';
+import { DEVICE_API_URL, URL } from '../Const';
 
 
 class Detaildevice extends Component {
@@ -72,7 +72,7 @@ class Detaildevice extends Component {
                                     {
 
                                         <div className="col-lg-8 mb-5">
-                                            <img src={`http://localhost:5000/${this.state.image}`} alt={this.state.id} className="img-fluid" style={{ width: '100%', height: '100%' }} />
+                                            <img src={`${URL}/${this.state.image}`} alt={this.state.id} className="img-fluid" style={{ width: '100%', height: '100%' }} />
                                         </div>
 
                                     }
