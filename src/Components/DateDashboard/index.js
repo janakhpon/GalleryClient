@@ -6,7 +6,7 @@ import moment from 'moment';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-import {GALARIE_API_URL} from '../Const';
+import {GALARIE_API_URL, URL} from '../Const';
 const indexnum = [];
 class Datedash extends Component {
 
@@ -80,7 +80,7 @@ class Datedash extends Component {
                                 return (
 
                                     <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
-                                        <LightgalleryItem group="any" src={`http://localhost:5000/${this.state.wallpapers[key].image}`}
+                                        <LightgalleryItem group="any" src={`${URL}/${this.state.wallpapers[key].image}`}
                                             subHtml={`<h3>${this.state.wallpapers[key].title}</h3><p>${this.state.wallpapers[key].type}</p>`}>
                                             <Link to={{
                                                 pathname: `/Wallpaper/${this.state.wallpapers[key]._id}`,
@@ -98,7 +98,7 @@ class Datedash extends Component {
                                                     id: this.state.wallpapers[key]._id
                                                 }
                                             }}>
-                                                <img src={`http://localhost:5000/${this.state.wallpapers[key].image}`} alt={this.state.wallpapers[key].date} className="img-fluid" />
+                                                <img src={`${URL}/${this.state.wallpapers[key].image}`} alt={this.state.wallpapers[key].date} className="img-fluid" />
                                             </Link>
                                         </LightgalleryItem>
                                     </div>

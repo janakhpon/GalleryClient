@@ -5,7 +5,7 @@ import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { GALARIE_API_URL } from '../Const';
+import { GALARIE_API_URL, URL } from '../Const';
 import axios from 'axios';
 
 
@@ -90,7 +90,7 @@ class Admin extends Component {
                     }
                   }}>
 
-                    <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
+                    <img src={`${URL}/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                   </Link>
                 </div>
 

@@ -5,7 +5,7 @@ import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 import Select from 'react-select';
 import axios from 'axios';
-import { TYPE_API_URL } from '../Const';
+import { TYPE_API_URL, URL } from '../Const';
 
 
 const Authtype = () => {
@@ -90,7 +90,7 @@ const Authtype = () => {
                   }
                 }}>
 
-                  <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper._id} className="img-fluid" />
+                  <img src={`${URL}/${wallpaper.image}`} alt={wallpaper._id} className="img-fluid" />
                 </Link>
               </div>
 

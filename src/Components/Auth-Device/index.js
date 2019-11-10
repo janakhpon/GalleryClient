@@ -6,7 +6,7 @@ import "lightgallery.js/dist/css/lightgallery.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
-import { DEVICE_API_URL } from '../Const';
+import { DEVICE_API_URL, URL } from '../Const';
 
 class AuthDevice extends Component {
 
@@ -75,7 +75,7 @@ class AuthDevice extends Component {
                                         }
                                     }}>
 
-                                        <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper._id} className="img-fluid" />
+                                        <img src={`${URL}/${wallpaper.image}`} alt={wallpaper._id} className="img-fluid" />
                                     </Link>
                                 </div>
 

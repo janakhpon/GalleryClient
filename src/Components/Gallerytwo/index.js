@@ -1,12 +1,12 @@
-import React, {Component } from 'react';
-import { getDataList} from '../../Fetch';
+import React, { Component } from 'react';
+import { getDataList } from '../../Fetch';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 import Select from 'react-select';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/galarieapi';
+import { GALARIE_API_URL, URL } from '../Const';
 const options = [
   { value: 'NATURAL', label: 'NATURAL' },
   { value: 'RAIN', label: 'RAIN' },
@@ -32,7 +32,7 @@ class Gallerytwo extends Component {
       galaires: []
     })
     this.setState({ selectedOption, type: selectedOption.value });
-    const url = `${API_URL}/type/${selectedOption.value}`;
+    const url = `${GALARIE_API_URL}/type/${selectedOption.value}`;
     axios.get(url).then(response => response.data)
       .then((data) => {
         this.setState({ galaires: data })
@@ -112,8 +112,8 @@ class Gallerytwo extends Component {
                 return (
 
                   <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade">
-                    <LightgalleryItem group="any" src={`http://localhost:5000/${galarie.image}`} subHtml="<h4>lol</h4><p>lol</p>">
-                      <img src={`http://localhost:5000/${galarie.image}`} alt={galarie.date} className="img-fluid" />
+                    <LightgalleryItem group="any" src={`${URL}/${galarie.image}`} subHtml="<h4>lol</h4><p>lol</p>">
+                      <img src={`${URL}/${galarie.image}`} alt={galarie.date} className="img-fluid" />
                     </LightgalleryItem>
                   </div>
 
