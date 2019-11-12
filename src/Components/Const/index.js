@@ -3,6 +3,8 @@ export const typeclasses = ["badge badge-primary", "badge badge-secondary", "bad
 
 export const URL = 'http://localhost:5000';
 export const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+export const USER_API_URL = 'http://localhost:5000/userapi';
+export const PROFILE_API_URL = 'http://localhost:5000/profileapi';
 export const TYPE_API_URL = 'http://localhost:5000/typeapi';
 export const TAG_API_URL = 'http://localhost:5000/tagapi';
 export const DEVICE_API_URL = 'http://localhost:5000/deviceapi';

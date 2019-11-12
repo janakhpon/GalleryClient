@@ -1,0 +1,70 @@
+import React from 'react';
+
+const Signup = () => {
+    return (
+        <div className="site-section" data-aos="fade">
+            <div className="container-fluid">
+
+                <div className="row justify-content-center">
+                    <div className="col-md-7">
+                        <div className="row mb-5">
+                            <div className="col-12 ">
+                                <h2 className="site-section-heading text-center">Sign UP</h2>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-lg-12 mb-5">
+                                <form action="/">
+
+
+                                    <div className="row form-group">
+                                        <div className="col-md-6 mb-3 mb-md-0">
+                                            <label className="text-black" htmlFor="fname"> Email </label>
+                                            <input type="text" id="fname" className="form-control" />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="text-black" htmlFor="lname"> Phone </label>
+                                            <input type="text" id="lname" className="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div className="row form-group">
+
+                                        <div className="col-md-12">
+                                            <label className="text-black" htmlFor="email"> Name </label>
+                                            <input type="email" id="email" className="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div className="row form-group">
+                                        <div className="col-md-6 mb-3 mb-md-0">
+                                            <label className="text-black" htmlFor="fname"> Password </label>
+                                            <input type="text" id="fname" className="form-control" />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label className="text-black" htmlFor="lname"> Confirm Password </label>
+                                            <input type="text" id="lname" className="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div className="row form-group">
+                                        <div className="col-md-12">
+                                            <input type="submit" value="Create" className="btn btn-primary py-2 px-4 text-white" />
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+export default Signup;
