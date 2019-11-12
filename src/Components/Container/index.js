@@ -12,21 +12,50 @@ import { GALARIE_API_URL, URL } from '../Const';
 
 
 const resize = keyframes`
-from{
-  transform: scale(1)
+0% {
+  transform: scale(1); 
 }
-to{
-  transform: sale(1.5)
+10% {
+  transform: scale(1.1); 
+  filter: blur(5px);
+}
+20% {
+  transform: scale(0.8); 
+}
+30% {
+  transform: scale(1.2);
+  hue-rotate(90deg); 
+}
+40% {
+  transform: scale(0.9); 
+}
+50% {
+  transform: scale(1.3);
+  filter: drop-shadow(16px 16px 20px red) invert(75%);
+}
+60% {
+  transform: scale(1); 
+}
+70% {
+  transform: scale(1.4);
+  filter: grayscale(80%); 
+}
+80% {
+  transform: scale(1.1); 
+}
+90% {
+  transform: scale(1.5); 
+  filter: contrast(200%);
+}
+100% {
+  transform: scale(1.2);
+  filter:none; 
 }
 `;
 
 const Mydiv = styled.div`
   &:hover{
     cursor: pointer;
-  }
-  &:active,
-  &:focus {
-    animation: ${resize} 1.5s linear;
   }
 `;
 
@@ -35,10 +64,10 @@ const MyImg = styled.img`
   &:hover {
     cursor: pointer;
     filter: none;
-  }
-  &:active,
-  &:focus {
-    animation: ${resize} 0.2s linear;
+    animation-duration: 5s;
+    animation-name: ${resize};
+    animation-iteration-count: infinite;
+    animation-direction: normal;
   }
 `;
 

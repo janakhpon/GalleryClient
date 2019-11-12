@@ -18,7 +18,7 @@ const About = () => {
               <div className="col-md-4 mt-5 ml-auto">
                 <h3>GTGMyanmar</h3>
                 <p> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; Greentech Innovation Group (GTGMyanmar) was founded in 2017 by a bunch of software engineering students at TU(MLM).
-                     GTGMyanmar's purpose is to bring tech based solutions for society and which solutions as well have to be eco-friendly and also able to restore environmental health.</p>
+                     GTGMyanmar's purpose is to bring tech based solutions for society and which solutions as well have to be eco-friendly and also be able to restore environmental health.</p>
               </div>
             </div>
           </div>
