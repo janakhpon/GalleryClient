@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './Components/Menu';
 import Header from './Components/Header';
 import Container from './Components/Container';
+import Changepsw from './Components/Changepsw'; 
 import Topic from './Components/Topic';
 import Detail from './Components/Detail';
 import Detailtype from './/Components/DetailType';
@@ -75,6 +76,7 @@ class App extends Component {
           <Route path="/Contact" component={Contact} />
           <Route path="/My-Account" component={Profile} />
           <Route path="/Change-Account" component={Changeacc} />
+          <Route path="/Change-Password" component={Changepsw} />
           <Route path="/Services" component={Services} />
           <Route path="/Sort-Type" component={Sorttype} />
           <Route path="/Sort-Tag" component={Sorttag} />

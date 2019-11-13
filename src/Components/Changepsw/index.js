@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { USER_API_URL } from '../Const';
 
 const formData = new FormData();
-class Signin extends Component {
+class Changepsw extends Component {
 
     constructor(props) {
         super(props);
@@ -31,43 +31,54 @@ class Signin extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        let url = `${USER_API_URL}/login`;
-
-        axios({
-            method: 'post',
-            url: url,
-            data: formData,
-            config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        })
-            .then(res => {
-                let mmsg = res.data.msg;
-                let merr = res.data.err;
-                localStorage.setItem('token', res.data.token);
-
-                if (merr !== '') {
-                    toast.error(`😢 ${merr}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                } else {
-                    toast.success(`${mmsg}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                }
-
-
+        if (this.state.password !== this.state.cpassword) {
+            toast.error(`😢 passwords do not match`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                className: 'form-group'
             });
+        } else {
+            let url = `${USER_API_URL}/change`;
+
+            axios({
+                method: 'post',
+                url: url,
+                data: formData,
+                config: { headers: { 'Content-Type': 'multipart/form-data' } }
+            })
+                .then(res => {
+                    let mmsg = res.data.msg;
+                    let merr = res.data.err;
+
+                    if (merr !== '') {
+                        toast.error(`😢 ${merr}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            className: 'form-group'
+                        });
+                    } else {
+                        toast.success(`${mmsg}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            className: 'form-group'
+                        });
+                    }
+
+
+                });
+        }
     }
 
 
@@ -91,7 +102,7 @@ class Signin extends Component {
                         <div className="col-md-7">
                             <div className="row mb-5">
                                 <div className="col-12 ">
-                                    <h2 className="site-section-heading text-center">Sign UP</h2>
+                                    <h2 className="site-section-heading text-center">CHANGE PSW</h2>
                                 </div>
                             </div>
 
@@ -99,15 +110,22 @@ class Signin extends Component {
                                 <div className="col-lg-12 mb-5">
                                     <form action="/">
 
-
                                         <div className="row form-group">
-                                            <div className="col-md-6 mb-3 mb-md-0">
+
+                                            <div className="col-md-12">
                                                 <label className="text-black" htmlFor="email"> Email </label>
                                                 <input type="text" id="email" name="email" className="form-control" onChange={this.onChange} />
                                             </div>
+                                        </div>
+
+                                        <div className="row form-group">
                                             <div className="col-md-6 mb-3 mb-md-0">
                                                 <label className="text-black" htmlFor="password"> Password </label>
                                                 <input type="password" id="password" name="password" className="form-control" onChange={this.onChange} />
+                                            </div>
+                                            <div className="col-md-6">
+                                                <label className="text-black" htmlFor="cpassword"> Confirm Password </label>
+                                                <input type="password" id="cpassword" name="cpassword" className="form-control" onChange={this.onChange} />
                                             </div>
                                         </div>
 
@@ -119,9 +137,10 @@ class Signin extends Component {
 
                                         <div className="row form-group">
                                             <div className="col-md-12">
-                                            <p className="text-center"><Link to="/Change-Password">Forgot my password ? </Link></p>
+                                                <p className="text-center"><Link to="/Auth-Signin"> Back to Log In? </Link></p>
                                             </div>
                                         </div>
+
 
                                     </form>
                                 </div>
@@ -138,4 +157,4 @@ class Signin extends Component {
 };
 
 
-export default Signin;
+export default Changepsw;
