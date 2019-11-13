@@ -1,7 +1,44 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { USER_API_URL, PROFILE_API_URL, tagclasses, getID } from '../Const';
 
 const Profile = () => {
+    const [data, setData] = useState([]);
+    const [profile, setProfile] = useState([]);
+
+
+    useEffect(() => {
+        let isSubscribed = true
+        let url = `${USER_API_URL}/current`;
+
+        axios.get(url).then(response => {
+            if (isSubscribed) {
+                setData(response.data);
+            }
+        });
+
+        //clean up hook
+        return () => isSubscribed = false
+    }, []);
+
+
+
+    useEffect(() => {
+        let isSubscribed = true
+        let url = `${PROFILE_API_URL}/current`;
+
+        axios.get(url).then(response => {
+            if (isSubscribed) {
+                setProfile(response.data);
+            }
+        });
+
+        //clean up hook
+        return () => isSubscribed = false
+    }, []);
+
+
     return (
         <div className="site-section" data-aos="fade">
             <div className="container-fluid">
@@ -9,7 +46,7 @@ const Profile = () => {
                     <div className="col-md-7">
                         <div className="row mb-5">
                             <div className="col-12 ">
-                                <h2 className="site-section-heading text-center">Contact Us</h2>
+                                <h2 className="site-section-heading text-center">{data.name ? data.name : "Unauthorized"}</h2>
                             </div>
                         </div>
                         <div className="row">
@@ -19,28 +56,28 @@ const Profile = () => {
 
                                     <div className="row form-group">
                                         <div className="col-md-6 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fname">First Name</label>
-                                            <input type="text" id="fname" className="form-control" />
+                                            <label className="text-black" htmlFor="phone"> Phone </label>
+                                            <p className="text-center form-control">{data.phone ? data.phone : "Unauthorized"}</p>
                                         </div>
                                         <div className="col-md-6">
-                                            <label className="text-black" htmlFor="lname">Last Name</label>
-                                            <input type="text" id="lname" className="form-control" />
+                                            <label className="text-black" htmlFor="email"> Email </label>
+                                            <p className="text-center form-control">{data.email ? data.email : "Unauthorized"}</p>
+                                        </div>
+                                    </div>
+                                    <div className="row form-group">
+                                        <div className="col-md-12">
+                                            <input type="submit" value="EDIT USER" className="btn btn-primary py-2 px-4 text-white" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
-
-                                        <div className="col-md-12">
-                                            <label className="text-black" htmlFor="email">Email</label>
-                                            <input type="email" id="email" className="form-control" />
+                                        <div className="col-md-6 mb-3 mb-md-0">
+                                            <label className="text-black" htmlFor="phone"> Phone </label>
+                                            <p className="text-center form-control">{data.phone ? data.phone : "Unauthorized"}</p>
                                         </div>
-                                    </div>
-
-                                    <div className="row form-group">
-
-                                        <div className="col-md-12">
-                                            <label className="text-black" htmlFor="subject">Subject</label>
-                                            <input type="subject" id="subject" className="form-control" />
+                                        <div className="col-md-6">
+                                            <label className="text-black" htmlFor="email"> Email </label>
+                                            <p className="text-center form-control">{data.email ? data.email : "Unauthorized"}</p>
                                         </div>
                                     </div>
 
@@ -71,6 +108,24 @@ const Profile = () => {
                                     <p className="mb-0 font-weight-bold">Email Address</p>
                                     <p className="mb-0"><a href="/">GTGMyanmar@gtg.tech</a></p>
 
+                                    <p className="mb-0 font-weight-bold">Career</p>
+                                    <p className="mb-0"><a href="/">GTGMyanmar@gtg.tech</a></p>
+
+
+                                    <p className="mb-0 font-weight-bold">Hobby</p>
+                                    <p className="mb-0"><a href="/">{profile.hobby ? (profile.hobby.map((hob, key) => {
+                                        return (
+                                            <span className={`${tagclasses[getID()]}`} key={key}>{hob}</span>
+                                        );
+                                    })) : ("Unauthorized")}</a></p>
+
+
+                                    <p className="mb-0 font-weight-bold">City</p>
+                                    <p className="mb-0"><a href="/">GTGMyanmar@gtg.tech</a></p>
+
+                                    <p className="mb-0 font-weight-bold">Date</p>
+                                    <p className="mb-0"><a href="/">GTGMyanmar@gtg.tech</a></p>
+
                                 </div>
 
                             </div>
@@ -82,6 +137,5 @@ const Profile = () => {
         </div>
     );
 }
-
 
 export default Profile;
