@@ -12,6 +12,8 @@ import About from './Components/About';
 import Admin from './Components/Admin';
 import Authtype from './Components/Auth-Type';
 import Authtag from './Components/Auth-Tag';
+import Authdevice from './Components/Auth-Device';
+import Detaildevice from './Components/Detaildevice';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Sorttype from './Components/Sorttype';
@@ -36,40 +38,9 @@ import {
   HashRouter as Router,
   Route
 } from 'react-router-dom';
-import { getDataList } from './Fetch';
 import './App.css';
 
 class App extends Component {
-
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      galaries: [],
-      galarie: {}
-    }
-  }
-
-
-  async getData() {
-    let data = await getDataList();
-    this.setState({
-      galaries: data
-    })
-
-    console.log("DATA" + data);
-
-
-  }
-
-  componentDidMount() {
-
-    this.getData();
-    console.log(this.state.galaries);
-
-  }
-
-
 
   render() {
     return (
@@ -94,6 +65,8 @@ class App extends Component {
           <Route path="/Gallerytwo" component={Gallerytwo} />
           <Route path="/About" component={About} />
           <Route path="/Auth-Admin" component={Admin} />
+          <Route path="/Auth-Device" component={Authdevice} />
+          <Route path="/Detail-Device" component={Detaildevice} />
           <Route path="/Wallpaper" component={Detail} />
           <Route path="/Detail-Type" component={Detailtype} />
           <Route path="/Detail-Tag" component={Detailtag} />

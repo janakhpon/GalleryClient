@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/typeapi';
+import { TYPE_API_URL, typeclasses, getID } from '../Const';
+import { ToastContainer, toast } from 'react-toastify';
 const formData = new FormData();
 
 class Typeform extends Component {
@@ -47,7 +48,7 @@ class Typeform extends Component {
         e.preventDefault();
 
 
-        const url = `${API_URL}/add`;
+        const url = `${TYPE_API_URL}/add`;
 
 
         axios({
@@ -55,16 +56,39 @@ class Typeform extends Component {
             url: url,
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        })
-            .then(function (response) {
-                //handle success
-                console.log(response);
-            })
-            .catch(function (response) {
-                //handle error
-                console.log(response);
+        }).then(res => {
+
+            this.setState({
+                name: '',
+                description: '',
+                image: null,
+                types: []
             });
-        const gurl = `${API_URL}/list`;
+
+            toast.success('🤩 added new type', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                className: 'form-group'
+            });
+        })
+            .catch(res => {
+                toast.error(`😢 ${res}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'form-group'
+                });
+
+            });
+
+        const gurl = `${TYPE_API_URL}/list`;
         axios.get(gurl).then(response => response.data)
             .then((data) => {
                 this.setState({ types: data });
@@ -76,20 +100,32 @@ class Typeform extends Component {
     }
 
     componentDidMount() {
-        const url = `${API_URL}/list`;
+        const url = `${TYPE_API_URL}/list`;
         axios.get(url).then(response => response.data)
             .then((data) => {
                 this.setState({ types: data });
-            })
+            });
+
+        console.log("getID : " + getID());
     }
 
 
     render() {
-        const colorclass = ["badge badge-primary", "badge badge-secondary", "badge badge-success", "badge badge-danger", "badge badge-warning", "badge badge-info", "badge badge-light", "badge badge-dark"];
 
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnVisibilityChange
+                        draggable
+                        pauseOnHover
+                    />
                     <div className="container-fluid">
 
                         <div className="row justify-content-center">
@@ -102,7 +138,7 @@ class Typeform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="name">name</label>
+                                                    <label className="text-black" htmlFor="name">New type name</label>
                                                     <input type="text" id="name" name="name" className="form-control" onChange={this.handleName} />
                                                 </div>
                                             </div>
@@ -110,7 +146,7 @@ class Typeform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="description">description</label>
+                                                    <label className="text-black" htmlFor="description">Suitable type description</label>
                                                     <textarea name="description" id="description" cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."
                                                         onChange={this.handleDescription}></textarea>
                                                 </div>
@@ -118,7 +154,7 @@ class Typeform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label htmlFor="image">Your Art</label>
+                                                    <label htmlFor="image">Type Image/Art</label>
                                                     <input type="file" className="form-control-file" id="image" name="image" ref={this.image} onChange={this.handleImage} />
                                                 </div>
                                             </div>
@@ -126,7 +162,7 @@ class Typeform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <input type="submit" value="upload to Gallery" className="btn btn-primary py-2 px-4 text-white" onClick={this.handleSubmit} />
+                                                    <input type="submit" value="SAVE" className="btn btn-primary py-2 px-4 text-white" onClick={this.handleSubmit} />
                                                 </div>
                                             </div>
 
@@ -142,12 +178,8 @@ class Typeform extends Component {
                                             <div className="mb-4">
                                                 {
                                                     this.state.types.map((type, key) => {
-
-                                                        let gid = Math.floor((Math.random() * 7) + 1);
-
-
                                                         return (
-                                                            <span className={`${colorclass[gid]}`}>{type.name}</span>
+                                                            <span className={`${typeclasses[getID()]}`} key={key}>{type.name}</span>
                                                         );
                                                     })
                                                 }

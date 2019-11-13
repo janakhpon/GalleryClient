@@ -3,24 +3,12 @@ import Select from 'react-select';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
-const TAG_API_URL = 'http://localhost:5000/tagapi';
-const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+import { GALARIE_API_URL, TAG_API_URL, TYPE_API_URL, DEVICE_API_URL, tagclasses, typeclasses } from '../Const';
 
 const descriptionOptions = [];
 const tagOptions = [];
 const typeOptions = [];
-const deviceOptions = [
-    { value: 'iPhone11', label: 'iPhone11' },
-    { value: 'iPhone11s', label: 'iPhone11s' },
-    { value: 'iPhoneXs', label: 'iPhoneXs' },
-    { value: 'iPhoneX', label: 'iPhoneX' },
-    { value: 'iPhone7s', label: 'iPhone7s' },
-    { value: 'iPhone7', label: 'iPhone7' },
-    { value: 'iPhone7sPro', label: 'iPhone7sPro' },
-    { value: 'iPhone7Pro', label: 'iPhone7Pro' },
-    { value: 'iPhone6sPro', label: 'iPhone6sPro' }
-];
+const deviceOptions = [];
 const formData = new FormData();
 
 class Uploadform extends Component {
@@ -36,6 +24,7 @@ class Uploadform extends Component {
             desOptions: [],
             tags: [],
             types: [],
+            devices:[],
             title: '',
             choice: 0,
             rate: 0,
@@ -90,10 +79,22 @@ class Uploadform extends Component {
                 let temp = { value: type.name, label: type.name }
                 return typeOptions.push(temp);
             })
-        })
+        });
     }
 
 
+    getDevice = () => {
+        let url = `${DEVICE_API_URL}/list`;
+        axios.get(url).then(response => response.data).then(data => {
+            this.setState({
+                devices: data
+            });
+            this.state.devices.map((device, key) => {
+                let temp = { value: device.name, label: device.name, key: key }
+                return deviceOptions.push(temp);
+            })
+        });
+    }
 
     handleTitleChange = (e) => {
         this.setState({
@@ -185,7 +186,7 @@ class Uploadform extends Component {
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
-                    className:'form-group'
+                    className: 'form-group'
                 });
 
                 this.setState({
@@ -218,13 +219,12 @@ class Uploadform extends Component {
     componentDidMount() {
         this.getTag();
         this.getType();
+        this.getDevice();
         this.getGalarie();
     }
 
     render() {
         const { selectedTypes, selectedTags, selectedDevices } = this.state;
-        const tagclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
-        const typeclasses = ['badge badge-primary', 'badge badge-secondary', 'badge badge-success', 'badge badge-danger', 'badge badge-warning', 'badge badge-info', 'badge badge-light', 'badge badge-dark'];
 
         return (
             <Fragment>
@@ -251,7 +251,7 @@ class Uploadform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="typeform">Categories</label>
+                                                    <label className="text-black" htmlFor="typeform">Type categories</label>
                                                     <Select className="form-group" value={selectedTypes}
                                                         onChange={this.handleTypeChange}
                                                         options={typeOptions} />
@@ -262,7 +262,7 @@ class Uploadform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="title">title</label>
+                                                    <label className="text-black" htmlFor="title">Wallpaper title</label>
                                                     <input type="text" id="title" className="form-control" onChange={this.handleTitleChange} />
                                                 </div>
                                             </div>
@@ -270,7 +270,7 @@ class Uploadform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="tags">tags</label>
+                                                    <label className="text-black" htmlFor="tags">Available devices</label>
                                                     <Select
                                                         defaultValue={[deviceOptions[2], deviceOptions[3]]}
                                                         isMulti
@@ -287,7 +287,7 @@ class Uploadform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="tags">tags</label>
+                                                    <label className="text-black" htmlFor="tags">Available tags</label>
                                                     <Select
                                                         defaultValue={[tagOptions[2], tagOptions[3]]}
                                                         isMulti
@@ -317,14 +317,14 @@ class Uploadform extends Component {
                                             </div>
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="description">description</label>
+                                                    <label className="text-black" htmlFor="description">Suitable description</label>
                                                     <textarea name="description" id="description" cols="30" rows="7" className="form-control" onChange={this.handleDescriptionChange} placeholder="Write your notes or questions here..."></textarea>
                                                 </div>
                                             </div>
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <label htmlFor="image">Your Art</label>
+                                                    <label htmlFor="image">Your Art or Wallpaper</label>
                                                     <input type="file" className="form-control-file" id="image" name="image" ref={this.image} onChange={this.handleImageChange} />
                                                 </div>
                                             </div>
@@ -332,7 +332,7 @@ class Uploadform extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <input type="submit" value="upload to Gallery" className="btn btn-primary py-2 px-4 text-white" onClick={this.handleSubmit} />
+                                                    <input type="submit" value="Upload Now" className="btn btn-primary py-2 px-4 text-white" onClick={this.handleSubmit} />
                                                 </div>
                                             </div>
 

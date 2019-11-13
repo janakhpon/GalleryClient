@@ -1,143 +1,106 @@
-import React, {Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
 import Select from 'react-select';
 import axios from 'axios';
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
-const options = [
-  { value: 'NATURAL', label: 'NATURAL' },
-  { value: 'RAIN', label: 'RAIN' },
-  { value: 'FOREST', label: 'FOREST' }
-]
-
-class Authtype extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedOption: null,
-      wallpapers:[],
-      galaries: [],
-      galarie: {},
-      image:'',
-      type: '',
-      value: 1,
-    }
-  }
+import { TYPE_API_URL, URL } from '../Const';
 
 
-  handleChange = selectedOption => {
-    this.setState({
-      galaires: []
-    })
-    this.setState({ selectedOption, type: selectedOption.value });
-    const url = `${TYPE_API_URL}/list`;
-    axios.get(url).then(response => response.data)
-      .then((data) => {
-        this.setState({ galaires: data })
-      })
+const Authtype = () => {
+  const options = [];
+  const initVal = [{
+    value: "Nature", label: "Nature", key: "oneandonly"
+  }]
+  const [wallpapers, setWallpapers] = useState([]);
+  const [sselect, setSselect] = useState(initVal);
 
+  useEffect(() => {
+    let isSubscribed = true;
+    let url = `${TYPE_API_URL}/list`;
+
+    axios.get(url).then(response => response.data).then((data) => {
+
+      if (isSubscribed) {
+        setWallpapers(data);
+      }
+    });
+
+
+    return () => isSubscribed = false
+  }, []);
+
+
+  const handleChange = selectedOption => {
+    let initVal = [{
+      value: selectedOption.value, label: selectedOption.label, key: selectedOption.key
+    }]
+    setSselect(initVal);
   };
 
 
-  setValue(value) {
-    this.setState({ value });
-  }
-
-
-
- 
-
-  onSelect(e) {
-    e.preventDefault();
-
-  }
-
-
-
-  getGalarie = () => {
-    let url = `${TYPE_API_URL}/list`;
-    axios.get(url).then(response => response.data).then((data) => {
-      this.setState({
-        wallpapers: data
-      });
-    })
-  }
-
-
-  componentDidMount() {
-
-    this.getGalarie();
-
-  }
+  wallpapers.map((val, key) => {
+    let temp = { value: val.name, label: val.name, key: key };
+    return options.push(temp);
+  });
 
 
 
 
 
-  render() {
-    return (
-      <div className="site-section" data-aos="fade">
-        <div className="container-fluid">
 
-          <div className="row justify-content-center">
+  return (
+    <div className="site-section" data-aos="fade">
+      <div className="container-fluid">
 
-            <div className="col-md-7">
-              <div className="row mb-5">
-                <div className="col-6 ">
-                  <div className="site-section-heading text-center">
-                    <div className="input-group col-md-12">
-                      <input type="text" className="form-control input-lg" placeholder="keywords ... " />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-6 ">
-                  <div className="text-center">
-                    <div className="col-md-12">
-                      <Select className="form-group" value={this.state.selectedOption} onChange={this.handleChange} options={options} />
-                      <p>{this.state.galaries.length}</p>
-                    </div>
+        <div className="row justify-content-center">
+          <div className="col-md-7">
+            <div className="row mb-5">
+              <div className="col-6 ">
+                <div className="text-center">
+                  <div className="col-md-12">
+                    <Select className="form-group" value={sselect} onChange={handleChange} options={options} />
+
                   </div>
                 </div>
               </div>
             </div>
-
-          </div>
-          <div className="row">
-
-
-              {this.state.wallpapers.map((wallpaper, key) => {
-                return (
-
-                  
-                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
-                  <Link to={{
-                    pathname: `/Detail-Type/${wallpaper._id}`,
-                    state: {
-                      name:wallpaper.name,
-                      description:wallpaper.description,
-                      image:wallpaper.image,
-                      mimetype:wallpaper.mimetype,
-                      id:wallpaper._id
-                    }
-                  }}>
-
-                      <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper._id} className="img-fluid" />
-                      </Link>
-                  </div>
-
-                );
-              })}
-
-
-
           </div>
         </div>
+
+
+
+        <div className="row">
+
+
+          {wallpapers.map((wallpaper, key) => {
+            return (
+
+
+              <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
+                <Link to={{
+                  pathname: `/Detail-Type/${wallpaper._id}`,
+                  state: {
+                    name: wallpaper.name,
+                    description: wallpaper.description,
+                    image: wallpaper.image,
+                    mimetype: wallpaper.mimetype,
+                    id: wallpaper._id
+                  }
+                }}>
+
+                  <img src={`${URL}/${wallpaper.image}`} alt={wallpaper._id} className="img-fluid" />
+                </Link>
+              </div>
+
+            );
+          })}
+
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Authtype;

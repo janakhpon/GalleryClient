@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 const API_URL = 'http://localhost:5000/tagapi';
 const formData = new FormData();
 
@@ -38,15 +39,32 @@ class Tagform extends Component {
             url: url,
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        }).then(function (response) {
-
-            console.log(response);
-        })
-            .catch(function (response) {
-                this.setState({
-                    name:''
-                })
+        }).then(res => {
+            toast.success('🦄 added new tag', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                className: 'form-group'
+            });
+            this.setState({
+                name: ''
             })
+        })
+            .catch(res => {
+                toast.error(`${res}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'form-group'
+                });
+
+            });
 
 
 
@@ -101,6 +119,17 @@ class Tagform extends Component {
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnVisibilityChange
+                        draggable
+                        pauseOnHover
+                    />
                     <div className="container-fluid">
 
                         <div className="row justify-content-center">

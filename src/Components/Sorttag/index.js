@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { tagclasses } from '../Const';
 import './index.css';
 const TYPE_API_URL = 'http://localhost:5000/typeapi';
 const TAG_API_URL = 'http://localhost:5000/tagapi';
@@ -188,10 +189,6 @@ class Sorttag extends Component {
     }
 
     render() {
-        const { selectedTypes, selectedTags, selectedDevices } = this.state;
-        const tagclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
-        const typeclasses = ['badge badge-primary', 'badge badge-secondary', 'badge badge-success', 'badge badge-danger', 'badge badge-warning', 'badge badge-info', 'badge badge-light', 'badge badge-dark'];
-
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
@@ -219,9 +216,9 @@ class Sorttag extends Component {
                                                         <Link to={{
                                                             pathname: `/Dash-Tag`,
                                                             state: {
-                                                              tag:tag.value
+                                                                tag: tag.value
                                                             }
-                                                          }}><span className={`${tagclasses[gid]}`} key={key}>{tag.value}</span></Link>
+                                                        }} className={`${tagclasses[gid]}`} key={key}>{tag.value}</Link>
                                                     );
                                                 })
                                             }
@@ -230,15 +227,15 @@ class Sorttag extends Component {
                                         </div>
                                     </div>
                                     <div className="col-lg-4 ml-auto">
-                                        
-                                            <div className="input-group mb-4 border-0 rounded-pill p-1">
-                                                <div className="input-group-prepend border-0">
-                                                    <button id="button-addon4" type="button" className="btn btn-link text-info"><FontAwesomeIcon icon={faSearch} /></button>
-                                                </div>
-                                                <input type="search" placeholder="What're you searching for ? ... ." aria-describedby="button-addon4" className="form-control bg-none border-0" />
-                                            </div>
 
-                                        
+                                        <div className="input-group mb-4 border-0 rounded-pill p-1">
+                                            <div className="input-group-prepend border-0">
+                                                <button id="button-addon4" type="button" className="btn btn-link text-info"><FontAwesomeIcon icon={faSearch} /></button>
+                                            </div>
+                                            <input type="search" placeholder="What're you searching for ? ... ." aria-describedby="button-addon4" className="form-control bg-none border-0" />
+                                        </div>
+
+
 
                                     </div>
                                 </div>

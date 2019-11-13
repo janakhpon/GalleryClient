@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/typeapi';
+import { ToastContainer, toast } from 'react-toastify';
+import { DEVICE_API_URL, getID } from '../Const';
 const formData = new FormData();
 
 class Deviceform extends Component {
@@ -10,7 +11,7 @@ class Deviceform extends Component {
         super(props);
         this.state = {
             name: '',
-            description: '',
+            screensize: '',
             image: null,
             types: []
         }
@@ -21,16 +22,16 @@ class Deviceform extends Component {
         e.preventDefault();
         this.setState({
             name: e.target.value
-        })
+        });
         formData.set('name', e.target.value);
     }
 
-    handleDescription = (e) => {
+    handleScreen = (e) => {
         e.preventDefault();
         this.setState({
-            description: e.target.value
-        })
-        formData.set('description', e.target.value);
+            screensize: e.target.value
+        });
+        formData.set('screensize', e.target.value);
     }
 
 
@@ -40,14 +41,12 @@ class Deviceform extends Component {
         });
 
         formData.append('image', e.target.files[0]);
-        console.log(e.target.files[0]);
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-
-        const url = `${API_URL}/add`;
+        const url = `${DEVICE_API_URL}/add`;
 
 
         axios({
@@ -55,16 +54,38 @@ class Deviceform extends Component {
             url: url,
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        })
-            .then(function (response) {
-                //handle success
-                console.log(response);
-            })
-            .catch(function (response) {
-                //handle error
-                console.log(response);
+        }).then(res => {
+
+            this.setState({
+                name: '',
+                screensize: '',
+                image: null
             });
-        const gurl = `${API_URL}/list`;
+
+            toast.success('🤩 added new type', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                className: 'form-group'
+            });
+        })
+            .catch(res => {
+                toast.error(`😢 ${res}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'form-group'
+                });
+
+            });
+
+        const gurl = `${DEVICE_API_URL}/list`;
         axios.get(gurl).then(response => response.data)
             .then((data) => {
                 this.setState({ types: data });
@@ -76,7 +97,7 @@ class Deviceform extends Component {
     }
 
     componentDidMount() {
-        const url = `${API_URL}/list`;
+        const url = `${DEVICE_API_URL}/list`;
         axios.get(url).then(response => response.data)
             .then((data) => {
                 this.setState({ types: data });
@@ -90,6 +111,17 @@ class Deviceform extends Component {
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnVisibilityChange
+                        draggable
+                        pauseOnHover
+                    />
                     <div className="container-fluid">
 
                         <div className="row justify-content-center">
@@ -102,19 +134,19 @@ class Deviceform extends Component {
                                             <div className="row form-group">
 
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="name">name</label>
+                                                    <label className="text-black" htmlFor="name">Device name</label>
                                                     <input type="text" id="name" name="name" className="form-control" onChange={this.handleName} />
                                                 </div>
                                             </div>
 
-
                                             <div className="row form-group">
+
                                                 <div className="col-md-12">
-                                                    <label className="text-black" htmlFor="description">description</label>
-                                                    <textarea name="description" id="description" cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."
-                                                        onChange={this.handleDescription}></textarea>
+                                                    <label className="text-black" htmlFor="screensize">Device screensize</label>
+                                                    <input type="text" id="screensize" name="screensize" className="form-control" onChange={this.handleScreen} />
                                                 </div>
                                             </div>
+
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
@@ -142,12 +174,8 @@ class Deviceform extends Component {
                                             <div className="mb-4">
                                                 {
                                                     this.state.types.map((type, key) => {
-
-                                                        let gid = Math.floor((Math.random() * 7) + 1);
-
-
                                                         return (
-                                                            <span className={`${colorclass[gid]}`}>{type.name}</span>
+                                                            <span className={`${colorclass[getID()]}`} key={key}>{type.name}</span>
                                                         );
                                                     })
                                                 }

@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/tagapi';
+import { TAG_API_URL} from '../Const';
 const formData = new FormData();
 
 class Detailtag extends Component {
@@ -31,7 +31,7 @@ class Detailtag extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const url = `${API_URL}/add`;
+        const url = `${TAG_API_URL}/add`;
 
         axios({
             method: 'post',
@@ -50,7 +50,7 @@ class Detailtag extends Component {
 
 
 
-        const gurl = `${API_URL}/list`;
+        const gurl = `${TAG_API_URL}/list`;
         axios.get(gurl).then(response => response.data).then((data) => {
 
             if (this._isMounted) {
@@ -67,7 +67,7 @@ class Detailtag extends Component {
 
     onDelete = (e) => {
         e.preventDefault();
-        const url = `${API_URL}/delete/${this.state.id}`;
+        const url = `${TAG_API_URL}/delete/${this.state.id}`;
         axios.delete(url).then(response => response.data)
             .then((data) => {
                 this.props.history.push('/Auth-Tag');
@@ -97,10 +97,8 @@ class Detailtag extends Component {
     componentWillUnmount() {
         this._isMounted = false;
     }
-
+    
     render() {
-
-        const badgeclasses = ['badge badge-pill badge-primary', 'badge badge-pill badge-secondary', 'badge badge-pill badge-success', 'badge badge-pill badge-danger', 'badge badge-pill badge-warning', 'badge badge-pill badge-info', 'badge badge-pill badge-light', 'badge badge-pill badge-dark'];
         return (
             <Fragment>
                 <div className="site-section" data-aos="fade">
