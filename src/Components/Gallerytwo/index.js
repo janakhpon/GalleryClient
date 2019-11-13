@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { getDataList } from '../../Fetch';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import 'lightgallery';
 import "animate.css/animate.min.css";
@@ -47,13 +46,7 @@ class Gallerytwo extends Component {
 
 
 
-  async getData() {
-    let data = await getDataList();
-    this.setState({
-      galaries: data
-    })
 
-  }
 
   onSelect(e) {
     e.preventDefault();
@@ -65,7 +58,7 @@ class Gallerytwo extends Component {
 
   componentDidMount() {
 
-    this.getData();
+    
 
   }
 

@@ -67,18 +67,18 @@ class App extends Component {
           <Route path="/Topic" component={Topic} />
           <Route path="/Wallpapers" component={Gallery} />
           <Route path="/Gallerytwo" component={Gallerytwo} />
-          <Route path="/About" component={About} />
+          <Route path="/Info-About" component={About} />
           <Route path="/Auth-Admin" component={Admin} />
           <Route path="/Auth-Device" component={Authdevice} />
           <Route path="/Detail-Device" component={Detaildevice} />
           <Route path="/Wallpaper" component={Detail} />
           <Route path="/Detail-Type" component={Detailtype} />
           <Route path="/Detail-Tag" component={Detailtag} />
-          <Route path="/Contact" component={Contact} />
+          <Route path="/Info-Contact" component={Contact} />
           <Route path="/My-Account" component={Profile} />
           <Route path="/Change-Account" component={Changeacc} />
           <Route path="/Change-Password" component={Changepsw} />
-          <Route path="/Services" component={Services} />
+          <Route path="/Info-Services" component={Services} />
           <Route path="/Sort-Type" component={Sorttype} />
           <Route path="/Sort-Tag" component={Sorttag} />
           <Route path="/Sort-ID" component={Sortid} />
@@ -96,7 +96,7 @@ class App extends Component {
           <Route path="/Auth-Tag" component={Authtag} />
           <Route path="/Auth-Signup" component={Signup} />
           <Route path="/Auth-Signin" component={Signin} />
-          <Route path="/Auth-Request" component={Request} />
+          <Route path="/Info-Request" component={Request} />
 
 
         </Router>

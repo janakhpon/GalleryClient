@@ -92,7 +92,7 @@ class Signin extends Component {
                         <div className="col-md-7">
                             <div className="row mb-5">
                                 <div className="col-12 ">
-                                    <h2 className="site-section-heading text-center">Sign UP</h2>
+                                    <h2 className="site-section-heading text-center">SIGN IN</h2>
                                 </div>
                             </div>
 
@@ -114,7 +114,7 @@ class Signin extends Component {
 
                                         <div className="row form-group">
                                             <div className="col-md-12">
-                                                <input type="submit" value="SIGN UP" className="btn btn-primary py-2 px-4 text-white" onClick={this.onSubmit} />
+                                                <input type="submit" value="LOG IN" className="btn btn-primary py-2 px-4 text-white" onClick={this.onSubmit} />
                                             </div>
                                         </div>
 
