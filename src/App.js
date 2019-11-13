@@ -16,6 +16,7 @@ import Authtag from './Components/Auth-Tag';
 import Authdevice from './Components/Auth-Device';
 import Detaildevice from './Components/Detaildevice';
 import Profile from './Components/Profile';
+import Profileform from './Components/Profileform';
 import Changeacc from './Components/Changeacc';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
@@ -88,6 +89,7 @@ class App extends Component {
           <Route path="/New-Tag" component={Tagform} />
           <Route path="/Dash-Tag" component={Tagdash} />
           <Route path="/Dash-Date" component={Datedash} />
+          <Route path="/New-Profile" component={Profileform} />
           <Route path="/New-Device" component={Deviceform} />
           <Route path="/New-Wallpaper" component={Uploadform} />
           <Route path="/Auth-Type" component={Authtype} />

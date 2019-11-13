@@ -27,6 +27,7 @@ class Header extends Component {
                                                         <li><Link to="/New-Type"> New-Type </Link></li>
                                                         <li><Link to="/New-Tag"> New-Tag </Link></li>
                                                         <li><Link to="/New-Device"> New-Device </Link></li>
+                                                        <li><Link to="/New-Profile"> New-Profile </Link></li>
                                                     </ul>
                                                 </li>
                                                 <li className="has-children">
