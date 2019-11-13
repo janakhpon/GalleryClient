@@ -40,24 +40,18 @@ class Header extends Component {
                                                         <li><Link to="/Sort-ID"> Sort By ID </Link></li>
                                                     </ul>
                                                 </li>
-                                                <li className="has-children">
-                                                    <a href="/#">Auth</a>
-                                                    <ul className="dropdown">
-                                                        <li><Link to="/Auth-Signup"> Auth-Signup </Link></li>
-                                                        <li><Link to="/Auth-Signin"> Auth-Signin </Link></li>
-                                                        <li><Link to="/Auth-Admin"> Auth-Admin </Link></li>
-                                                        <li><Link to="/Auth-Type"> Auth-Type </Link></li>
-                                                        <li><Link to="/Auth-Tag"> Auth-Tag </Link></li>
-                                                        <li><Link to="/Auth-Device"> Auth-Device </Link></li>
-                                                    </ul>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li className="has-children">
-                                            <a href="/#">Profile</a>
+                                            <a href="/#">Auth</a>
                                             <ul className="dropdown">
                                                 <li><Link to="/My-Account"> My Account </Link></li>
-                                                <li><Link to="/Change-Account"> Change Account </Link></li>
+                                                <li><Link to="/Auth-Signup"> Auth-Signup </Link></li>
+                                                <li><Link to="/Auth-Signin"> Auth-Signin </Link></li>
+                                                <li><Link to="/Auth-Admin"> Auth-Admin </Link></li>
+                                                <li><Link to="/Auth-Type"> Auth-Type </Link></li>
+                                                <li><Link to="/Auth-Tag"> Auth-Tag </Link></li>
+                                                <li><Link to="/Auth-Device"> Auth-Device </Link></li>
                                             </ul>
                                         </li>
                                         <li className="has-children">
@@ -70,8 +64,10 @@ class Header extends Component {
                                         <li className="has-children">
                                             <a href="/#"> Info </a>
                                             <ul className="dropdown">
-                                                <li><a href='/#'> Use Burmese </a></li>
-                                                <li><a href='/#'>Use English </a></li>
+                                                <li><Link to="/Info-About"> About </Link></li>
+                                                <li><Link to="/Info-Contact"> Contact </Link></li>
+                                                <li><Link to="/Info-Request"> Request </Link></li>
+                                                <li><Link to="/Info-Services"> Services </Link></li>
                                             </ul>
                                         </li>
                                     </ul>
