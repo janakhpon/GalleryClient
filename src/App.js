@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Menu from './Components/Menu';
 import Header from './Components/Header';
 import Container from './Components/Container';
+import Changepsw from './Components/Changepsw'; 
 import Topic from './Components/Topic';
 import Detail from './Components/Detail';
 import Detailtype from './/Components/DetailType';
@@ -14,6 +15,8 @@ import Authtype from './Components/Auth-Type';
 import Authtag from './Components/Auth-Tag';
 import Authdevice from './Components/Auth-Device';
 import Detaildevice from './Components/Detaildevice';
+import Profile from './Components/Profile';
+import Changeacc from './Components/Changeacc';
 import Contact from './Components/Contact';
 import Services from './Components/Services';
 import Sorttype from './Components/Sorttype';
@@ -71,6 +74,9 @@ class App extends Component {
           <Route path="/Detail-Type" component={Detailtype} />
           <Route path="/Detail-Tag" component={Detailtag} />
           <Route path="/Contact" component={Contact} />
+          <Route path="/My-Account" component={Profile} />
+          <Route path="/Change-Account" component={Changeacc} />
+          <Route path="/Change-Password" component={Changepsw} />
           <Route path="/Services" component={Services} />
           <Route path="/Sort-Type" component={Sorttype} />
           <Route path="/Sort-Tag" component={Sorttag} />

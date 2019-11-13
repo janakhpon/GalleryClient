@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { USER_API_URL } from '../Const';
 
 const formData = new FormData();
-class Signup extends Component {
+class Changepsw extends Component {
 
     constructor(props) {
         super(props);
@@ -41,7 +42,7 @@ class Signup extends Component {
                 className: 'form-group'
             });
         } else {
-            let url = `${USER_API_URL}/register`;
+            let url = `${USER_API_URL}/change`;
 
             axios({
                 method: 'post',
@@ -101,7 +102,7 @@ class Signup extends Component {
                         <div className="col-md-7">
                             <div className="row mb-5">
                                 <div className="col-12 ">
-                                    <h2 className="site-section-heading text-center">Sign UP</h2>
+                                    <h2 className="site-section-heading text-center">CHANGE PSW</h2>
                                 </div>
                             </div>
 
@@ -109,23 +110,11 @@ class Signup extends Component {
                                 <div className="col-lg-12 mb-5">
                                     <form action="/">
 
-
-                                        <div className="row form-group">
-                                            <div className="col-md-6 mb-3 mb-md-0">
-                                                <label className="text-black" htmlFor="email"> Email </label>
-                                                <input type="text" id="email" name="email" className="form-control" onChange={this.onChange} />
-                                            </div>
-                                            <div className="col-md-6">
-                                                <label className="text-black" htmlFor="phone"> Phone </label>
-                                                <input type="text" id="phone" name="phone" className="form-control" onChange={this.onChange} />
-                                            </div>
-                                        </div>
-
                                         <div className="row form-group">
 
                                             <div className="col-md-12">
-                                                <label className="text-black" htmlFor="name"> Name </label>
-                                                <input type="text" id="name" name="name" className="form-control" onChange={this.onChange} />
+                                                <label className="text-black" htmlFor="email"> Email </label>
+                                                <input type="text" id="email" name="email" className="form-control" onChange={this.onChange} />
                                             </div>
                                         </div>
 
@@ -146,6 +135,12 @@ class Signup extends Component {
                                             </div>
                                         </div>
 
+                                        <div className="row form-group">
+                                            <div className="col-md-12">
+                                                <p className="text-center"><Link to="/Auth-Signin"> Back to Log In? </Link></p>
+                                            </div>
+                                        </div>
+
 
                                     </form>
                                 </div>
@@ -162,4 +157,4 @@ class Signup extends Component {
 };
 
 
-export default Signup;
+export default Changepsw;

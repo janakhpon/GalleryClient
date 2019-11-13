@@ -53,14 +53,26 @@ class Header extends Component {
                                             </ul>
                                         </li>
                                         <li className="has-children">
+                                            <a href="/#">Profile</a>
+                                            <ul className="dropdown">
+                                                <li><Link to="/My-Account"> My Account </Link></li>
+                                                <li><Link to="/Change-Account"> Change Account </Link></li>
+                                            </ul>
+                                        </li>
+                                        <li className="has-children">
                                             <a href="/#">Languages</a>
                                             <ul className="dropdown">
                                                 <li><a href='/#'> Use Burmese </a></li>
                                                 <li><a href='/#'>Use English </a></li>
                                             </ul>
                                         </li>
-                                        <li><Link to="/About">About</Link></li>
-                                        <li><Link to="/Contact">Contact</Link></li>
+                                        <li className="has-children">
+                                            <a href="/#"> Info </a>
+                                            <ul className="dropdown">
+                                                <li><a href='/#'> Use Burmese </a></li>
+                                                <li><a href='/#'>Use English </a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
