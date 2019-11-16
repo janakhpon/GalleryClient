@@ -3,116 +3,53 @@ import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-import Select from 'react-select';
 import axios from 'axios';
 import { GALARIE_API_URL, URL } from '../Const';
-const options = [
-  { value: 'NATURAL', label: 'NATURAL' },
-  { value: 'RAIN', label: 'RAIN' },
-  { value: 'FOREST', label: 'FOREST' }
-]
 
 class Gallerytwo extends Component {
-
+ _isMounted = false;
+ 
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: null,
-      galaries: [],
-      galarie: {},
-      type: '',
-      value: 1,
-    }
+      wallpapers: [],
+    };
   }
-
-
-  handleChange = selectedOption => {
-    this.setState({
-      galaires: []
-    })
-    this.setState({ selectedOption, type: selectedOption.value });
-    const url = `${GALARIE_API_URL}/type/${selectedOption.value}`;
-    axios.get(url).then(response => response.data)
-      .then((data) => {
-        this.setState({ galaires: data })
-      })
-
-  };
-
-
-  setValue(value) {
-    this.setState({ value });
-  }
-
-
-
-
-
-  onSelect(e) {
-    e.preventDefault();
-
-  }
-
-
-
-
   componentDidMount() {
-
-    
-
+    this._isMounted = true;
+    let url = `${GALARIE_API_URL}/list`;
+    axios
+      .get(url)
+      .then(result => {
+        if (this._isMounted) {
+          this.setState({
+            wallpapers: result.data,
+          });
+        }
+      });
   }
-
-
-
-
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   render() {
     return (
       <div className="site-section" data-aos="fade">
         <div className="container-fluid">
-
-          <div className="row justify-content-center">
-
-            <div className="col-md-7">
-              <div className="row mb-5">
-                <div className="col-6 ">
-                  <div className="site-section-heading text-center">
-                    <div className="input-group col-md-12">
-                      <input type="text" className="form-control input-lg" placeholder="keywords ... " />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-6 ">
-                  <div className="text-center">
-                    <div className="col-md-12">
-                      <Select className="form-group" value={this.state.selectedOption} onChange={this.handleChange} options={options} />
-                      <p>{this.state.galaries.length}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
           <div className="row">
-            <LightgalleryProvider
-              onAfterSlide={() => {
-                console.log("onAfterSlide");
-              }}
-            >
-
-              {this.state.galaries.map((galarie, key) => {
+            <LightgalleryProvider>
+              {this.state.wallpapers.map((wallpaper, key) => {
                 return (
 
-                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade">
-                    <LightgalleryItem group="any" src={`${URL}/${galarie.image}`} subHtml="<h4>lol</h4><p>lol</p>">
-                      <img src={`${URL}/${galarie.image}`} alt={galarie.date} className="img-fluid" />
+                  <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
+                    <LightgalleryItem group="any" src={`${URL}/${wallpaper.image}`}
+                      subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
+                      <img src={`${URL}/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                     </LightgalleryItem>
                   </div>
 
                 );
               })}
-
             </LightgalleryProvider>
 
 

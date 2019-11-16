@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-const TYPE_API_URL = 'http://localhost:5000/typeapi';
-const TAG_API_URL = 'http://localhost:5000/tagapi';
-const GALARIE_API_URL = 'http://localhost:5000/galarieapi';
+import { GALARIE_API_URL, URL } from '../Const';
+
 class Tagdash extends Component {
 
     constructor(props) {
@@ -25,33 +24,12 @@ class Tagdash extends Component {
 
     getGalarie = (val) => {
         let url = `${GALARIE_API_URL}/keyword/${val}`;
-        console.log(url)
 
         axios.get(url).then(response => response.data).then((data) => {
             this.setState({
                 wallpapers: data
             })
-            console.log(data);
-        })
-    }
-
-
-    getTag = () => {
-        let url = `${TAG_API_URL}/list`;
-        axios.get(url).then(response => response.data).then(data => {
-            this.setState({
-                tags: data
-            })
-        })
-    }
-
-
-    getType = () => {
-        let url = `${TYPE_API_URL}/list`;
-        axios.get(url).then(response => response.data).then(data => {
-            this.setState({
-                types: data
-            })
+            
         })
     }
 
@@ -69,9 +47,6 @@ class Tagdash extends Component {
                 type: localStorage.getItem('tag')
             })
         }
-
-        console.log(localStorage.getItem('tag'));
-
         this.getGalarie(localStorage.getItem('tag'));
     }
 
@@ -108,7 +83,7 @@ class Tagdash extends Component {
                                 return (
 
                                     <div id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
-                                        <LightgalleryItem group="any" src={`http://localhost:5000/${wallpaper.image}`}
+                                        <LightgalleryItem group="any" src={`${URL}/${wallpaper.image}`}
                                             subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
                                             <Link to={{
                                                 pathname: `/Wallpaper/${wallpaper._id}`,
@@ -126,7 +101,7 @@ class Tagdash extends Component {
                                                     id: wallpaper._id
                                                 }
                                             }}>
-                                                <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
+                                                <img src={`${URL}/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                                             </Link>
                                         </LightgalleryItem>
                                     </div>

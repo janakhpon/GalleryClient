@@ -16,9 +16,9 @@ const Gallery = () => {
     let isSubscribed = true
     let url = `${GALARIE_API_URL}/list`;
 
-    axios.get(url).then(response => response.data).then((data) => {
+    axios.get(url).then(response => {
       if (isSubscribed) {
-        setWallpapers(data)
+        setWallpapers(response.data)
       }
     });
 

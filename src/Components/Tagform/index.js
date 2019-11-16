@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-const API_URL = 'http://localhost:5000/tagapi';
+import { TAG_API_URL, getID } from '../Const';
 const formData = new FormData();
 
 class Tagform extends Component {
@@ -32,7 +32,7 @@ class Tagform extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const url = `${API_URL}/add`;
+        const url = `${TAG_API_URL}/add`;
 
         axios({
             method: 'post',
@@ -40,35 +40,67 @@ class Tagform extends Component {
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         }).then(res => {
-            toast.success('🦄 added new tag', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                className: 'form-group'
-            });
+            let mmsg = res.data.msg;
+                    let merr = res.data.err;
+                    let msta = res.data.status;
+
+                    if (merr !== '') {
+                        toast.error(`😥 ${merr} with ${msta}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            className: 'form-group'
+                        });
+                    } else {
+                        toast.success(`😎 ${mmsg} with ${msta}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            className: 'form-group'
+                        });
+                    }
             this.setState({
                 name: ''
             })
         })
             .catch(res => {
-                toast.error(`${res}`, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    className: 'form-group'
-                });
+                let mmsg = res.data.msg;
+                    let merr = res.data.err;
+                    let msta = res.data.status;
+
+                    if (merr !== '') {
+                        toast.error(`😥 ${merr} with ${msta}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            className: 'form-group'
+                        });
+                    } else {
+                        toast.success(`😎 ${mmsg} with ${msta}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            className: 'form-group'
+                        });
+                    }
 
             });
 
 
 
-        const gurl = `${API_URL}/list`;
+        const gurl = `${TAG_API_URL}/list`;
         axios.get(gurl).then(response => response.data).then((data) => {
 
             if (this._isMounted) {
@@ -84,7 +116,7 @@ class Tagform extends Component {
 
     onDelete = (e) => {
         e.preventDefault();
-        const url = `${API_URL}/delete/${this.state.id}`;
+        const url = `${TAG_API_URL}/delete/${this.state.id}`;
         axios.delete(url).then(response => response.data)
             .then((data) => {
                 this.props.history.push('/Auth-Tag');
@@ -95,7 +127,7 @@ class Tagform extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const url = `${API_URL}/list`;
+        const url = `${TAG_API_URL}/list`;
         axios.get(url).then(response => response.data).then((data) => {
 
             if (this._isMounted) {
@@ -174,9 +206,8 @@ class Tagform extends Component {
 
                                                 {
                                                     this.state.tags.map((tag, key) => {
-                                                        let gid = Math.floor((Math.random() * 7) + 1);
                                                         return (
-                                                            <span className={`${badgeclasses[gid]}`} key={key}>{tag.name}</span>
+                                                            <span className={`${badgeclasses[getID()]}`} key={key}>{tag.name}</span>
                                                         );
                                                     })
                                                 }

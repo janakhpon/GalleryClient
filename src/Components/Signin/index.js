@@ -43,10 +43,11 @@ class Signin extends Component {
             .then(res => {
                 let mmsg = res.data.msg;
                 let merr = res.data.err;
+                let msta = res.data.status;
                 localStorage.setItem('token', res.data.token);
-                setAuthToken(res.data.token);
+                setAuthToken(res.data.token)
                 if (merr !== '') {
-                    toast.error(`😢 ${merr}`, {
+                    toast.error(`😥 ${merr} with ${msta}`, {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -56,7 +57,7 @@ class Signin extends Component {
                         className: 'form-group'
                     });
                 } else {
-                    toast.success(`${mmsg}`, {
+                    toast.success(`😎 ${mmsg} with ${msta}`, {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -66,7 +67,6 @@ class Signin extends Component {
                         className: 'form-group'
                     });
                 }
-
 
             });
     }
@@ -120,7 +120,7 @@ class Signin extends Component {
 
                                         <div className="row form-group">
                                             <div className="col-md-12">
-                                            <p className="text-center"><Link to="/Change-Password">Forgot my password ? </Link></p>
+                                                <p className="text-center"><Link to="/Change-Password">Forgot my password ? </Link></p>
                                             </div>
                                         </div>
 
