@@ -176,33 +176,18 @@ class Uploadform extends Component {
             data: formData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
-            .then(res => {
-
-                let mmsg = res.data.msg;
-                let merr = res.data.err;
-                let msta = res.data.status;
-
-                if (merr !== '') {
-                    toast.error(`😥 ${merr} with ${msta}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                } else {
-                    toast.success(`😎 ${mmsg} with ${msta}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                }
+            .then(function (response) {
+                //handle success
+                console.log(response);
+                toast.success('🦄 Wow so easy!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'form-group'
+                });
 
                 this.setState({
                     selectedTypes: null,
@@ -219,32 +204,9 @@ class Uploadform extends Component {
                     image: null
                 })
             })
-            .catch(res => {
-                let mmsg = res.data.msg;
-                let merr = res.data.err;
-                let msta = res.data.status;
-
-                if (merr !== '') {
-                    toast.error(`😥 ${merr} with ${msta}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                } else {
-                    toast.success(`😎 ${mmsg} with ${msta}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                }
+            .catch(function (response) {
+                //handle error
+                console.log(response);
             })
 
 

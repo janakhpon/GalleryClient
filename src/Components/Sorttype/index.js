@@ -136,7 +136,6 @@ class Sorttype extends Component {
     handleRateChange = (e) => {
         this.setState({ rate: e.target.value });
         formData.set('rate', e.target.value);
-        console.log(e.target.value);
     }
     handleChoiceChange = (e) => {
         this.setState({ choice: e.target.value });

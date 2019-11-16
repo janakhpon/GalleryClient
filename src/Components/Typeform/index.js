@@ -65,18 +65,12 @@ class Typeform extends Component {
                 types: []
             });
 
-            toast.success('🤩 added new type', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                className: 'form-group'
-            });
-        })
-            .catch(res => {
-                toast.error(`😢 ${res}`, {
+            let mmsg = res.data.msg;
+            let merr = res.data.err;
+            let msta = res.data.status;
+
+            if (merr !== '') {
+                toast.error(`😥 ${merr} with ${msta}`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -85,6 +79,44 @@ class Typeform extends Component {
                     draggable: true,
                     className: 'form-group'
                 });
+            } else {
+                toast.success(`😎 ${mmsg} with ${msta}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'form-group'
+                });
+            }
+        })
+            .catch(res => {
+                let mmsg = res.data.msg;
+                let merr = res.data.err;
+                let msta = res.data.status;
+
+                if (merr !== '') {
+                    toast.error(`😥 ${merr} with ${msta}`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        className: 'form-group'
+                    });
+                } else {
+                    toast.success(`😎 ${mmsg} with ${msta}`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        className: 'form-group'
+                    });
+                }
 
             });
 
@@ -105,8 +137,6 @@ class Typeform extends Component {
             .then((data) => {
                 this.setState({ types: data });
             });
-
-        console.log("getID : " + getID());
     }
 
 

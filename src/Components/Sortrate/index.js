@@ -6,7 +6,7 @@ import * as _ from "lodash";
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-import { GALARIE_API_URL, TYPE_API_URL, TAG_API_URL } from '../Const';
+import { GALARIE_API_URL, URL } from '../Const';
 
 
 const Mydiv = styled.div`
@@ -66,13 +66,12 @@ class Sortrate extends Component {
 
             {
               _.sortBy(this.state.wallpapers, 'rate').reverse().map((wallpaper, key) =>{
-                console.log(`${wallpaper.rate}and${key}`);
                 return (
 
                   <Mydiv id="aniimated-thumbnials" className="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" key={key}>
-                    <LightgalleryItem group="any" src={`http://localhost:5000/${wallpaper.image}`}
+                    <LightgalleryItem group="any" src={`${URL}/${wallpaper.image}`}
                       subHtml={`<h3>${wallpaper.title}</h3><p>${wallpaper.type}</p>`}>
-                      <img src={`http://localhost:5000/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
+                      <img src={`${URL}/${wallpaper.image}`} alt={wallpaper.date} className="img-fluid" />
                     </LightgalleryItem>
                   </Mydiv>
 

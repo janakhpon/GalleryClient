@@ -63,9 +63,10 @@ const onProfileSubmit = (e) => {
         .then(res => {
             let mmsg = res.data.msg;
             let merr = res.data.err;
+            let msta = res.data.status;
 
             if (merr !== '') {
-                toast.error(`😢 ${merr}`, {
+                toast.error(`😥 ${merr} with ${msta}`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -75,7 +76,7 @@ const onProfileSubmit = (e) => {
                     className: 'form-group'
                 });
             } else {
-                toast.success(`${mmsg}`, {
+                toast.success(`😎 ${mmsg} with ${msta}`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
