@@ -20,48 +20,98 @@ class Profileform extends Component {
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
         formData.set([e.target.name], e.target.value);
+
+        console.log([e.target.name], e.target.value)
     }
 
-    onSubmit = (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
 
         let url = `${PROFILE_API_URL}/profile`;
 
-        axios({
-            method: 'post',
-            url: url,
-            data: formData,
-            config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        })
-            .then(res => {
-                let mmsg = res.data.msg;
-                let merr = res.data.err;
-                let msta = res.data.status;
 
-                if (merr !== '') {
-                    toast.error(`😥 ${merr} with ${msta}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                } else {
-                    toast.success(`😎 ${mmsg} with ${msta}`, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        className: 'form-group'
-                    });
-                }
+        // axios({
+        //     method: 'post',
+        //     url: url,
+        //     data: formData,
+        //     config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        // })
+        //     .then(res => {
+        //         let mmsg = res.data.msg;
+        //         let merr = res.data.err;
+        //         let msta = res.data.status;
+
+        //         if (merr !== '') {
+        //             toast.error(`😥 ${merr} with ${msta}`, {
+        //                 position: "top-right",
+        //                 autoClose: 5000,
+        //                 hideProgressBar: false,
+        //                 closeOnClick: true,
+        //                 pauseOnHover: true,
+        //                 draggable: true,
+        //                 className: 'form-group'
+        //             });
+        //         } else {
+        //             toast.success(`😎 ${mmsg} with ${msta}`, {
+        //                 position: "top-right",
+        //                 autoClose: 5000,
+        //                 hideProgressBar: false,
+        //                 closeOnClick: true,
+        //                 pauseOnHover: true,
+        //                 draggable: true,
+        //                 className: 'form-group'
+        //             });
+        //         }
 
 
+        //     });
+
+
+        try {
+            const res = await axios({
+                method: 'post',
+                url: url,
+                data: formData,
+                config: { headers: { 'Content-Type': 'multipart/form-data' } }
+            })
+
+            let mmsg = res.data.msg;
+            let merr = res.data.err;
+            let msta = res.data.status;
+
+            if (merr !== '') {
+                toast.error(`😥 ${merr} with ${msta}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'form-group'
+                });
+            } else {
+                toast.success(`😎 ${mmsg} with ${msta}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    className: 'form-group'
+                });
+            }
+
+        } catch (err) {
+            toast.error(`😥 ${err}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                className: 'form-group'
             });
+        }
 
     }
 
