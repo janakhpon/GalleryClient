@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { USER_API_URL, PROFILE_API_URL, tagclasses, getID } from '../Const';
+import setAuthToken from '../utils'
 
 const formData = new FormData();
 
@@ -98,13 +99,22 @@ const Profile = () => {
 
     useEffect(() => {
         let isSubscribed = true
+        let token = localStorage.getItem('token')
+        setAuthToken(token)
         let url = `${USER_API_URL}/current`;
-
-        axios.get(url).then(response => {
+        const getProfile = async () => {
+            let response = await axios.get(url)
             if (isSubscribed) {
-                setData(response.data);
+                setData(response.data)
             }
-        });
+        }
+
+
+        try {
+            getProfile()
+        } catch (err) {
+            console.log(err)
+        }
 
         //clean up hook
         return () => isSubscribed = false
@@ -114,13 +124,23 @@ const Profile = () => {
 
     useEffect(() => {
         let isSubscribed = true
+        let token = localStorage.getItem('token')
+        setAuthToken(token)
         let url = `${PROFILE_API_URL}/current`;
-
-        axios.get(url).then(response => {
+        const getProfile = async () => {
+            let response = await axios.get(url)
             if (isSubscribed) {
-                setProfile(response.data);
+                setProfile(response.data)
             }
-        });
+        }
+
+
+        try {
+            getProfile()
+        } catch (err) {
+            console.log(err)
+        }
+
 
         //clean up hook
         return () => isSubscribed = false
