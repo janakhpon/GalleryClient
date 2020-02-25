@@ -16,10 +16,6 @@ class Detailtag extends Component {
         }
     }
 
-
-
-
-
     handleName = (e) => {
         e.preventDefault();
         this.setState({
