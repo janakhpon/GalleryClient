@@ -48,7 +48,7 @@ const Authtag = () => {
                                                         pathname: `/Detail-Tag`,
                                                         state: {
                                                             name: tag.name,
-                                                            id: tag._d
+                                                            id: tag._id
                                                         }
                                                     }} className={`${tagclasses[getID()]}`} key={key}>{tag.name}</Link>
                                                 );

@@ -184,10 +184,10 @@ class Profileform extends Component {
                                         <p className="mb-4">No.82 Khayay St. Ngantae ward, Mawlamyine, Mon State, Myanmar</p>
 
                                         <p className="mb-0 font-weight-bold">Phone</p>
-                                        <p className="mb-4"><a href="/">+959 255839074</a></p>
+                                        <p className="mb-4"><a href="tel:+9509792359726">+95 09792359726 </a></p>
 
                                         <p className="mb-0 font-weight-bold">Email Address</p>
-                                        <p className="mb-0"><a href="/">GTGMyanmar@gtg.tech</a></p>
+                                        <p className="mb-0"><a href="mailto:greentechinc.myanmar@gmail.com">greentechinc.myanmar@gmail.com</a></p>
 
                                     </div>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Contact = () => {
     return (
         <div className="site-section" data-aos="fade">
@@ -16,7 +15,6 @@ const Contact = () => {
                             <div className="col-lg-8 mb-5">
                                 <form action="/">
 
-
                                     <div className="row form-group">
                                         <div className="col-md-6 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fname">First Name</label>
@@ -29,7 +27,6 @@ const Contact = () => {
                                     </div>
 
                                     <div className="row form-group">
-
                                         <div className="col-md-12">
                                             <label className="text-black" htmlFor="email">Email</label>
                                             <input type="email" id="email" className="form-control" />
@@ -37,7 +34,6 @@ const Contact = () => {
                                     </div>
 
                                     <div className="row form-group">
-
                                         <div className="col-md-12">
                                             <label className="text-black" htmlFor="subject">Subject</label>
                                             <input type="subject" id="subject" className="form-control" />
@@ -57,7 +53,6 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-
                                 </form>
                             </div>
                             <div className="col-lg-3 ml-auto">
@@ -66,10 +61,10 @@ const Contact = () => {
                                     <p className="mb-4">No.82 Khayay St. Ngantae ward, Mawlamyine, Mon State, Myanmar</p>
 
                                     <p className="mb-0 font-weight-bold">Phone</p>
-                                    <p className="mb-4"><a href="/">+959 255839074</a></p>
+                                    <p className="mb-4"><a href="tel:+9509792359726">+95 09792359726 </a></p>
 
                                     <p className="mb-0 font-weight-bold">Email Address</p>
-                                    <p className="mb-0"><a href="/">GTGMyanmar@gtg.tech</a></p>
+                                    <p className="mb-0"><a href="mailto:greentechinc.myanmar@gmail.com">greentechinc.myanmar@gmail.com</a></p>
 
                                 </div>
 

@@ -66,7 +66,6 @@ class Header extends Component {
                                             <ul className="dropdown">
                                                 <li><Link to="/Info-About"> About </Link></li>
                                                 <li><Link to="/Info-Contact"> Contact </Link></li>
-                                                <li><Link to="/Info-Request"> Request </Link></li>
                                             </ul>
                                         </li>
                                     </ul>
