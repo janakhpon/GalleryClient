@@ -62,6 +62,13 @@ class Header extends Component {
                                             </ul>
                                         </li>
                                         <li className="has-children">
+                                            <a href="/#">Themes</a>
+                                            <ul className="dropdown">
+                                                <li><a href='/#'> Light Mode </a></li>
+                                                <li><a href='/#'>Dark Mode </a></li>
+                                            </ul>
+                                        </li>
+                                        <li className="has-children">
                                             <a href="/#"> Info </a>
                                             <ul className="dropdown">
                                                 <li><Link to="/Info-About"> About </Link></li>
