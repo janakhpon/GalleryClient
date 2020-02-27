@@ -10,6 +10,7 @@ export const PROFILE_API_URL = `${URL}profileapi`
 export const TYPE_API_URL = `${URL}typeapi`
 export const TAG_API_URL = `${URL}tagapi`
 export const DEVICE_API_URL = `${URL}deviceapi`
+export const CONTACT_API_URL = `${URL}contactapi`
 
 
 export let getID = () => {
