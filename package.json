@@ -10,7 +10,7 @@
     "axios": "^0.19.2",
     "axos": "^0.0.1",
     "history": "^4.10.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lightgallery": "^1.6.12",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
