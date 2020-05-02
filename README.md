@@ -1,7 +1,7 @@
 # GalleryClient
   GalleryClient is a wallpaper website built on MERN stack. You can upload wallpaper with specific descption including tags, types, device, rating and choice and all of these features can also be added dynamically. On displaying the wallpapaers you can sort by type, tags, date, rating and choice. Notice that CRUD options are available to admin only. Please Check the `RELEASE_STATUS` before you clone. Here is a deployed link [herokudeploy](https://ei-sgallery.herokuapp.com/)
 
-
+### This repo is no longer maintained as it was first written years ago!!!.
 
 # Usage
 clone the server repository first
