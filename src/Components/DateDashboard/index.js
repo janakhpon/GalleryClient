@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import { Link } from 'react-router-dom';
-import moment from 'moment';
+import * as moment from 'moment';
 import 'lightgallery';
 import "animate.css/animate.min.css";
 import "lightgallery.js/dist/css/lightgallery.css";
-import {GALARIE_API_URL, URL} from '../Const';
+import { GALARIE_API_URL, URL } from '../Const';
 const indexnum = [];
 class Datedash extends Component {
 
